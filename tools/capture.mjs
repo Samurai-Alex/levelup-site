@@ -44,7 +44,16 @@ try {
   await ev(`S = demoState(); S.uiStyle = 'pill'; S.errReports = false; S.survey = {done: 1}; S.seenVersion = '9.9.9'; save(); hideModal(); render({nav: true}); 1`);
   await sleep(1500);
   for (const p of PAGES) { await page(p); await shot(p); }
-  for (const th of THEMES) { await page('home', th); await shot('theme-' + th); }
+  // на знімках тем тор і свічки ховаємо — сайт малює їх поверх живими (logos.js)
+  const rel = sel => `(() => { const r = document.querySelector('${sel}').getBoundingClientRect(); return [r.x / ${W} * 100, r.y / ${H} * 100, r.width / ${W} * 100, r.height / ${H} * 100].map(v => +v.toFixed(3)); })()`;
+  for (const th of THEMES) {
+    await page('home', th);
+    if (th === THEMES[0]) fs.writeFileSync(path.join(SITE, 'logos.js'), `// згенеровано tools/capture.mjs: місце тора й свічок на знімку, % від ${W}×${H}
+window.LOGOS = ${JSON.stringify({torus: await ev(rel('#torus')), candles: await ev(rel('.candles'))})};
+`);
+    await ev(`document.querySelectorAll('#torus, .candles').forEach(e => e.style.visibility = 'hidden'); 1`);
+    await shot('theme-' + th);
+  }
 
   if (only !== 'shots') {
     // відео ~14 с: відмітити звички (росте XP) → фінанси → дашборд → інша тема
@@ -67,7 +76,7 @@ try {
     fs.writeFileSync(path.join(dir, 'list.txt'), list);
     const base = ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', path.join(dir, 'list.txt'), '-fps_mode', 'cfr', '-r', '30', '-an'];
     execFileSync(FFMPEG, [...base, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '26', '-preset', 'slow', '-movflags', '+faststart', path.join(IMG, 'demo.mp4')]);
-    fs.copyFileSync(path.join(IMG, 'theme-levelup.webp'), path.join(IMG, 'demo-poster.webp'));
+    fs.copyFileSync(path.join(IMG, 'home.webp'), path.join(IMG, 'demo-poster.webp'));
     console.log(`img/demo.mp4 (${frames.length} кадрів)`);
     fs.rmSync(dir, {recursive: true, force: true});
   }

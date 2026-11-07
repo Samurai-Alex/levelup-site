@@ -113,7 +113,17 @@ video.shot{display:block;width:100%;max-width:960px;height:auto;background:#000}
 #news summary .pill{margin-left:8px;font-size:11px;padding:2px 10px}
 #lb{border:0;padding:0;background:transparent;max-width:96vw;max-height:94vh;overflow:visible}
 #lb::backdrop{background:rgba(0,0,0,.85)}
-#lb img{max-width:96vw;max-height:94vh;width:auto;border-radius:10px;cursor:zoom-out}
+#lb .lbx>*{width:min(96vw,150vh);border-radius:10px;overflow:hidden;cursor:zoom-out}
+#lb .lbx img{width:100%;height:auto}
+.live{position:relative;display:block}.live img{width:100%;height:auto;display:block}
+.live .torus,.live .cdlw{position:absolute;pointer-events:none}
+.cdlw .candles{width:100%;height:100%;display:block}
+.candles .cdl{animation:cdlgrow 4.5s ease-in-out infinite}.candles .cdl line{stroke-width:2}
+.candles .up rect{fill:#1fd65f}.candles .up line{stroke:#1fd65f}.candles .dn rect{fill:#d0423a}.candles .dn line{stroke:#d0423a}
+.candles .trend{fill:none;stroke:#e9e9e9;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:300;animation:cdltrend 4.5s ease-in-out infinite}
+@keyframes cdlgrow{0%,6%{transform:scaleY(0)}28%,86%{transform:scaleY(1)}100%{transform:scaleY(0)}}
+@keyframes cdltrend{0%,25%{stroke-dashoffset:300}55%,86%{stroke-dashoffset:0}100%{stroke-dashoffset:300}}
+@media (prefers-reduced-motion:reduce){.candles .cdl,.candles .trend{animation:none}}
 #lb button{all:unset;cursor:pointer;position:absolute;top:-14px;right:-14px;width:34px;height:34px;border-radius:50%;background:var(--acc);color:#04120a;font-size:22px;line-height:34px;text-align:center}
 footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--muted);font-size:12.5px}
 footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
@@ -178,7 +188,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div class="dots" id="dots">
     <button class="on" data-t="levelup" style="--c:#2ee66b"><i></i>LEVEL UP</button><button data-t="classic" style="--c:#ff3b3b"><i></i>Classic</button><button data-t="nebula" style="--c:#9d8cf2"><i></i>Nebula</button><button data-t="champagne" style="--c:#c8b27d"><i></i>Champagne</button><button data-t="amethyst" style="--c:#a678e6"><i></i>Amethyst</button><button data-t="ice" style="--c:#6b95bf"><i></i>Ice</button>
   </div>
-  <img class="gal zoom" id="thimg" src="img/theme-levelup.webp" width="1440" height="900" alt="" loading="lazy">
+  <div class="gal zoom live"><img id="thimg" src="img/theme-levelup.webp" width="1440" height="900" alt="" loading="lazy"><canvas class="torus"></canvas><div class="cdlw"></div></div>
 </div></section>
 
 <section id="install"><div class="wrap">
@@ -235,8 +245,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div class="quote">DISCIPLINE = <b>FREEDOM</b></div>
 </div></footer>
 
-<dialog id="lb" aria-label="Screenshot"><img alt=""><button aria-label="Close">×</button></dialog>
-<script src="changes.js"></script>
+<dialog id="lb" aria-label="Screenshot"><div class="lbx"></div><button aria-label="Close">×</button></dialog>
+<script src="changes.js"></script><script src="logos.js"></script>
 <script>
 // Посилання на установник і версія — з GitHub-релізу, звідки програма й оновлюється.
 const REPO = 'Samurai-Alex/habit-tracker-updates', DL = `https://github.com/${REPO}/releases/download/levelup/Level-Up-setup.exe`;
@@ -351,10 +361,40 @@ document.getElementById('dots').onclick = e => { const b = e.target.closest('but
   document.querySelectorAll('#dots button').forEach(x => x.classList.toggle('on', x === b)); document.getElementById('thimg').src = `img/theme-${b.dataset.t}.webp`; };
 // збільшення скриншота на весь екран
 const lb = document.getElementById('lb');
-document.addEventListener('click', e => { const z = e.target.closest('img.zoom'); if (z) { lb.querySelector('img').src = z.src; lb.showModal(); } });
+document.addEventListener('click', e => { const z = e.target.closest('.zoom'); if (!z || lb.contains(z)) return;
+  const c = z.cloneNode(true); c.classList.remove('zoom', 'gal'); lb.querySelector('.lbx').replaceChildren(c); lb.showModal(); });
 lb.onclick = () => lb.close();
 // без анімацій для тих, хто їх вимкнув у системі
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) { const v = document.querySelector('video.shot'); v.removeAttribute('autoplay'); v.pause(); }
+// Живі тор і свічки поверх знімка — той самий код, що в програмі (charts.js / extras.js)
+const CANDLES = `<svg class="candles" viewBox="0 0 140 120">${[
+  [20, 70, 104, 78, 20, 'dn'], [42, 62, 100, 70, 22, 'up'], [64, 48, 88, 55, 26, 'up'], [86, 44, 72, 50, 14, 'dn'], [108, 22, 66, 30, 28, 'up']
+].map(([x, w1, w2, y, h, c], i) => `<g class="cdl ${c}" style="transform-origin:${x}px 110px;animation-delay:${i * .25}s"><line x1="${x}" y1="${w1}" x2="${x}" y2="${w2}"/><rect x="${x - 7}" y="${y}" width="14" height="${h}"/></g>`).join('')}<polyline class="trend" points="10,96 42,82 64,62 86,58 108,34 132,14"/></svg>`;
+const pos = (el, [x, y, w, h]) => Object.assign(el.style, {left: x + '%', top: y + '%', width: w + '%', height: h + '%'});
+document.querySelectorAll('.live').forEach(l => { pos(l.querySelector('.torus'), LOGOS.torus); const c = l.querySelector('.cdlw'); pos(c, LOGOS.candles); c.innerHTML = CANDLES; });
+function drawTorus(cv, time) {
+  const W = Math.max(40, Math.round(cv.clientWidth * (window.devicePixelRatio || 1)));
+  if (cv.width !== W) { cv.width = W; cv.height = W; }
+  const ctx = cv.getContext('2d'); ctx.clearRect(0, 0, W, W);
+  const ax = 1.0 + Math.sin(time * .3) * .35, ay = time * .25, r = .42, N = 40, M = 20;
+  const P = (u, v) => {
+    const R = 1 + .13 * Math.sin(3 * u + time * .9);
+    const x = (R + r * Math.cos(v)) * Math.cos(u), y = (R + r * Math.cos(v)) * Math.sin(u), z = r * Math.sin(v) + .12 * Math.sin(2 * u + time);
+    const y1 = y * Math.cos(ax) - z * Math.sin(ax), z1 = y * Math.sin(ax) + z * Math.cos(ax);
+    const x2 = x * Math.cos(ay) + z1 * Math.sin(ay), z2 = -x * Math.sin(ay) + z1 * Math.cos(ay);
+    const s = W * .28 / (1 + z2 * .08);
+    return [W / 2 + x2 * s, W / 2 + y1 * s];
+  };
+  ctx.lineWidth = .8 * W / 240;
+  ctx.strokeStyle = 'rgba(255,255,255,.55)';
+  for (let i = 0; i < N; i++) { const u = i / N * 2 * Math.PI; ctx.beginPath(); for (let j = 0; j <= M; j++) { const p = P(u, j / M * 2 * Math.PI); j ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); } ctx.stroke(); }
+  ctx.strokeStyle = 'rgba(255,255,255,.3)';
+  for (let j = 0; j < M; j++) { const v = j / M * 2 * Math.PI; ctx.beginPath(); for (let i = 0; i <= N; i++) { const p = P(i / N * 2 * Math.PI, v); i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); } ctx.stroke(); }
+}
+const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let last = 0;
+(function loop(ts) { requestAnimationFrame(loop); if (ts - last < 33) return; last = ts;
+  document.querySelectorAll('canvas.torus').forEach(cv => { const r = cv.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) drawTorus(cv, still ? 6 : ts / 1000); }); })(0);
 // «Що нового» — з changes.js (tools/changes.mjs)
 function drawNews() {
   document.getElementById('newsList').innerHTML = (window.CHANGES || []).map((c, i) => `<details ${i ? '' : 'open'}><summary>v${c.v}${i ? '' : ` <span class="pill">${L[lang].nwLast}</span>`}</summary><ul class="nl">${(c[lang] || c.en).map(x => `<li>${x.replace(/[<>&]/g, s => ({'<': '&lt;', '>': '&gt;', '&': '&amp;'}[s]))}</li>`).join('')}</ul></details>`).join('');
