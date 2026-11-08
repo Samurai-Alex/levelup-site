@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://levelup-tracker.com/</loc></url>
+  <url><loc>https://levelup-tracker.com/about.html</loc></url>
+  <url><loc>https://levelup-tracker.com/terms.html</loc></url>
+  <url><loc>https://levelup-tracker.com/privacy.html</loc></url>
+  <url><loc>https://levelup-tracker.com/contact.html</loc></url>
 </urlset>
