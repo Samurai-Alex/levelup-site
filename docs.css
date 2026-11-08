@@ -30,3 +30,4 @@ footer{border-top:1px solid var(--line);padding:26px 0 36px;color:var(--muted);f
 .foot a{color:var(--muted)}.foot a:hover,.foot a[aria-current]{color:var(--text)}
 .foot .cp{margin-right:auto}
 @media (max-width:600px){.logo span{display:none}main{padding-top:32px}}
+.tg{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:999px;background:var(--acc);color:#04120a;font-weight:700;text-decoration:none}.tg:hover{background:#4bf082}.tg svg{width:18px;height:18px}
