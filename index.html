@@ -101,6 +101,8 @@ summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-cont
 summary::after{content:"+";color:var(--acc);font-family:var(--pixel);font-size:12px}
 details[open] summary::after{content:"−"}
 details p{color:var(--muted);margin:10px 0 0;font-size:14px}
+details.flash{animation:flash 1.6s ease-out}
+@keyframes flash{0%,30%{border-color:var(--acc);box-shadow:0 0 0 3px rgba(46,230,107,.25)}}
 .trust{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin:22px 0 0;padding:0;font-size:13px;color:var(--muted)}
 .trust li{display:flex;align-items:center;gap:8px}.trust svg{width:18px;height:18px;color:var(--acc)}
 video.shot{display:block;width:100%;max-width:960px;height:auto;background:#000}
@@ -401,6 +403,10 @@ function drawNews() {
 }
 drawNews();
 document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', drawNews));
+// «Конфіденційність» у підвалі: розкрити відповідь, прокрутити до неї й підсвітити (просто якір нічого не показував — блок згорнутий)
+function showPrivacy() { const d = document.getElementById('privacy'); d.open = true; d.scrollIntoView({behavior: 'smooth', block: 'center'}); d.classList.remove('flash'); void d.offsetWidth; d.classList.add('flash'); }
+document.querySelectorAll('a[href="#privacy"]').forEach(a => a.onclick = e => { e.preventDefault(); history.replaceState(null, '', '#privacy'); showPrivacy(); });
+if (location.hash === '#privacy') setTimeout(showPrivacy, 300);
 // актуальна версія й розмір установника
 fetch(`https://api.github.com/repos/${REPO}/releases/tags/levelup`).then(r => r.json()).then(r => {
   const v = (r.body || '').match(/\d+\.\d+\.\d+/), a = (r.assets || []).find(x => /setup\.exe$/i.test(x.name));
