@@ -1,6 +1,42 @@
 // згенеровано tools/changes.mjs — не редагувати вручну
 window.CHANGES = [
  {
+  "v": "1.7.1",
+  "uk": [
+   "Відповіді розробника на ваші відгуки тепер приходять прямо в програму (крапка на «Налаштуваннях»)",
+   "F11 — на весь екран",
+   "Іконки для категорій і типів тренувань — з того ж набору, що й у звичок",
+   "Таймер фокусу: свій час у хвилинах",
+   "Приклади в підказках — у вашій валюті",
+   "ШІ працює стабільніше: збійна модель пропускається, зрозумілі помилки в майстрі ключа",
+   "Курси валют: запасне джерело, якщо сайт НБУ недоступний",
+   "Список налаштувань у стилі вибраних карток",
+   "Зміна розміру віджета більше не кидає сторінку нагору"
+  ],
+  "ru": [
+   "Ответы разработчика на ваши отзывы теперь приходят прямо в программу (точка на «Настройках»)",
+   "F11 — на весь экран",
+   "Иконки для категорий и типов тренировок — из того же набора, что у привычек",
+   "Таймер фокуса: своё время в минутах",
+   "Примеры в подсказках — в вашей валюте",
+   "ИИ работает стабильнее: сбойная модель пропускается, понятные ошибки в мастере ключа",
+   "Курсы валют: запасной источник, если сайт НБУ недоступен",
+   "Список настроек в стиле выбранных карточек",
+   "Изменение размера виджета больше не бросает страницу наверх"
+  ],
+  "en": [
+   "Developer replies to your feedback now arrive right in the app (a dot on Settings)",
+   "F11 — full screen",
+   "Icons for categories and workout types — the same set as for habits",
+   "Focus timer: your own time in minutes",
+   "Examples in hints use your currency",
+   "AI is more reliable: a glitching model is skipped, clear errors in the key wizard",
+   "Exchange rates: a backup source when the NBU site is unreachable",
+   "Settings list follows your card style",
+   "Resizing a widget no longer jumps the page to the top"
+  ]
+ },
+ {
   "v": "1.7.0",
   "uk": [
    "Нові «Налаштування»: короткі рядки «назва — значення», розкриваються на місці; окремі вкладки «ШІ» та «Інше»",
@@ -49,39 +85,6 @@ window.CHANGES = [
    "Add habits from ready-made ones by section or type your own; Run, English and Trading bring their tab back",
    "Lists in Settings are single plates: colour, name, settings and bin together",
    "«Delete all» habits, with Undo"
-  ]
- },
- {
-  "v": "1.6.0",
-  "uk": [
-   "Чат «Спитайте свої дані»: кнопка в куті — відповіді за вашими записами",
-   "Тренування виразів від ШІ: тест із 4 варіантами, на сторінці навчання й віджетом",
-   "Фото чека або скриншот оплати в рядку швидкого вводу — ШІ сам заповнює витрату",
-   "Підсумок місяця й року з коротким розбором від ШІ",
-   "ШІ підбирає звички під ціль і радить ліміти бюджету — ви лише ставите галочки",
-   "Вираз голосом: затисніть мікрофон біля поля — програма розпізнає й допише переклад",
-   "Рік угорі тепер змінює всі розділи й віджети; капітал — 12 місяців зі стрілками",
-   "Без смайликів: усюди контурні іконки"
-  ],
-  "ru": [
-   "Чат «Спросите свои данные»: кнопка в углу — ответы по вашим записям",
-   "Тренировка выражений от ИИ: тест с 4 вариантами, на странице учёбы и виджетом",
-   "Фото чека или скриншот оплаты в строке быстрого ввода — ИИ сам заполнит расход",
-   "Итог месяца и года с коротким разбором от ИИ",
-   "ИИ подбирает привычки под цель и советует лимиты бюджета — вы только ставите галочки",
-   "Выражение голосом: зажмите микрофон у поля — программа распознает и допишет перевод",
-   "Год вверху теперь меняет все разделы и виджеты; капитал — 12 месяцев со стрелками",
-   "Без смайликов: везде контурные иконки"
-  ],
-  "en": [
-   "“Ask your data” chat: the corner button answers from your own records",
-   "AI phrase practice: a 4-option quiz on the study page and as a widget",
-   "Receipt photo or payment screenshot in quick input — the AI fills in the expense",
-   "Month and year in review with a short AI summary",
-   "The AI suggests habits for a goal and budget limits — you just tick them",
-   "Phrase by voice: hold the mic by the field — it is recognised and translated",
-   "The year at the top now changes every section and widget; capital shows 12 months with arrows",
-   "No emoji: outline icons everywhere"
   ]
  }
 ];
