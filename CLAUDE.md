@@ -1,26 +1,31 @@
 # levelup-tracker.com — сайт LEVEL UP
 
-Статичний сайт на GitHub Pages (репозиторій `Samurai-Alex/levelup-site`, гілка `main`), домен у Cloudflare (DNS only, підтверджений у GitHub).
+## Правила работы
+- Отвечать пользователю **по-русски**.
+- Неясно — сначала уточнить. Визуальные изменения — **сначала 2–3 варианта**, делать после выбора.
+- Тексты сайта — на трёх языках: украинский, русский, английский.
+- Стиль: тёмный фон, зелёный акцент (#2ee66b), пиксельный заголовок (Press Start 2P), основной шрифт JetBrains Mono. Без эмодзи в интерфейсе.
+- В подвале всегда: «Информация на сайте не является публичной офертой» и ссылки на документы.
+- LEVEL UP станет платной: место под цены и кнопку покупки — объект `SHOP` в `index.html` (`buy: true`, ссылка, цена).
+- Не коммитить секреты. Владелец в документах — просто «LEVEL UP», почта — support@levelup-tracker.com.
 
-## Файли
-- `index.html` — головна (тексти uk/ru/en у JS-обʼєкті `L`, мова — `localStorage.lang`).
-- `about.html`, `terms.html`, `privacy.html`, `contact.html` — документи; спільні `docs.css` і `docs.js` (шапка, підвал, мова).
-- `img/` — знімки програми на демо-даних, `img/demo.mp4`, `img/og.png`; `changes.js` («Що нового»), `logos.js` (місце тора/свічок).
+## Стек
+- Статический сайт без сборки на **GitHub Pages** (репозиторий `Samurai-Alex/levelup-site`, ветка `main`), Jekyll по умолчанию (`_config.yml` скрывает `CLAUDE.md`, `README.md`, `tools/`).
+- Домен в **Cloudflare** (записи DNS only), подтверждён в GitHub, HTTPS включён (Let's Encrypt от GitHub).
+- Почта support@levelup-tracker.com — Cloudflare Email Routing → Gmail пользователя.
+
+## Файлы
+- `index.html` — главная; тексты в JS-объекте `L` (uk/ru/en), язык — `localStorage.lang`.
+- `about.html`, `terms.html`, `privacy.html`, `contact.html` — документы; общие `docs.css` и `docs.js` (шапка, подвал, язык).
+- `img/` — скриншоты программы на демо-данных, `demo.mp4`, `og.png`; `changes.js` («Что нового»), `logos.js` (живые тор и свечи поверх скриншотов тем).
 - `CNAME`, `robots.txt`, `sitemap.xml`.
 
-## Оновити матеріали
-- `node tools/capture.mjs` — нові скриншоти й відео з `../HabitTrackerApp/app` (Chrome headless).
-- `node tools/changes.mjs` — «Що нового» з `../HabitTrackerApp/app/js/updates.js` (після кожного релізу).
-- Картинка для соцмереж — команда в шапці `tools/og.html`.
-
-## Перевірка й публікація
-- Локально: сервер теки на `http://localhost:8776/`.
-- Публікація: commit, потім
+## Команды
+- Переснять скриншоты и видео: `node tools/capture.mjs` (Chrome headless, берёт программу из `../HabitTrackerApp/app`).
+- «Что нового» после релиза программы: `node tools/changes.mjs`.
+- Картинка для соцсетей: команда в шапке `tools/og.html`.
+- Локальный просмотр: сервер этой папки на `http://localhost:8776/`.
+- Публикация: коммит, затем
   `git -c credential.helper= -c "credential.helper=!'C:/Program Files/GitHub CLI/gh.exe' auth git-credential" push origin main`
-  (звичайний `git push` зависає на вікні входу). Сайт оновлюється за ~1 хв.
-- Якщо push відхилено: GitHub сам додає коміти `CNAME` при зміні домену — `git fetch` + `git rebase origin/main`.
-
-## Правила
-- Тексти на трьох мовах (uk, ru, en). Стиль — темний, зелений акцент, пікселевий заголовок.
-- «Інформація на сайті не є публічною офертою» — лишати в підвалі.
-- Візуальні зміни — спершу показати варіанти.
+  (обычный `git push` зависает на окне входа). Сайт обновляется примерно за минуту.
+- Если push отклонён: GitHub сам добавляет коммиты с `CNAME` при смене домена — `git fetch`, затем `git rebase origin/main`.
