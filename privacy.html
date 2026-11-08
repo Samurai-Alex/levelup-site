@@ -35,12 +35,12 @@
 
 <h2>4. Что получает разработчик</h2>
 <ul>
-<li><b>Отзыв</b> («Сообщить об ошибке», «Предложить идею») — только когда вы нажали «Отправить»: ваш текст, контакт (если вы его указали), версия программы и, если оставлена галочка, версия Windows и язык.</li>
+<li><b>Отзыв</b> («Сообщить об ошибке», «Предложить идею») — только когда вы нажали «Отправить»: ваш текст, контакт (если вы его указали), версия программы и, если оставлена галочка, версия Windows и язык. К отзыву добавляется анонимный случайный номер установки (без имени и почты) — по нему разработчик может ответить, а программа забирает ответ. Ответы хранятся до 6 месяцев.</li>
 <li><b>Отчёты об ошибках</b> — только если вы согласились: текст ошибки, место в коде, открытая страница, версия программы, версия Windows и язык. Без ваших записей.</li>
 <li><b>Сообщение в Telegram-бот</b> @levelup_otzyvy_bot — ваш текст или вложение, имя и ник в Telegram и номер чата, чтобы ответить вам. Пересылка идёт через Cloudflare Workers.</li>
 <li><b>Оценка</b> (через несколько дней использования, по желанию): звёзды, ваш комментарий, число дней с установки, число привычек и язык.</li>
 </ul>
-<p>Эти сообщения доставляются через Telegram и используются только для исправления ошибок и улучшения программы. Основание — ваше согласие (GDPR, ст. 6(1)(a)); его можно отозвать в «Настройках». Сообщения хранятся, пока нужны для этой цели, и удаляются по вашему запросу.</p>
+<p>Эти сообщения доставляются через Cloudflare Workers и Telegram и используются только для исправления ошибок и улучшения программы. Основание — ваше согласие (GDPR, ст. 6(1)(a)); его можно отозвать в «Настройках». Сообщения хранятся, пока нужны для этой цели, и удаляются по вашему запросу.</p>
 
 <h2>5. Сайт</h2>
 <p>Сайт размещён на GitHub Pages; GitHub может записывать технические данные о посещении (IP-адрес, браузер) по своей политике. Сайт не использует cookies, аналитику и рекламу. В браузере сохраняется только выбранный язык. Номер последней версии сайт узнаёт у GitHub.</p>
@@ -78,12 +78,12 @@
 
 <h2>4. Що отримує розробник</h2>
 <ul>
-<li><b>Відгук</b> («Повідомити про помилку», «Запропонувати ідею») — лише коли ви натиснули «Надіслати»: ваш текст, контакт (якщо вказали), версія програми та, якщо лишили галочку, версія Windows і мова.</li>
+<li><b>Відгук</b> («Повідомити про помилку», «Запропонувати ідею») — лише коли ви натиснули «Надіслати»: ваш текст, контакт (якщо вказали), версія програми та, якщо лишили галочку, версія Windows і мова. До відгуку додається анонімний випадковий номер установки (без імені й пошти) — за ним розробник може відповісти, а програма забирає відповідь. Відповіді зберігаються до 6 місяців.</li>
 <li><b>Звіти про помилки</b> — лише якщо ви погодилися: текст помилки, місце в коді, відкрита сторінка, версія програми, версія Windows і мова. Без ваших записів.</li>
 <li><b>Повідомлення в Telegram-бот</b> @levelup_otzyvy_bot — ваш текст чи вкладення, імʼя й нік у Telegram і номер чату, щоб відповісти вам. Пересилання йде через Cloudflare Workers.</li>
 <li><b>Оцінка</b> (через кілька днів користування, за бажанням): зірки, ваш коментар, кількість днів від встановлення, кількість звичок і мова.</li>
 </ul>
-<p>Ці повідомлення доставляються через Telegram і використовуються лише для виправлення помилок і покращення програми. Підстава — ваша згода (GDPR, ст. 6(1)(a)); її можна відкликати в «Налаштуваннях». Повідомлення зберігаються, доки потрібні для цієї мети, і видаляються на ваш запит.</p>
+<p>Ці повідомлення доставляються через Cloudflare Workers і Telegram і використовуються лише для виправлення помилок і покращення програми. Підстава — ваша згода (GDPR, ст. 6(1)(a)); її можна відкликати в «Налаштуваннях». Повідомлення зберігаються, доки потрібні для цієї мети, і видаляються на ваш запит.</p>
 
 <h2>5. Сайт</h2>
 <p>Сайт розміщено на GitHub Pages; GitHub може записувати технічні дані про відвідування (IP-адреса, браузер) за своєю політикою. Сайт не використовує cookies, аналітику й рекламу. У браузері зберігається лише вибрана мова. Номер останньої версії сайт дізнається в GitHub.</p>
@@ -121,12 +121,12 @@
 
 <h2>4. What the developer receives</h2>
 <ul>
-<li><b>Feedback</b> (“Report a bug”, “Suggest an idea”) — only when you press “Send”: your text, a contact if you gave one, the app version and, if the box is ticked, the Windows version and language.</li>
+<li><b>Feedback</b> (“Report a bug”, “Suggest an idea”) — only when you press “Send”: your text, a contact if you gave one, the app version and, if the box is ticked, the Windows version and language. An anonymous random install number (no name or email) is attached so the developer can reply and the app can fetch the reply. Replies are kept for up to 6 months.</li>
 <li><b>Error reports</b> — only if you agreed: the error text, the place in the code, the open page, the app version, the Windows version and language. Never your records.</li>
 <li><b>A message to the Telegram bot</b> @levelup_otzyvy_bot — your text or attachment, your Telegram name and username, and the chat number so we can reply. It is relayed via Cloudflare Workers.</li>
 <li><b>Rating</b> (optional, after a few days of use): stars, your comment, days since install, number of habits and language.</li>
 </ul>
-<p>These messages are delivered via Telegram and used only to fix bugs and improve the app. The legal basis is your consent (GDPR Art. 6(1)(a)); you can withdraw it in Settings. Messages are kept only as long as needed for that purpose and deleted on request.</p>
+<p>These messages are delivered via Cloudflare Workers and Telegram and used only to fix bugs and improve the app. The legal basis is your consent (GDPR Art. 6(1)(a)); you can withdraw it in Settings. Messages are kept only as long as needed for that purpose and deleted on request.</p>
 
 <h2>5. The site</h2>
 <p>The site is hosted on GitHub Pages; GitHub may log technical visit data (IP address, browser) under its own policy. The site uses no cookies, analytics or ads. Only your chosen language is stored in the browser. The site asks GitHub for the latest version number.</p>
