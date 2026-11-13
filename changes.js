@@ -1,6 +1,33 @@
 // згенеровано tools/changes.mjs — не редагувати вручну
 window.CHANGES = [
  {
+  "v": "1.7.6",
+  "uk": [
+   "Нові версії приходять без перезапуску: програма перевіряє оновлення, коли ви відкриваєте вікно з трею, і щогодини",
+   "Вікно «Доступна нова версія» більше не зникає саме — воно чекає, доки ви натиснете «Оновити зараз» чи «Пізніше»",
+   "Якщо в цю мить відкрите інше вікно («Що нового», регулярні платежі, підсумок), оновлення дочекається, доки його закриєте, і одразу з'явиться",
+   "Інші вікна, які програма відкриває сама, більше не закривають вікно оновлення — вони з'являються після нього",
+   "«Пізніше» (або Esc) — і програма нагадає про цю версію наступного дня, а не щогодини",
+   "Немає інтернету під час перевірки — програма спробує ще раз сама"
+  ],
+  "ru": [
+   "Новые версии приходят без перезапуска: программа проверяет обновления, когда вы открываете окно из трея, и каждый час",
+   "Окно «Доступна новая версия» больше не пропадает само — оно ждёт, пока вы нажмёте «Обновить сейчас» или «Позже»",
+   "Если в этот момент открыто другое окно («Что нового», регулярные платежи, итоги), обновление дождётся, пока его закроете, и сразу появится",
+   "Другие окна, которые программа открывает сама, больше не закрывают окно обновления — они появляются после него",
+   "«Позже» (или Esc) — и программа напомнит об этой версии на следующий день, а не каждый час",
+   "Нет интернета во время проверки — программа попробует ещё раз сама"
+  ],
+  "en": [
+   "New versions arrive without a restart: the app checks for updates when you open its window from the tray and every hour",
+   "The «New version available» window no longer disappears by itself; it waits until you press «Update now» or «Later»",
+   "If another window is open at that moment (What's new, recurring payments, a summary), the update waits until you close it and then appears",
+   "Other windows the app opens by itself no longer close the update window; they show up after it",
+   "«Later» (or Esc) and the app reminds you of this version the next day, not every hour",
+   "No internet during a check: the app tries again by itself"
+  ]
+ },
+ {
   "v": "1.7.4",
   "uk": [
    "Привітання й перша екскурсія новачка — на живому фоні «Level Up», а не на порожньому чорному",
@@ -58,39 +85,6 @@ window.CHANGES = [
    "Trading through a trader's eyes: the month result in big numbers, a review for the week / month / all time, a pause after a loss and a daily stop, Pocket Option history import, OTC and regular pairs apart, voice in the quick line",
    "Simpler Settings: a summary on top (backup, version, what's new, write to the developer); habit, sport and finance settings live under the gear on their own tabs; an evening reminder of what is left for today; «Weekly to-dos» now live in the Planner",
    "Faster and safer: photos are kept in their own file, saving runs in the background, a click in the «Year» table is twice as fast; reset, demo and import keep a «before» copy first; an animated tick, mood faces as «pebbles»; the day changes at midnight by itself; if a tab fails to open, the app says so and offers to try again"
-  ]
- },
- {
-  "v": "1.7.2",
-  "uk": [
-   "Нова вкладка «Досягнення»: 30+ значків, звання і нагороди — нові теми, стилі карток, кольори, живий фон, аватарка, салюти, свої челенджі (вмикається в «Налаштуваннях → Вкладки бокового меню»)",
-   "Нова вкладка «Здоровʼя»: сон, вода, кава, настрій і енергія, вітаміни, вага — з графіками; сама відмічає звички «Сон 8 годин», «Пити воду», «Вітаміни»",
-   "Досвід тепер і за ідеальні дні, серії, фінанси, тренування, заняття, нотатки й значки; новий рівень набирається швидше",
-   "Чат ШІ сам змінює вигляд і налаштування: «зроби тему спокійнішою», «сховай трейдинг» — з кнопкою «Скасувати»; на «підбери стиль» пропонує 3 готові образи",
-   "Чат ШІ надсилає лише ті дані, яких стосується питання, — відповідає швидше й рідше впирається в ліміт",
-   "Голосове питання в чаті ШІ: затисніть мікрофон",
-   "Таймер фокусу: режими 25/5, 50/10, 90/15 з автоповтором (нагорода «Досягнень»)",
-   "Вигляд: набір кнопок «Гострі» і гострі кути (0 px); перемикачі в налаштуваннях більше не «вилазять»"
-  ],
-  "ru": [
-   "Новая вкладка «Достижения»: 30+ значков, звания и награды — новые темы, стили карточек, цвета, живой фон, аватарка, салюты, свои челленджи (включается в «Настройках → Вкладки бокового меню»)",
-   "Новая вкладка «Здоровье»: сон, вода, кофе, настроение и энергия, витамины, вес — с графиками; сама отмечает привычки «Сон 8 часов», «Пить воду», «Витамины»",
-   "Опыт теперь и за идеальные дни, серии, финансы, тренировки, занятия, заметки и значки; новый уровень набирается быстрее",
-   "Чат ИИ сам меняет вид и настройки: «сделай тему спокойнее», «спрячь трейдинг» — с кнопкой «Отменить»; на «подбери стиль» предлагает 3 готовых образа",
-   "Чат ИИ отправляет только те данные, которых касается вопрос, — отвечает быстрее и реже упирается в лимит",
-   "Голосовой вопрос в чате ИИ: зажмите микрофон",
-   "Таймер фокуса: режимы 25/5, 50/10, 90/15 с автоповтором (награда «Достижений»)",
-   "Вид: набор кнопок «Острые» и острые углы (0 px); переключатели в настройках больше не «вылезают»"
-  ],
-  "en": [
-   "New Achievements tab: 30+ badges, ranks and rewards — new themes, card styles, colours, live backgrounds, avatar, celebrations, your own challenges (turn it on in Settings → Sidebar tabs)",
-   "New Health tab: sleep, water, coffee, mood and energy, vitamins, weight — with charts; it ticks “Sleep 8 hours”, “Drink water” and “Vitamins” for you",
-   "XP now also for perfect days, streaks, finance, workouts, study, notes and badges; levels come faster",
-   "The AI chat changes the look and settings itself: “make the theme calmer”, “hide Trading” — with Undo; ask it to pick a style and get 3 ready looks",
-   "The AI chat sends only the data your question is about — faster answers, fewer limit errors",
-   "Ask the AI chat by voice: hold the mic",
-   "Focus timer: 25/5, 50/10, 90/15 modes with repeat (an Achievements reward)",
-   "Look: “Sharp” button set and square corners (0 px); settings toggles no longer stick out"
   ]
  }
 ];
