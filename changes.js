@@ -1,6 +1,33 @@
 // згенеровано tools/changes.mjs — не редагувати вручну
 window.CHANGES = [
  {
+  "v": "1.7.4",
+  "uk": [
+   "Привітання й перша екскурсія новачка — на живому фоні «Level Up», а не на порожньому чорному",
+   "Вибір звичок після першої екскурсії теж на живому фоні; закрили вікно — фон такий, як ви вибрали",
+   "Білоруський рубль у списку валют — з офіційним курсом Нацбанку Білорусі, і для минулих операцій теж",
+   "Світлі теми: банер «Новий значок / рівень» і «+XP» добре читаються",
+   "Перемикання вкладок більше не смикає ширину сторінки",
+   "Вікно «Вибери звички» більше не стрибає, коли відмічаєте звички чи гортаєте розділи"
+  ],
+  "ru": [
+   "Приветствие и первая экскурсия новичка — на живом фоне «Level Up», а не на пустом чёрном",
+   "Выбор привычек после первой экскурсии тоже на живом фоне; закрыли окно — фон такой, как вы выбрали",
+   "Белорусский рубль в списке валют — с официальным курсом Нацбанка Беларуси, и для прошлых операций тоже",
+   "Светлые темы: баннер «Новый значок / уровень» и «+XP» хорошо читаются",
+   "Переключение вкладок больше не дёргает ширину страницы",
+   "Окно «Выбери привычки» больше не прыгает, когда отмечаете привычки или листаете разделы"
+  ],
+  "en": [
+   "A newcomer's welcome and first tour sit on the live «Level Up» background, not on plain black",
+   "Picking habits after the first tour is on the live background too; close the window and the background is the one you chose",
+   "Belarusian ruble in the currency list, with the official National Bank of Belarus rate, past operations included",
+   "Light themes: the «New badge / level» banner and «+XP» are easy to read",
+   "Switching tabs no longer twitches the page width",
+   "The «Pick your habits» window no longer jumps when you tick habits or flip sections"
+  ]
+ },
+ {
   "v": "1.7.3",
   "uk": [
    "«Подивитися приклад» на старті: програма з вигаданими даними — лише подивитися; «Налаштувати під себе» — почати своє. Перший запуск — в одному вікні, а в новачка замість нулів — підказка, з чого почати",
@@ -64,42 +91,6 @@ window.CHANGES = [
    "Ask the AI chat by voice: hold the mic",
    "Focus timer: 25/5, 50/10, 90/15 modes with repeat (an Achievements reward)",
    "Look: “Sharp” button set and square corners (0 px); settings toggles no longer stick out"
-  ]
- },
- {
-  "v": "1.7.1",
-  "uk": [
-   "Відповіді розробника на ваші відгуки тепер приходять прямо в програму (крапка на «Налаштуваннях»)",
-   "F11 — на весь екран",
-   "Іконки для категорій і типів тренувань — з того ж набору, що й у звичок",
-   "Таймер фокусу: свій час у хвилинах",
-   "Приклади в підказках — у вашій валюті",
-   "ШІ працює стабільніше: збійна модель пропускається, зрозумілі помилки в майстрі ключа",
-   "Курси валют: запасне джерело, якщо сайт НБУ недоступний",
-   "Список налаштувань у стилі вибраних карток",
-   "Зміна розміру віджета більше не кидає сторінку нагору"
-  ],
-  "ru": [
-   "Ответы разработчика на ваши отзывы теперь приходят прямо в программу (точка на «Настройках»)",
-   "F11 — на весь экран",
-   "Иконки для категорий и типов тренировок — из того же набора, что у привычек",
-   "Таймер фокуса: своё время в минутах",
-   "Примеры в подсказках — в вашей валюте",
-   "ИИ работает стабильнее: сбойная модель пропускается, понятные ошибки в мастере ключа",
-   "Курсы валют: запасной источник, если сайт НБУ недоступен",
-   "Список настроек в стиле выбранных карточек",
-   "Изменение размера виджета больше не бросает страницу наверх"
-  ],
-  "en": [
-   "Developer replies to your feedback now arrive right in the app (a dot on Settings)",
-   "F11 — full screen",
-   "Icons for categories and workout types — the same set as for habits",
-   "Focus timer: your own time in minutes",
-   "Examples in hints use your currency",
-   "AI is more reliable: a glitching model is skipped, clear errors in the key wizard",
-   "Exchange rates: a backup source when the NBU site is unreachable",
-   "Settings list follows your card style",
-   "Resizing a widget no longer jumps the page to the top"
   ]
  }
 ];
