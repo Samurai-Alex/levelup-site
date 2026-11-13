@@ -1,6 +1,39 @@
 // згенеровано tools/changes.mjs — не редагувати вручну
 window.CHANGES = [
  {
+  "v": "1.7.3",
+  "uk": [
+   "«Подивитися приклад» на старті: програма з вигаданими даними — лише подивитися; «Налаштувати під себе» — почати своє. Перший запуск — в одному вікні, а в новачка замість нулів — підказка, з чого почати",
+   "Нова екскурсія: меню збирається на очах, у кожної вкладки — підказка в один рядок. «Дашборд» відкривається після 7 днів із відмітками, «Аналітика» — після 14",
+   "Нова «Головна»: дата, привітання й фраза дня, три кільця — сьогодні, тиждень, місяць, поруч серія й рівень; верхньої смуги більше немає. У кожного віджета свій характер: кава — чашки з парою, цілі — банки з монетками, капітал — бублик, у «Сьогодні» спершу незроблене; шість нових віджетів у галереї",
+   "Дві світлі теми — «Сніг» і «Папір», значок програми в світлій темі теж світлий; смужки прогресу — від червоного до кольору теми; новий шрифт Manrope (старий вигляд — у «Вигляді»); нові живі фони — «Level Up» із кристалами досвіду, «Сяйво», «Частинки» і свій GIF чи відео",
+   "«Фінанси → Бюджет» по-новому: залишок місяця, запис в один рядок, «Куди йдуть гроші»; кілька лімітів — одне сповіщення, не частіше разу на день; клік по частині діаграми витрат відкриває операції цієї категорії",
+   "«Трейдинг» очима трейдера: підсумок місяця великими цифрами, розбір за тиждень / місяць / весь час, пауза після збитку й стоп на день, імпорт історії Pocket Option, OTC і звичайні пари окремо, голос у швидкому рядку",
+   "«Налаштування» простіші: зверху підсумок (копія, версія, що нового, написати розробнику), налаштування звичок, спорту й фінансів — під шестернею на своїх вкладках; вечірнє нагадування про те, що лишилося на сьогодні; «Справи на тиждень» тепер у «Щоденнику»",
+   "Швидше й надійніше: фото зберігаються окремим файлом, збереження йде у фоні, клік у таблиці «Рік» удвічі швидший; перед скиданням, демо й імпортом — копія «до»; галочка з анімацією, обличчя настрою — «камінці»; опівночі день змінюється сам; якщо вкладка не відкрилася, програма скаже про це й запропонує спробувати знову"
+  ],
+  "ru": [
+   "«Посмотреть пример» на старте: программа с выдуманными данными — только посмотреть; «Настроить под себя» — начать своё. Первый запуск — в одном окне, а у новичка вместо нулей — подсказка, с чего начать",
+   "Новая экскурсия: меню собирается на глазах, у каждой вкладки — подсказка в одну строку. «Дашборд» открывается после 7 дней с отметками, «Аналитика» — после 14",
+   "Новая «Главная»: дата, приветствие и фраза дня, три кольца — сегодня, неделя, месяц, рядом серия и уровень; верхней полосы больше нет. У каждого виджета свой характер: кофе — чашки с паром, цели — банки с монетками, капитал — бублик, в «Сегодня» сначала несделанное; шесть новых виджетов в галерее",
+   "Две светлые темы — «Снег» и «Бумага», значок программы в светлой теме тоже светлый; полоски прогресса — от красного к цвету темы; новый шрифт Manrope (старый вид — в «Виде»); новые живые фоны — «Level Up» с кристаллами опыта, «Сияние», «Частицы» и свой GIF или видео",
+   "«Финансы → Бюджет» по-новому: остаток месяца, запись в одну строку, «Куда уходят деньги»; несколько лимитов — одно уведомление, не чаще раза в день; клик по части диаграммы расходов открывает операции этой категории",
+   "«Трейдинг» глазами трейдера: итог месяца крупными цифрами, разбор за неделю / месяц / всё время, пауза после убытка и стоп на день, импорт истории Pocket Option, OTC и обычные пары отдельно, голос в быстрой строке",
+   "«Настройки» проще: сверху сводка (копия, версия, что нового, написать разработчику), настройки привычек, спорта и финансов — под шестерёнкой на своих вкладках; вечернее напоминание о том, что осталось на сегодня; «Дела на неделю» теперь в «Ежедневнике»",
+   "Быстрее и надёжнее: фото хранятся отдельным файлом, сохранение идёт в фоне, клик в таблице «Год» вдвое быстрее; перед сбросом, демо и импортом — копия «до»; галочка с анимацией, лица настроения — «камешки»; в полночь день меняется сам; если вкладка не открылась, программа скажет об этом и предложит попробовать снова"
+  ],
+  "en": [
+   "«See an example» on the start screen: the app with made-up data, view only; «Make it mine» starts your own. First launch fits in one window, and a newcomer sees a first step instead of zeros",
+   "New tour: the menu builds up before your eyes with a one-line hint next to each tab. Dashboard unlocks after 7 days of check-ins, Insights after 14",
+   "New Home: date, greeting and phrase of the day, three rings — today, week, month — with your streak and level; no top bar any more. Every widget has its own character: coffee in steaming cups, goals as jars with coins, capital as a donut, «Today» lists what is left first; six new widgets in the gallery",
+   "Two light themes, «Snow» and «Paper», with a light program icon to match; progress bars run from red to the theme colour; new Manrope font (the old look is under «Look»); new live backgrounds: «Level Up» with XP crystals, «Aurora», «Particles» and your own GIF or video",
+   "Finance → Budget redone: what is left this month, one-line entry, «Where the money goes»; several limits make one note, at most once a day; clicking a slice of the expenses chart opens that category's operations",
+   "Trading through a trader's eyes: the month result in big numbers, a review for the week / month / all time, a pause after a loss and a daily stop, Pocket Option history import, OTC and regular pairs apart, voice in the quick line",
+   "Simpler Settings: a summary on top (backup, version, what's new, write to the developer); habit, sport and finance settings live under the gear on their own tabs; an evening reminder of what is left for today; «Weekly to-dos» now live in the Planner",
+   "Faster and safer: photos are kept in their own file, saving runs in the background, a click in the «Year» table is twice as fast; reset, demo and import keep a «before» copy first; an animated tick, mood faces as «pebbles»; the day changes at midnight by itself; if a tab fails to open, the app says so and offers to try again"
+  ]
+ },
+ {
   "v": "1.7.2",
   "uk": [
    "Нова вкладка «Досягнення»: 30+ значків, звання і нагороди — нові теми, стилі карток, кольори, живий фон, аватарка, салюти, свої челенджі (вмикається в «Налаштуваннях → Вкладки бокового меню»)",
@@ -67,39 +100,6 @@ window.CHANGES = [
    "Exchange rates: a backup source when the NBU site is unreachable",
    "Settings list follows your card style",
    "Resizing a widget no longer jumps the page to the top"
-  ]
- },
- {
-  "v": "1.7.0",
-  "uk": [
-   "Нові «Налаштування»: короткі рядки «назва — значення», розкриваються на місці; окремі вкладки «ШІ» та «Інше»",
-   "Вкладка «Відгук» (бета): повідомте про помилку чи запропонуйте ідею — повідомлення одразу отримує розробник",
-   "Пошук по всій програмі: Ctrl+K",
-   "Шрифти й розмір тексту в «Налаштуваннях → Вигляд»",
-   "Права кнопка на вкладці меню: сховати, перемістити, повернути сховані",
-   "Гарячі клавіші: 1–9 — вкладки, N — швидкий ввід, ←/→ — період, ? — довідка",
-   "ШІ: запасний ключ — коли в основного скінчився ліміт, програма сама переходить на запасний; покрокове підключення ключа",
-   "Автокопія щодня, навіть якщо програма тижнями в треї; сторінка «Конфіденційність»"
-  ],
-  "ru": [
-   "Новые «Настройки»: короткие строки «название — значение», раскрываются на месте; отдельные вкладки «ИИ» и «Другое»",
-   "Вкладка «Отзыв» (бета): сообщите об ошибке или предложите идею — сообщение сразу получает разработчик",
-   "Поиск по всей программе: Ctrl+K",
-   "Шрифты и размер текста в «Настройках → Вид»",
-   "Правая кнопка на вкладке меню: скрыть, переместить, вернуть скрытые",
-   "Горячие клавиши: 1–9 — вкладки, N — быстрый ввод, ←/→ — период, ? — справка",
-   "ИИ: запасной ключ — когда у основного кончился лимит, программа сама переходит на запасной; пошаговое подключение ключа",
-   "Автокопия каждый день, даже если программа неделями в трее; страница «Конфиденциальность»"
-  ],
-  "en": [
-   "New Settings: short “name — value” rows that expand in place; separate AI and Other tabs",
-   "Feedback tab (beta): report a bug or suggest an idea — it reaches the developer instantly",
-   "Search the whole app: Ctrl+K",
-   "Fonts and text size in Settings → Look",
-   "Right-click a menu tab: hide it, move it, bring hidden tabs back",
-   "Keyboard shortcuts: 1–9 tabs, N quick input, ←/→ period, ? help",
-   "AI: a backup key — when the main one hits its limit, the app switches by itself; step-by-step key setup",
-   "Daily auto-backup even when the app stays in the tray for weeks; a Privacy page"
   ]
  }
 ];
