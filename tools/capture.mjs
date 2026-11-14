@@ -43,11 +43,12 @@ const cmd = (method, params = {}) => new Promise(r => { wait[++id] = r; ws.send(
 const ev = async expr => { const r = await cmd('Runtime.evaluate', {expression: expr, awaitPromise: true, returnByValue: true}); if (r.result.exceptionDetails) throw new Error(r.result.exceptionDetails.exception?.description || JSON.stringify(r.result.exceptionDetails).slice(0, 400)); return r.result.result.value; };
 const shot = async name => { const {result} = await cmd('Page.captureScreenshot', {format: 'webp', quality: 86}); fs.writeFileSync(path.join(IMG, name + '.webp'), Buffer.from(result.data, 'base64')); console.log('img/' + name + '.webp'); };
 // фрагмент: об'єднання верхніх карток сторінки, у 1.5× для чіткості
-const crop = async (name, from, to) => {
+const FIN_H = 820;   // висота кадрів LVL 3 (перемикач «Бюджет / Капітал / Активи»)
+const crop = async (name, from, to, fixH = 0) => {
   const r = await ev(`(() => { const c = [...document.querySelectorAll('#page .card')].filter(e => !e.parentElement.closest('.card')).slice(${from}, ${to}).map(e => e.getBoundingClientRect());
     const x = Math.min(...c.map(r => r.left)) - 12, y = Math.max(0, Math.min(...c.map(r => r.top)) - 12), b = Math.max(...c.map(r => r.bottom));
     const next = Math.min(Infinity, ...[...document.querySelectorAll('#page .card')].map(e => e.getBoundingClientRect().top).filter(t => t > b - 1));   // низ — не заходить на наступну картку
-    return [x, y, Math.max(...c.map(r => r.right)) + 12 - x, Math.min(b + 12, next - 4) - y]; })()`);
+    return [x, y, Math.max(...c.map(r => r.right)) + 12 - x, ${fixH} ? ${fixH} / 1.5 : Math.min(b + 12, next - 4) - y]; })()`);
   const m = await cmd('Page.captureScreenshot', {format: 'webp', quality: 86, captureBeyondViewport: true, clip: {x: r[0], y: r[1], width: r[2], height: r[3], scale: 1.5}}), result = m.result; if (!result) throw new Error(name + ' ' + JSON.stringify(r) + ' ' + JSON.stringify(m.error));
   fs.writeFileSync(path.join(IMG, name + '.webp'), Buffer.from(result.data, 'base64')); console.log('img/' + name + '.webp');
 };
@@ -83,12 +84,18 @@ try {
     await ev(`{ const mon = mondayOf(keyOf(new Date())), seq = ['cardio', 'gym', 'cardio', 'home', 'walk', 'gym', 'walk'];
       S.sport.sessions.filter(x => x.d >= mon).sort((p, q) => p.d < q.d ? -1 : 1).forEach((x, i) => { x.type = seq[i % seq.length]; if (x.type === 'gym' || x.type === 'home') x.km = 0; });
       const ty = S.sport.types = S.sport.types || {}; [['cardio', '#2ee66b'], ['gym', '#f5a524'], ['walk', '#5ec8e0'], ['home', '#9d8cf2']].forEach(([k, c]) => ty[k] = {...ty[k], color: c}); } 1`);
-    await ev(`UI.fx = {...(UI.fx || {}), srec: 1}; 1`); await page('sport'); await ev(`{ const c = [...document.querySelectorAll('#page .card')].filter(e => !e.parentElement.closest('.card'))[1], n = c.nextElementSibling; if (n && !n.classList.contains('card')) n.remove(); c.remove(); const top = [...document.querySelectorAll('#page .card')].filter(e => !e.parentElement.closest('.card')), h = top[2]; h.parentElement.style.gridTemplateColumns = '1fr'; h.remove(); document.querySelectorAll('.sp-gb').forEach(e => e.style.maxWidth = 'none'); document.querySelectorAll('.sp-rec')[3].remove(); document.querySelector('.sp-recs').style.gridTemplateColumns = 'repeat(2,1fr)'; document.querySelector('.sp-wk').style.gridTemplateColumns = 'repeat(7,minmax(0,1fr))'; document.querySelectorAll('.fm-hero .fm-io > *')[4]?.remove(); document.getElementById('page').style.maxWidth = '760px'; } 1`); await sleep(400); await crop(`${l}/lvl2b`, 0, 4); await ev(`document.getElementById('page').style.maxWidth = ''; 1`);   // історію прибрано: у вузькій колонці «6:10 хв/км» рвалося на два рядки
+    await ev(`UI.fx = {...(UI.fx || {}), srec: 1}; 1`); await page('sport'); await ev(`{ const c = [...document.querySelectorAll('#page .card')].filter(e => !e.parentElement.closest('.card'))[1], n = c.nextElementSibling; if (n && !n.classList.contains('card')) n.remove(); c.remove(); const top = [...document.querySelectorAll('#page .card')].filter(e => !e.parentElement.closest('.card')), h = top[2]; h.parentElement.style.gridTemplateColumns = '1fr'; h.remove(); document.querySelectorAll('.sp-gb').forEach(e => e.style.maxWidth = 'none'); document.querySelectorAll('.sp-rec')[3].remove(); document.querySelector('.sp-recs').style.gridTemplateColumns = 'repeat(2,1fr)'; document.querySelector('.sp-wk').style.gridTemplateColumns = 'repeat(7,minmax(0,1fr))'; document.querySelectorAll('.fm-hero .fm-io > *')[4]?.remove(); } 1`); await sleep(400); await crop(`${l}/lvl2b`, 0, 4); await ev(`document.getElementById('page').style.maxWidth = ''; 1`);   // історію прибрано: у вузькій колонці «6:10 хв/км» рвалося на два рядки
     // назва категорії в один рядок («Жильё и коммуналка» в програмі переноситься)
-    await page('finance'); await ev(`document.querySelectorAll('.fm-cat').forEach(e => e.style.gridTemplateColumns = '22px minmax(80px,190px) 1fr 80px'); 1`); await crop(`${l}/lvl3`, 0, 4);
+    await page('finance'); await ev(`document.querySelectorAll('.fm-cat').forEach(e => e.style.gridTemplateColumns = '22px minmax(80px,190px) 1fr 80px'); const cs = document.querySelectorAll('.fm-cat'); [...cs].slice(-2).forEach(e => e.remove()); 1`); await crop(`${l}/lvl3`, 0, 4, FIN_H);
     // «Капітал» з графіком росту по місяцях (трейдинг на головній не показуємо — ним користуються не всі)
     // у кадрі — загальний капітал і графік по місяцях; «Де лежать гроші» й «Цілі» прибрано, щоб не розтягувати кадр
-    await ev(`UI.fin = 'capital'; UI.fx = {...(UI.fx || {}), cdyn: 1}; 1`); await page('finance'); await ev(`document.querySelector('#page .fm-two').remove(); 1`); await crop(`${l}/lvl3b`, 0, 2);
+    await ev(`UI.fin = 'capital'; UI.fx = {...(UI.fx || {}), cdyn: 1}; 1`); await page('finance'); await ev(`document.querySelector('#page .fm-two').remove(); 1`); await crop(`${l}/lvl3b`, 0, 2, FIN_H);
+    // «Активи»: ціни не з CoinGecko (живі ціни могли б показати збиток), а демо — портфель у плюсі; курс долара для «≈» у валюті мови
+    await ev(`{ window.refreshCrypto = async () => {}; const X = S.fin.crypto, today = keyOf(new Date()), up = {bitcoin: 1.34, ethereum: 1.22, solana: 1.17}, d24 = {bitcoin: 1.8, ethereum: 2.6, solana: 3.4};
+      Object.keys(up).forEach(c => { const b = X.txs.filter(x => x.coin === c && x.qty > 0); if (b.length) { X.prices[c] = up[c] * b.reduce((a, x) => a + x.price * x.qty, 0) / b.reduce((a, x) => a + x.qty, 0); X.ch24[c] = d24[c]; } });
+      X.pricesAt = Date.now() - 18 * 60e3; S.fin.rates[today] = {...S.fin.rates[today], USD: 41.6, EUR: 48.3, RUB: 0.52}; UI.fin = 'assets'; } 1`);
+    await page('finance'); await ev(`{ document.querySelectorAll('.fm-hero .fm-io > *')[3]?.remove(); } 1`); await crop(`${l}/lvl3c`, 0, 6, FIN_H);
+    await ev(`document.getElementById('page').style.maxWidth = ''; 1`);
     await ev(`UI.fin = 'budget'; 1`);
     // фраза з підказки поля → розібрані записи (звичайний розборщик, без ключа ШІ); «Зарядка» — готова звичка з вибору, у демо її додано
     await ev(`{ const nm = t('hp.morning'); if (!hpHave(nm)) S.habits.push({id: uid(), name: nm, color: PALETTE[S.habits.length % PALETTE.length], icon: 'ti:sunrise'});
