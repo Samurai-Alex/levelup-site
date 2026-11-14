@@ -1,6 +1,6 @@
 // Сторінки під готові набори звичок (LEVEL UP 1.7.9+): 10 наборів × 3 мови. Склад — як у програмі (app/js, коміт abb2d9f).
-// Поки PACKS_LIVE = false, сторінки не збираються й не потрапляють у sitemap. У день релізу 1.7.9 — поставити true і запустити node tools/pages.mjs.
-export const PACKS_LIVE = false || process.env.PACKS === '1';   // PACKS=1 — зібрати локально для перегляду, не комітити результат
+// Набори вийшли в 1.7.9 — сторінки зібрані й у sitemap. Новий набір: додати сюди й запустити node tools/pages.mjs.
+export const PACKS_LIVE = true;   // увімкнено з релізом 1.7.9 (14.11.2026)
 
 export const PACK_URLS = {
   student: {ru: '/privychki-dlya-studenta.html', uk: '/uk/zvychky-dlya-studenta.html', en: '/en/habits-for-students.html'},

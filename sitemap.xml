@@ -50,4 +50,154 @@
     <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/oblik-vytrat.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/expense-tracker.html"/>
   </url>
+  <url><loc>https://levelup-tracker.com/privychki-dlya-studenta.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/privychki-dlya-studenta.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-studenta.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/habits-for-students.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uk/zvychky-dlya-studenta.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/privychki-dlya-studenta.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-studenta.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/habits-for-students.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/en/habits-for-students.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/privychki-dlya-studenta.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-studenta.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/habits-for-students.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/privychki-dlya-frilansera.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/privychki-dlya-frilansera.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-frilansera.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/habits-for-freelancers.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uk/zvychky-dlya-frilansera.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/privychki-dlya-frilansera.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-frilansera.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/habits-for-freelancers.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/en/habits-for-freelancers.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/privychki-dlya-frilansera.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-frilansera.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/habits-for-freelancers.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/privychki-dlya-sporta.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/privychki-dlya-sporta.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-sportu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/fitness-habits.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uk/zvychky-dlya-sportu.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/privychki-dlya-sporta.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-sportu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/fitness-habits.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/en/fitness-habits.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/privychki-dlya-sporta.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-sportu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/fitness-habits.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/finansovaya-podushka.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/finansovaya-podushka.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/finansova-podushka.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/emergency-fund.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uk/finansova-podushka.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/finansovaya-podushka.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/finansova-podushka.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/emergency-fund.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/en/emergency-fund.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/finansovaya-podushka.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/finansova-podushka.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/emergency-fund.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/utrenniy-ritual.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/utrenniy-ritual.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/rankovyi-rytual.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/morning-routine.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uk/rankovyi-rytual.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/utrenniy-ritual.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/rankovyi-rytual.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/morning-routine.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/en/morning-routine.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/utrenniy-ritual.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/rankovyi-rytual.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/morning-routine.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/zdorovyy-son.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/zdorovyy-son.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zdorovyi-son.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/healthy-sleep-habits.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uk/zdorovyi-son.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/zdorovyy-son.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zdorovyi-son.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/healthy-sleep-habits.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/en/healthy-sleep-habits.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/zdorovyy-son.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zdorovyi-son.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/healthy-sleep-habits.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/privychki-dlya-pohudeniya.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/privychki-dlya-pohudeniya.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-skhudnennya.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/weight-loss-habits.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uk/zvychky-dlya-skhudnennya.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/privychki-dlya-pohudeniya.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-skhudnennya.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/weight-loss-habits.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/en/weight-loss-habits.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/privychki-dlya-pohudeniya.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-skhudnennya.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/weight-loss-habits.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/bez-vrednyh-privychek.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/bez-vrednyh-privychek.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/bez-shkidlyvyh-zvychok.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/quit-bad-habits.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uk/bez-shkidlyvyh-zvychok.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/bez-vrednyh-privychek.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/bez-shkidlyvyh-zvychok.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/quit-bad-habits.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/en/quit-bad-habits.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/bez-vrednyh-privychek.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/bez-shkidlyvyh-zvychok.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/quit-bad-habits.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/spokoystvie-i-balans.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/spokoystvie-i-balans.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/spokii-i-balans.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/calm-and-balance.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uk/spokii-i-balans.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/spokoystvie-i-balans.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/spokii-i-balans.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/calm-and-balance.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/en/calm-and-balance.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/spokoystvie-i-balans.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/spokii-i-balans.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/calm-and-balance.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/privychki-dlya-produktivnosti.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/privychki-dlya-produktivnosti.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-produktyvnosti.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/productivity-habits.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uk/zvychky-dlya-produktyvnosti.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/privychki-dlya-produktivnosti.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-produktyvnosti.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/productivity-habits.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/en/productivity-habits.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/privychki-dlya-produktivnosti.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-produktyvnosti.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/productivity-habits.html"/>
+  </url>
 </urlset>
