@@ -51,7 +51,8 @@ const crop = async (name, from, to) => {
   const m = await cmd('Page.captureScreenshot', {format: 'webp', quality: 86, captureBeyondViewport: true, clip: {x: r[0], y: r[1], width: r[2], height: r[3], scale: 1.5}}), result = m.result; if (!result) throw new Error(name + ' ' + JSON.stringify(r) + ' ' + JSON.stringify(m.error));
   fs.writeFileSync(path.join(IMG, name + '.webp'), Buffer.from(result.data, 'base64')); console.log('img/' + name + '.webp');
 };
-const setup = async l => { await cmd('Page.navigate', {url: URL_APP}); await sleep(3500); await ev(`__seed(13); setLang('${l}'); S = demoState(); S.lang = LANG; UI.sofia = null; S.uiStyle = 'pill'; S.errReports = false; S.survey = {done: 1}; S.seenVersion = '9.9.9'; S.es.level0 = 'A1'; document.documentElement.classList.add('noxp'); S.lastBackupAt = Date.now(); { const tk = keyOf(new Date()); S.checks[tk] = {}; S.habits.forEach((h, i) => { if (![5, 6, 7].includes(i)) S.checks[tk][h.id] = 1; }); } UI.tdKeep = {}; S.habits.slice(0, 2).forEach(h => UI.tdKeep[h.id] = 1); save(); hideModal(); UI.welcome = false; YD = buildYear(S.year); render({nav: true}); 1`); await sleep(1500); };
+const setup = async l => { await cmd('Page.navigate', {url: URL_APP}); await sleep(3500); await ev(`__seed(13); setLang('${l}'); S = demoState(); S.lang = LANG; UI.sofia = null; S.uiStyle = 'pill'; S.errReports = false; S.survey = {done: 1}; S.seenVersion = '9.9.9'; S.es.level0 = 'A1'; document.documentElement.classList.add('noxp'); S.lastBackupAt = Date.now(); { const tk = keyOf(new Date()); S.checks[tk] = {}; S.habits.forEach((h, i) => { if (![5, 6, 7].includes(i)) S.checks[tk][h.id] = 1; }); } UI.tdKeep = {}; S.habits.slice(0, 2).forEach(h => UI.tdKeep[h.id] = 1); S.rw = {...(S.rw || {}), live: 'levelup', fx: {levelup: {den: 2, spd: 1.2}}}; { const rw = rwSet; window.rwSet = () => new Set([...rw(), 'bglive', 'bg:stars']); } S.cardStyle = 'glass';   // скляні картки на живому фоні «Level Up» — як у відео (живий фон відкривається на вищому рівні — у демо вмикаємо)
+  save(); hideModal(); UI.welcome = false; YD = buildYear(S.year); render({nav: true}); 1`); await sleep(1500); };
 const page = async (p, theme = 'levelup') => { await ev(`hideModal(); S.theme = '${theme}'; applyTheme(); UI.page = '${p}'; render({nav: true}); window.scrollTo(0, 0); 1`); await sleep(1600); };
 
 try {
@@ -76,8 +77,15 @@ try {
     await ev(`{ const k = keyOf(new Date()); S.health.days[k] = {...S.health.days[k], bed: '22:55', wake: '07:05', water: 6, coffee: 2, mood: 4, en: 4}; } S.fin.cats.forEach(c => { if (c.limit) c.limit = Math.round(c.limit * 1.15); }); save(); 1`);   // гарний, але не ідеальний день: видно і виконане, і ні; ліміти з запасом — без червоного «понад ліміт»
     // «склянка 250 мл · 1,5 л» у вузькій колонці рвалося на три рядки з самотнім «л»
     await page('health'); await ev(`document.head.insertAdjacentHTML('beforeend', '<style>.lbl small{white-space:nowrap}</style>'); 1`); await crop(`${l}/lvl2`, 0, 7);
-    await page('finance'); await crop(`${l}/lvl3`, 0, 4);
-    await page('trading'); await ev(`document.querySelector('#page .card').nextElementSibling.style.visibility = 'hidden'; 1`); await crop(`${l}/lvl3b`, 0, 1);   // кнопки під карткою не стирчать смужкою
+    // «Спорт» — тиждень тренувань (пункт LVL 2 про спорт)
+    // без рядка запису й кнопок під ним: підсумок тижня й графік по днях на всю ширину
+    await page('sport'); await ev(`{ const c = [...document.querySelectorAll('#page .card')].filter(e => !e.parentElement.closest('.card'))[1], n = c.nextElementSibling; if (n && !n.classList.contains('card')) n.remove(); c.remove(); const top = [...document.querySelectorAll('#page .card')].filter(e => !e.parentElement.closest('.card')), h = top[2]; h.parentElement.style.gridTemplateColumns = '1fr'; h.remove(); document.querySelectorAll('.sp-gb').forEach(e => e.style.maxWidth = 'none'); } 1`); await crop(`${l}/lvl2b`, 0, 2);   // історію прибрано: у вузькій колонці «6:10 хв/км» рвалося на два рядки
+    // назва категорії в один рядок («Жильё и коммуналка» в програмі переноситься)
+    await page('finance'); await ev(`document.querySelectorAll('.fm-cat').forEach(e => e.style.gridTemplateColumns = '22px minmax(80px,190px) 1fr 80px'); 1`); await crop(`${l}/lvl3`, 0, 4);
+    // «Капітал» з графіком росту по місяцях (трейдинг на головній не показуємо — ним користуються не всі)
+    // у кадрі — загальний капітал і графік по місяцях; «Де лежать гроші» й «Цілі» прибрано, щоб не розтягувати кадр
+    await ev(`UI.fin = 'capital'; UI.fx = {...(UI.fx || {}), cdyn: 1}; 1`); await page('finance'); await ev(`document.querySelector('#page .fm-two').remove(); 1`); await crop(`${l}/lvl3b`, 0, 2);
+    await ev(`UI.fin = 'budget'; 1`);
     // фраза з підказки поля → розібрані записи (звичайний розборщик, без ключа ШІ); «Зарядка» — готова звичка з вибору, у демо її додано
     await ev(`{ const nm = t('hp.morning'); if (!hpHave(nm)) S.habits.push({id: uid(), name: nm, color: PALETTE[S.habits.length % PALETTE.length], icon: 'ti:sunrise'});
       const tx = t('qkPh', {c: qkEx()}).replace(/^\\S+ /, '').replace(/ · /g, ', '); UI.qk = {text: tx, res: parseQuickAll(tx)}; } 1`);
