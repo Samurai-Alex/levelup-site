@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {PACKS_LIVE, PACK_URLS, PACK_TEXT} from './packs.mjs';
+import {VS_URLS, VS_TEXT} from './compare.mjs';
 
 const URL0 = 'https://levelup-tracker.com';
 const HOME = {ru: '/', uk: '/uk/', en: '/en/'};
@@ -61,12 +62,14 @@ const C = {
 };
 
 if (PACKS_LIVE) { Object.assign(LANDING, PACK_URLS); Object.assign(C, PACK_TEXT); }   // готові набори — з релізом 1.7.9
+Object.assign(LANDING, VS_URLS); Object.assign(C, VS_TEXT);   // порівняння з Habitica і Notion
 
 const esc = v => String(v).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 export function buildLanding(site) {
   for (const [id, P] of Object.entries(LANDING)) for (const l of Object.keys(P)) {
     const T = C[id][l], U = UI[l], home = HOME[l] + '?s=seo';
-    const fill = s => s.replace(/\{(habits|money)\}/g, (m, k) => LANDING[k][l]);
+    const fill = s => s.replace(/\{(\w+)\}/g, (m, k) => { if (!LANDING[k]) throw new Error(`${id}: немає сторінки {${k}}`); return LANDING[k][l]; });
+    const table = rows => `<div class="tw"><table>${rows.map((r, i) => `<tr>${r.map((x, j) => i && j ? `<td>${esc(x)}</td>` : `<th>${esc(x)}</th>`).join('')}</tr>`).join('')}</table></div>`;
     const ld = {'@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'LEVEL UP', operatingSystem: 'Windows 10, Windows 11', applicationCategory: id === 'money' ? 'FinanceApplication' : 'LifestyleApplication',
       description: T.d, url: URL0 + P[l], inLanguage: l, image: URL0 + '/img/og.png', offers: {'@type': 'Offer', price: '0', priceCurrency: 'USD'}};
     const faq = {'@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: T.q.map(([q, a]) => ({'@type': 'Question', name: q, acceptedAnswer: {'@type': 'Answer', text: a}}))};
@@ -86,6 +89,7 @@ ${Object.entries(P).map(([k, p]) => `<link rel="alternate" hreflang="${k}" href=
 .lead{font-size:17px;color:var(--text)}.shot{display:block;width:100%;height:auto;margin:28px 0 8px;border:1px solid rgba(31,184,70,.45);border-radius:14px}
 .cta{margin:36px 0 0;padding:26px;border:1px solid var(--line);border-radius:16px;background:var(--card);text-align:center}
 .cta a.b{display:inline-block;background:var(--acc);color:#04130a;font-weight:800;text-decoration:none;padding:13px 26px;border-radius:12px}.cta p{margin:10px 0 0;font-size:13px;color:var(--muted)}
+.tw{overflow-x:auto;margin:14px 0}table{width:100%;border-collapse:collapse;font-size:14px;min-width:480px}th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}tr:first-child th{color:var(--acc);font-size:13px}td{color:var(--muted)}td:nth-of-type(1){color:var(--text)}@media (max-width:600px){table{min-width:0;font-size:12.5px;line-height:1.45}th,td{padding:8px 5px}tr:first-child th{font-size:12px}}
 details{border-bottom:1px solid var(--line);padding:12px 0}summary{cursor:pointer;font-weight:700}details p{margin:8px 0 0}@media (max-width:600px){.logo span{display:inline;font-size:11px;white-space:nowrap}}</style>
 <script type="application/ld+json">${JSON.stringify(ld)}</script>
 <script type="application/ld+json">${JSON.stringify(faq)}</script>
@@ -97,7 +101,7 @@ details{border-bottom:1px solid var(--line);padding:12px 0}summary{cursor:pointe
 <h1>${esc(T.h1)}</h1>
 <p class="lead">${esc(T.lead)}</p>
 <img class="shot" src="/img/${l}/${C[id].img}" alt="${esc(U.alt)}" loading="lazy">
-${T.s.map(([h, b]) => `<h2>${esc(h)}</h2>\n${Array.isArray(b) ? `<ul>${b.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : `<p>${fill(b)}</p>`}`).join('\n')}
+${T.s.map(([h, b]) => `<h2>${esc(h)}</h2>\n${b.table ? table(b.table) : Array.isArray(b) ? `<ul>${b.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : `<p>${fill(b)}</p>`}`).join('\n')}
 <h2>${esc(U.faq)}</h2>
 ${T.q.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('\n')}
 <div class="cta"><a class="b" href="${home}">${esc(U.dl)}</a><p>${esc(U.meta)}</p></div>

@@ -200,4 +200,34 @@
     <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/zvychky-dlya-produktyvnosti.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/productivity-habits.html"/>
   </url>
+  <url><loc>https://levelup-tracker.com/levelup-ili-habitica.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/levelup-ili-habitica.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/levelup-chy-habitica.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/levelup-vs-habitica.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uk/levelup-chy-habitica.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/levelup-ili-habitica.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/levelup-chy-habitica.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/levelup-vs-habitica.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/en/levelup-vs-habitica.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/levelup-ili-habitica.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/levelup-chy-habitica.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/levelup-vs-habitica.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/levelup-ili-notion.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/levelup-ili-notion.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/levelup-chy-notion.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/levelup-vs-notion.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uk/levelup-chy-notion.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/levelup-ili-notion.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/levelup-chy-notion.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/levelup-vs-notion.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/en/levelup-vs-notion.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/levelup-ili-notion.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/levelup-chy-notion.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/levelup-vs-notion.html"/>
+  </url>
 </urlset>
