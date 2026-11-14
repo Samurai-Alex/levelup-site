@@ -96,6 +96,9 @@ h2{font-size:clamp(22px,3vw,30px);line-height:1.3;margin:0 0 12px}
 .lvm{display:grid;gap:16px}
 .frame{width:100%;height:auto;display:block;border-radius:14px;border:1px solid rgba(46,230,107,.45);box-shadow:0 0 0 4px rgba(46,230,107,.06),0 24px 70px -24px rgba(46,230,107,.35);background:#000}
 .lvm .dots{justify-content:flex-start;margin:0}
+/* LVL 2: «Здоровье» и «Спорт» в одном кадре, сменяют друг друга плавно */
+.sw{display:grid}.sw>img{grid-area:1/1;align-self:center;opacity:0;pointer-events:none;transition:opacity 1.2s ease}.sw>img.on{opacity:1;pointer-events:auto}
+@media (prefers-reduced-motion:reduce){.sw>img{transition:none}}
 .fin{text-align:center;border-top:1px solid var(--line)}
 .fin h2{font-size:clamp(16px,2.4vw,24px);line-height:1.6;max-width:760px;margin:0 auto 14px}.fin h2 b{color:var(--acc);font-weight:400}
 .fin .sub{margin:0 auto 26px}
@@ -218,7 +221,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     <h2 data-i="l2H">Habits and health on one screen</h2><p class="sub" data-i="l2P">Sleep, water, coffee, mood and vitamins in a couple of clicks. The app spots patterns itself — like how much sleep an extra cup of coffee costs you.</p>
     <ul class="lvb"><li data-i="l2a">Ready-made habits or your own</li><li data-i="l2b">Reminders at the right time</li><li data-i="l2c">Workouts, steps and kilometres in the Sport tab</li></ul>
   </div>
-  <div class="lvm"><img class="frame zoom" data-f="lvl2" width="1326" height="1184" alt="" loading="lazy"><img class="frame zoom" data-f="lvl2b" width="1326" height="658" alt="" loading="lazy"></div>
+  <div class="lvm">
+    <div class="dots" id="hsw"><button class="on" style="--c:#2ee66b"><i></i><span data-i="swH">Health</span></button><button style="--c:#c77dff"><i></i><span data-i="swS">Sport</span></button></div>
+    <div class="sw"><img class="frame zoom on" data-f="lvl2" width="1326" height="1184" alt="" loading="lazy"><img class="frame zoom" data-f="lvl2b" width="1326" height="902" alt="" loading="lazy"></div>
+  </div>
 </div></section>
 <section class="lvl" id="lvl3"><div class="wrap lvw">
   <div class="lvt">
@@ -346,7 +352,7 @@ uk: {nFeat:'Можливості', nInst:'Як встановити', nPrice:'Ц
  l3b:'Регулярні платежі й рахунки', l3c:'Капітал і його ріст по місяцях', l4K:'ШІ', l4H:'Пиши як другові — програма розкладе сама',
  l4P:'Одна фраза — і витрата, тренування, заняття та звичка вже на своїх місцях. Працює й без ключа ШІ.', l4a:'Кілька справ в одній фразі', l4b:'Розуміє «вчора» і різні валюти', l4c:'З ключем ШІ — фото чека й підсумки місяця',
  l5K:'ПІД СЕБЕ', l5H:'Програма під тебе', l5P:'Теми, живі фони, форма карток і кнопок, шрифти й розмір тексту. Зайві вкладки можна сховати, віджети головної — переставити.', l5a:'Нові теми відкриваються з рівнем',
- l5b:'Скляні картки й живі фони', l5c:'Власні кольори теми', thNight:'Зоряна ніч', thNebula:'Зоряний аметист',
+ l5b:'Скляні картки й живі фони', l5c:'Власні кольори теми', swH:'Здоров’я', swS:'Спорт', thNight:'Зоряна ніч', thNebula:'Зоряний аметист',
  thPluto:'Опівнічний Плутон', thChamp:'Шампань', thGold:'Золото', mK:'А ще',
  mH:'І кілька речей, які стануть у пригоді', m1:'Щоденник', m1d:'Справи на день і головна ціль тижня.', m2:'Англійська',
  m2d:'Уроки, серіали й розмовна практика — години й рівень від A1 до C2.', m3:'Статистика', m3d:'Теплові карти, підсумки тижня, місяця й року.', m4:'Дані тільки у вас',
@@ -385,7 +391,7 @@ ru: {nFeat:'Возможности', nInst:'Как установить', nPrice
  l3b:'Регулярные платежи и счета', l3c:'Капитал и его рост по месяцам', l4K:'ИИ', l4H:'Пиши как другу — программа разложит сама',
  l4P:'Одна фраза — и трата, тренировка, занятие и привычка уже на своих местах. Работает и без ключа ИИ.', l4a:'Несколько дел в одной фразе', l4b:'Понимает «вчера» и разные валюты', l4c:'С ключом ИИ — фото чека и итоги месяца',
  l5K:'ПОД СЕБЯ', l5H:'Программа под тебя', l5P:'Темы, живые фоны, форма карточек и кнопок, шрифты и размер текста. Лишние вкладки можно спрятать, виджеты главной — переставить.', l5a:'Новые темы открываются с уровнем',
- l5b:'Стеклянные карточки и живые фоны', l5c:'Свои цвета темы', thNight:'Звёздная ночь', thNebula:'Звёздный аметист',
+ l5b:'Стеклянные карточки и живые фоны', l5c:'Свои цвета темы', swH:'Здоровье', swS:'Спорт', thNight:'Звёздная ночь', thNebula:'Звёздный аметист',
  thPluto:'Полночь Плутона', thChamp:'Шампань', thGold:'Золото', mK:'А ещё',
  mH:'И несколько вещей, которые пригодятся', m1:'Ежедневник', m1d:'Дела на день и главная цель недели.', m2:'Английский',
  m2d:'Уроки, сериалы и разговорная практика — часы и уровень от A1 до C2.', m3:'Статистика', m3d:'Тепловые карты, итоги недели, месяца и года.', m4:'Данные только у вас',
@@ -424,7 +430,7 @@ en: {nFeat:'Features', nInst:'Install', nPrice:'Pricing', nFaq:'FAQ', dlShort:'D
  l3b:'Recurring payments and accounts', l3c:'Your capital and its growth by month', l4K:'AI', l4H:'Type it like to a friend — the app sorts it out',
  l4P:'One phrase — and the expense, workout, lesson and habit are all in place. Works even without an AI key.', l4a:'Several things in one phrase', l4b:'Understands “yesterday” and different currencies', l4c:'With an AI key — receipt photos and monthly reviews',
  l5K:'YOUR WAY', l5H:'Make it yours', l5P:'Themes, live backgrounds, card and button shapes, fonts and text size. Hide the tabs you don’t need, rearrange the home widgets.', l5a:'New themes unlock as you level up',
- l5b:'Glass cards and live backgrounds', l5c:'Your own theme colours', thNight:'Starry night', thNebula:'Starry amethyst',
+ l5b:'Glass cards and live backgrounds', l5c:'Your own theme colours', swH:'Health', swS:'Sport', thNight:'Starry night', thNebula:'Starry amethyst',
  thPluto:'Pluto midnight', thChamp:'Champagne', thGold:'Gold', mK:'And more',
  mH:'A few more things you’ll find handy', m1:'Planner', m1d:'Today’s tasks and the main goal of the week.', m2:'English',
  m2d:'Lessons, series and speaking practice — hours and your level from A1 to C2.', m3:'Statistics', m3d:'Heat maps, week, month and year reviews.', m4:'Your data stays yours',
@@ -508,6 +514,13 @@ document.getElementById('abMore').onclick = abOpen;
 // кнопка теми — перемотати відео на цю тему (без анімацій — показати її кадр)
 document.getElementById('dots').onclick = e => { const b = e.target.closest('button'); if (!b) return;
   thv.dataset.on = 1; thLoad(); thv.currentTime = thBtns.indexOf(b) * TH_SEC + (still ? 1 : .05); thBtns.forEach(x => x.classList.toggle('on', x === b)); };
+// LVL 2: «Здоровʼя» і «Спорт» міняються самі кожні HS_SEC секунд, поки розділ на екрані; натиснута кнопка зупиняє автоперемикання
+const hsBtns = [...document.querySelectorAll('#hsw button')], hsImgs = [...document.querySelectorAll('.sw img')], HS_SEC = 6;
+let hsI = 0, hsSeen = false, hsAuto = !still;
+const hsShow = i => { hsI = i; hsBtns.forEach((b, k) => b.classList.toggle('on', k === i)); hsImgs.forEach((m, k) => m.classList.toggle('on', k === i)); };
+document.getElementById('hsw').onclick = e => { const b = e.target.closest('button'); if (b) { hsAuto = false; hsShow(hsBtns.indexOf(b)); } };
+new IntersectionObserver(es => hsSeen = es[0].isIntersecting, {threshold: .4}).observe(document.querySelector('.sw'));
+setInterval(() => { if (hsAuto && hsSeen && !document.hidden) hsShow((hsI + 1) % hsImgs.length); }, HS_SEC * 1000);
 // збільшення скриншота на весь екран
 const lb = document.getElementById('lb');
 document.addEventListener('click', e => { const z = e.target.closest('.zoom'); if (!z || lb.contains(z)) return;
