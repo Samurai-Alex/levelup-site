@@ -15,7 +15,10 @@ const PAGES = ['home'];   // перший екран сайту
 export const THEMES = ['levelup', 'night', 'nebula', 'pluto', 'champagne', 'gold'];   // темні теми, відкриті з початку (classic, amethyst, ice у програмі більше немає)
 // живий фон у відео «Під себе» — завжди «Level Up» (кристали), у темах кольору теми: [фон, колір] ('' — природний, 'acc' — колір теми)
 const THEME_BG = Object.fromEntries(THEMES.map(th => [th, ['levelup', th === 'levelup' ? '' : 'acc']]));
-const THEME_SEC = 2.5;   // скільки секунд кожна тема; у index.html — TH_SEC (≈2.53: перемикання теми забирає ще ~0.03 с)
+// у відео тема триває THEME_SEC, сусідні перетікають одна в одну за THEME_FADE; кінець плавно переходить у початок (безшовний повтор).
+// Ті самі числа — TH_SEC і TH_FADE в index.html (підсвітка кнопок тем)
+const THEME_SEC = 2.4, THEME_FADE = 0.6;
+const FFMPEG_FULL = 'ffmpeg';   // системний ffmpeg (winget install Gyan.FFmpeg): у ffmpeg з Remotion немає переходу xfade
 const LANGS = ['ru', 'uk', 'en'];   // знімки кладуться в img/<мова>/ — сайт показує ті, що мовою відвідувача
 const W = 1440, H = 900, only = process.argv[2];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -127,14 +130,22 @@ try {
       await ev(`hideModal(); S.theme = '${th}'; applyTheme(); S.rw.live = '${bg}'; S.rw.fx['${bg}'] = {col: '${col}', den: 2, spd: 1.2}; UI.page = 'home'; render({nav: true}); window.scrollTo(0, 0); [...document.querySelectorAll('#page .card')].filter(e => !e.parentElement.closest('.card')).slice(5).forEach(e => e.style.visibility = 'hidden'); 1`);   // другий ряд віджетів схований — унизу кадру видно сам живий фон
       await sleep(i ? 120 : 2500);   // перша тема — даємо фону розігнатися, кадри до позначки обріжуться
       marks.push(frames.at(-1).t);
-      await sleep(THEME_SEC * 1000 - 120);
+      await sleep((THEME_SEC + THEME_FADE + 0.4) * 1000);   // запас на перехід; перші 0.25 с після перемикання (перемальовка) не беруться
     }
     await cmd('Page.stopScreencast'); delete on['Page.screencastFrame'];
     const list = frames.map((x, i) => `file '${x.f.replace(/\\/g, '/')}'\nduration ${((frames[i + 1]?.t ?? x.t + 0.04) - x.t).toFixed(3)}`).join('\n') + `\nfile '${frames.at(-1).f.replace(/\\/g, '/')}'\n`;
     fs.writeFileSync(path.join(dir, 'list.txt'), list);
-    const out = path.join(IMG, l, 'themes.mp4'), ss = (marks[0] - frames[0].t).toFixed(3);
-    execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', path.join(dir, 'list.txt'), '-ss', ss, '-t', String(THEMES.length * THEME_SEC), '-fps_mode', 'cfr', '-r', '30', '-an', '-vf', 'scale=1280:-2', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '27', '-preset', 'slow', '-movflags', '+faststart', out]);
-    execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-ss', '0.5', '-i', out, '-frames:v', '1', '-q:v', '3', path.join(IMG, l, 'themes.jpg')]);
+    // 1) суцільний запис → raw.mp4; 2) шматок на кожну тему + перша ще раз у кінці, між ними наплив xfade;
+    // 3) обрізаємо так, що останній кадр = першому: відео крутиться по колу без стику
+    const raw = path.join(dir, 'raw.mp4'), out = path.join(IMG, l, 'themes.mp4'), L = THEME_SEC + THEME_FADE, X = THEME_FADE;
+    execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', path.join(dir, 'list.txt'), '-fps_mode', 'cfr', '-r', '30', '-an', '-vf', 'scale=1280:-2', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '14', '-preset', 'fast', raw]);
+    const starts = [...marks, marks[0]].map(m => (m - frames[0].t + 0.25).toFixed(3));
+    const inputs = starts.flatMap(t => ['-ss', t, '-t', L.toFixed(3), '-i', raw]);
+    let g = starts.map((t, i) => `[${i}:v]settb=AVTB,setpts=PTS-STARTPTS,fps=30[s${i}]`).join(';'), prev = 's0';
+    for (let k = 1; k < starts.length; k++) { g += `;[${prev}][s${k}]xfade=transition=fade:duration=${X}:offset=${(k * THEME_SEC).toFixed(3)}[x${k}]`; prev = 'x' + k; }
+    g += `;[${prev}]trim=start=${X}:end=${(X + THEMES.length * THEME_SEC).toFixed(3)},setpts=PTS-STARTPTS[v]`;
+    execFileSync(FFMPEG_FULL, ['-y', '-loglevel', 'error', ...inputs, '-filter_complex', g, '-map', '[v]', '-an', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '27', '-preset', 'slow', '-movflags', '+faststart', out]);
+    execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-ss', '0.3', '-i', out, '-frames:v', '1', '-q:v', '3', path.join(IMG, l, 'themes.jpg')]);
     console.log(`img/${l}/themes.mp4 (${(fs.statSync(out).size / 1e6).toFixed(1)} МБ), зсуви тем: ${marks.map(m => (m - marks[0]).toFixed(2)).join(' ')}`);
     fs.rmSync(dir, {recursive: true, force: true});
   }
