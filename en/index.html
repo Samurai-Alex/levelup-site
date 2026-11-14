@@ -475,7 +475,27 @@ thv.ontimeupdate = () => { const i = Math.min(thBtns.length - 1, Math.floor(thv.
 // вибір у перемикачі запам'ятовується — наступного разу «/» одразу відкриє цю мову
 document.querySelectorAll('.lang a').forEach(a => { a.classList.toggle('on', a.dataset.l === lang); a.onclick = e => { e.preventDefault(); try { localStorage.setItem('lang', a.dataset.l); } catch (x) { /* */ } location.href = a.getAttribute('href') + location.hash; }; });
 langImgs();
-document.querySelectorAll('.dl').forEach(a => a.href = CNT + '/dl');
+// кнопка «Завантажити» — лічильник знає, з якої натиснули: шапка, перший екран, ціни, фінальний заклик
+document.querySelectorAll('.dl').forEach(a => a.href = CNT + '/dl?from=' + (a.closest('.bar') ? 'head' : a.closest('.fin') ? 'fin' : a.closest('#pricing') ? 'price' : 'hero'));
+// воронка (tools/counter): перегляд, пристрій, звідки прийшли, до яких розділів догорнули — без cookies, пачкою при виході зі сторінки
+const ev = new Set(), evSent = new Set(), evOn = location.hostname === 'levelup-tracker.com';
+const evFlush = () => { const k = [...ev].filter(x => !evSent.has(x)); if (!k.length || !evOn) return; k.forEach(x => evSent.add(x)); navigator.sendBeacon(CNT + '/e?k=' + k.join(',')); };
+{ ev.add('view_' + lang);
+  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) ev.add('mob');
+  if (/Windows/i.test(navigator.userAgent)) ev.add('win');
+  // сайт-джерело одним словом: www.google.com.ua → google, t.me → tme
+  try { const h = new URL(document.referrer).hostname.replace(/^www\./, ''), p = h.split('.');
+    if (h && h !== location.hostname) { let n = p.length > 2 && /^(com|co|org|net|gov|edu)$/.test(p.at(-2)) ? p.at(-3) : p.at(-2) || p[0]; if (n.length < 3) n = p.slice(-2).join(''); ev.add('ref_' + n.replace(/[^a-z0-9]/g, '').slice(0, 20)); } } catch (e) { /* прямий захід */ }
+  // мітка посилання ?s=tg — звідки людина (Telegram і застосунки часто не передають джерело); з адреси прибираємо
+  const sp = new URLSearchParams(location.search), s = (sp.get('s') || '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 12);
+  if (s) { ev.add('src_' + s); sp.delete('s'); history.replaceState(null, '', location.pathname + (sp.size ? '?' + sp : '') + location.hash); }
+  evFlush(); }
+const evo = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { ev.add(e.target.dataset.ev); evo.unobserve(e.target); } }), {threshold: .35});
+[['#lvl1', 'lvl1'], ['#lvl2', 'lvl2'], ['#lvl3', 'lvl3'], ['#lvl4', 'lvl4'], ['#lvl5', 'lvl5'], ['#more', 'more'], ['#install', 'inst'], ['#pricing', 'price'], ['#faq', 'faq'], ['.fin', 'fin']].forEach(([q, k]) => { const el = document.querySelector(q); if (el) { el.dataset.ev = k; evo.observe(el); } });
+document.getElementById('dots').addEventListener('click', () => ev.add('theme'));
+document.querySelectorAll('a[href="#install"]').forEach(a => a.addEventListener('click', () => ev.add('howto')));
+addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') evFlush(); });
+addEventListener('pagehide', evFlush);
 // «Хто робить»: «Читати далі»
 const abOpen = () => { document.querySelectorAll('.abx').forEach(p => p.hidden = false); document.getElementById('abMore').hidden = true; };
 document.getElementById('abMore').onclick = abOpen;

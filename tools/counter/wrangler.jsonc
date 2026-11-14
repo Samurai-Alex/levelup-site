@@ -3,6 +3,7 @@
   "main": "worker.js",
   "compatibility_date": "2026-10-01",
   "workers_dev": false,
+  "triggers": { "crons": ["0 7 * * 1"] },   // понеділок 7:00 UTC = 9:00 за Києвом (взимку) — тижневий звіт у Telegram
   "routes": [{ "pattern": "dl.levelup-tracker.com", "custom_domain": true }],
   "d1_databases": [
     { "binding": "DB", "database_name": "levelup-counter", "database_id": "e48380c4-3f89-4ba8-abac-ab50226f1d26" }
