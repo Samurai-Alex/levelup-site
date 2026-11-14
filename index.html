@@ -6,7 +6,12 @@
 <title>LEVEL UP — трекер привычек, финансов и спорта</title>
 <meta name="description" content="LEVEL UP — программа для Windows: привычки, бюджет, спорт и цели в одном месте. Данные хранятся только у вас. Открытая бета — бесплатно.">
 <link rel="canonical" href="https://levelup-tracker.com/">
-<link rel="icon" href="img/icon.png">
+<link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/">
+<link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/">
+<link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/">
+<link rel="alternate" hreflang="x-default" href="https://levelup-tracker.com/en/">
+<meta property="og:locale" content="ru_RU">
+<link rel="icon" href="/img/icon.png">
 <meta property="og:title" content="LEVEL UP — прокачивай себя как персонажа игры">
 <meta property="og:description" content="Открытая бета — бесплатно. Windows 10/11. Данные только на вашем компьютере.">
 <meta property="og:image" content="https://levelup-tracker.com/img/og.png">
@@ -14,13 +19,16 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:url" content="https://levelup-tracker.com/">
 <meta property="og:type" content="website">
+<script>(() => { const P = {ru: '/', uk: '/uk/', en: '/en/'}, here = document.documentElement.lang; let l; try { l = localStorage.getItem('lang'); } catch (e) { /* приватне вікно */ }
+  if (!P[l]) { if (here !== 'ru' || /bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent)) return; const n = (navigator.language || 'en').slice(0, 2); l = n === 'uk' ? 'uk' : n === 'ru' || n === 'be' ? 'ru' : 'en'; }
+  if (l !== here) location.replace(P[l] + location.hash); })();</script>
 <style>
-@font-face{font-family:'Press Start 2P';font-display:swap;src:url(fonts/press-start-2p-cyrillic-400-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
-@font-face{font-family:'Press Start 2P';font-display:swap;src:url(fonts/press-start-2p-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'JetBrains Mono';font-display:swap;font-weight:400;src:url(fonts/jetbrains-mono-cyrillic-400-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
-@font-face{font-family:'JetBrains Mono';font-display:swap;font-weight:400;src:url(fonts/jetbrains-mono-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'JetBrains Mono';font-display:swap;font-weight:700;src:url(fonts/jetbrains-mono-cyrillic-700-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
-@font-face{font-family:'JetBrains Mono';font-display:swap;font-weight:700;src:url(fonts/jetbrains-mono-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Press Start 2P';font-display:swap;src:url(/fonts/press-start-2p-cyrillic-400-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Press Start 2P';font-display:swap;src:url(/fonts/press-start-2p-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-display:swap;font-weight:400;src:url(/fonts/jetbrains-mono-cyrillic-400-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'JetBrains Mono';font-display:swap;font-weight:400;src:url(/fonts/jetbrains-mono-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-display:swap;font-weight:700;src:url(/fonts/jetbrains-mono-cyrillic-700-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'JetBrains Mono';font-display:swap;font-weight:700;src:url(/fonts/jetbrains-mono-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 :root{--bg:#050605;--card:#0d110d;--card2:#121812;--line:#1f2a1f;--text:#e9f0e9;--muted:#8c988c;--acc:#2ee66b;--acc-d:#14361f;--pixel:'Press Start 2P',monospace;--mono:'JetBrains Mono',Consolas,monospace}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
@@ -45,8 +53,8 @@ header{position:sticky;top:0;z-index:5;background:rgba(5,6,5,.85);backdrop-filte
 .links a{text-decoration:none;color:var(--muted)}
 .links a:hover{color:var(--text)}
 .lang{display:flex;gap:2px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px}
-.lang button{all:unset;cursor:pointer;font-size:11px;padding:3px 8px;border-radius:999px;color:var(--muted)}
-.lang button.on{background:var(--acc-d);color:var(--acc)}
+.lang a{all:unset;cursor:pointer;font-size:11px;padding:3px 8px;border-radius:999px;color:var(--muted)}
+.lang a.on{background:var(--acc-d);color:var(--acc)}
 .bar .btn{padding:8px 16px;font-size:13px}
 /* перший екран */
 .hero{padding:72px 0 40px;text-align:center}
@@ -158,86 +166,86 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 </head>
 <body>
 <header><div class="wrap bar">
-  <a class="logo" href="#"><img src="img/icon.png" alt=""><span>LEVEL UP</span></a>
-  <nav class="links"><a href="#features" data-i="nFeat"></a><a href="#install" data-i="nInst"></a><a href="#pricing" data-i="nPrice"></a><a href="#faq" data-i="nFaq"></a></nav>
-  <div class="lang" role="group" aria-label="Language"><button data-l="uk">UA</button><button data-l="ru">RU</button><button data-l="en">EN</button></div>
-  <a class="btn main dl" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg><span data-i="dlShort"></span></a>
+  <a class="logo" href="#"><img src="/img/icon.png" alt=""><span>LEVEL UP</span></a>
+  <nav class="links"><a href="#features" data-i="nFeat">Возможности</a><a href="#install" data-i="nInst">Как установить</a><a href="#pricing" data-i="nPrice">Цены</a><a href="#faq" data-i="nFaq">Вопросы</a></nav>
+  <div class="lang" role="group" aria-label="Language"><a href="/uk/" hreflang="uk" data-l="uk">UA</a><a href="/" hreflang="ru" data-l="ru" class="on">RU</a><a href="/en/" hreflang="en" data-l="en">EN</a></div>
+  <a class="btn main dl" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg><span data-i="dlShort">Скачать</span></a>
 </div><div class="xpb" aria-hidden="true"><i id="xpb"></i></div></header>
 
 <main>
 <div class="wrap hero">
-  <span class="pill" data-i="beta"></span>
-  <h1 data-i="h1" data-html></h1>
-  <p class="lead" data-i="lead"></p>
+  <span class="pill" data-i="beta">Бета — бесплатно</span>
+  <h1 data-i="h1" data-html>Прокачивай себя <b>как персонажа игры</b></h1>
+  <p class="lead" data-i="lead">Привычки, деньги и спорт дают опыт (XP). Растёт уровень, открываются звания и 30+ достижений — и видно, как меняется твоя жизнь.</p>
   <div class="cta">
-    <a class="btn main dl" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.4 4.5v7H3zM11.4 4.4 21 3v8.5h-9.6zM3 12.5h7.4v7L3 18.5zM11.4 12.5H21V21l-9.6-1.4z"/></svg><span data-i="dl"></span></a>
-    <a class="btn" href="#install" data-i="howInst"></a>
+    <a class="btn main dl" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.4 4.5v7H3zM11.4 4.4 21 3v8.5h-9.6zM3 12.5h7.4v7L3 18.5zM11.4 12.5H21V21l-9.6-1.4z"/></svg><span data-i="dl">Скачать для Windows</span></a>
+    <a class="btn" href="#install" data-i="howInst">Как установить</a>
   </div>
-  <div class="meta"><span data-i="req"></span> · <span id="ver">1.6</span></div>
-  <div class="dlc" id="dlc" hidden><span data-i="dlCount"></span><b>0</b></div>
+  <div class="meta"><span data-i="req">Windows 10 / 11 · бесплатно</span> · <span id="ver">1.6</span></div>
+  <div class="dlc" id="dlc" hidden><span data-i="dlCount">Скачиваний</span><b>0</b></div>
   <ul class="trust">
-    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6M3 3l18 18"/></svg><span data-i="tr1"></span></li>
-    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a15 15 0 0 1 20 0M5.5 12a10 10 0 0 1 13 0M9 15.5a5 5 0 0 1 6 0M12 19h.01M3 3l18 18"/></svg><span data-i="tr2"></span></li>
-    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-i="tr3"></span></li>
-    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg><span data-i="tr4"></span></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6M3 3l18 18"/></svg><span data-i="tr1">Без аккаунта</span></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a15 15 0 0 1 20 0M5.5 12a10 10 0 0 1 13 0M9 15.5a5 5 0 0 1 6 0M12 19h.01M3 3l18 18"/></svg><span data-i="tr2">Работает офлайн</span></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-i="tr3">Данные только у вас</span></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg><span data-i="tr4">Автообновление</span></li>
   </ul>
   <div class="dev" id="author">
-    <div class="devc"><img class="ava" src="img/alex.png" width="144" height="144" alt="Alex" loading="lazy"><div class="nm" data-i="abName"></div><div class="lv" data-i="abLvl"></div></div>
+    <div class="devc"><img class="ava" src="/img/alex.png" width="144" height="144" alt="Alex" loading="lazy"><div class="nm" data-i="abName">Алекс</div><div class="lv" data-i="abLvl">Lvl 99 · Разработчик</div></div>
     <div>
-      <div class="kicker" data-i="abK"></div>
-      <h2 data-i="abH"></h2>
-      <p data-i="ab1"></p>
-      <p class="abx" data-i="ab2" hidden></p><p class="abx" data-i="ab3" hidden></p>
-      <button class="more" id="abMore" data-i="abMore"></button>
-      <div><a class="btn" href="https://t.me/levelup_otzyvy_bot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.5 4.2 2.9 11.4c-1.2.5-1.2 1.2 0 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8s.7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.7-1.4zM9.9 14.5l-.4 4.3-1.4-4.6L18 8.2z"/></svg><span data-i="abTg"></span></a></div>
+      <div class="kicker" data-i="abK">Кто делает</div>
+      <h2 data-i="abH">Привет, я Алекс</h2>
+      <p data-i="ab1">Долгое время я думал, что со мной что-то не так. Друзья бегали по утрам, вели бюджет, читали по книге в неделю, а я бросал всё через несколько дней. Я скачал, наверное, десяток трекеров привычек — и все одинаковые: список, галочки, напоминания. Ставить галочки скучно, и через неделю я просто переставал их открывать.</p>
+      <p class="abx" data-i="ab2" hidden>Зато в играх силы воли хватало на сотни часов. Однажды я засиделся до утра, чтобы получить редкое достижение, и подумал: если бы я так же старался в жизни, у меня давно было бы всё, чего я хочу. Оказалось, дело не в силе воли. Мозгу нужна награда здесь и сейчас, а не через полгода.</p><p class="abx" data-i="ab3" hidden>Я сделал программу, где награда приходит сразу. Пробежка даёт опыт. Отложенные деньги поднимают уровень. Серия дней без пропусков открывает звание. Прогресс видно на графиках, и уже через месяц можно оглянуться и увидеть, как изменилась жизнь. Сначала я сделал это для себя, а теперь LEVEL UP пользуются и другие.</p>
+      <button class="more" id="abMore" data-i="abMore">Читать дальше</button>
+      <div><a class="btn" href="https://t.me/levelup_otzyvy_bot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.5 4.2 2.9 11.4c-1.2.5-1.2 1.2 0 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8s.7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.7-1.4zM9.9 14.5l-.4 4.3-1.4-4.6L18 8.2z"/></svg><span data-i="abTg">Написать в Telegram</span></a></div>
     </div>
   </div>
-  <img class="shot zoom" data-f="home" src="img/ru/home.webp" width="1440" height="900" alt="">
+  <img class="shot zoom" data-f="home" src="/img/ru/home.webp" width="1440" height="900" alt="">
 </div>
 
 <!-- п'ять «рівнів» програми: картка-квест + знімок у зеленій рамці, сторони чергуються -->
 <div id="features">
 <section class="lvl" id="lvl1"><div class="wrap lvw">
   <div class="lvt">
-    <div class="qc" style="--p:20%"><span class="qn"><b>LVL 1</b> · <span data-i="l1K"></span></span><span class="qx">XP 1/5</span><i></i></div>
-    <h2 data-i="l1H"></h2><p class="sub" data-i="l1P"></p>
-    <ul class="lvb"><li data-i="l1a"></li><li data-i="l1b"></li><li data-i="l1c"></li></ul>
+    <div class="qc" style="--p:20%"><span class="qn"><b>LVL 1</b> · <span data-i="l1K">ИГРА</span></span><span class="qx">XP 1/5</span><i></i></div>
+    <h2 data-i="l1H">Каждая галочка — это опыт</h2><p class="sub" data-i="l1P">Отметил привычку — получил XP и видишь, как он летит к шкале уровня. Закрыл день — салют и волна света на живом фоне.</p>
+    <ul class="lvb"><li data-i="l1a">Уровни, звания и 30+ достижений</li><li data-i="l1b">Серии дней без пропусков</li><li data-i="l1c">Награды: новые темы и живые фоны</li></ul>
   </div>
   <div class="lvm"><video class="frame" id="game" autoplay muted loop playsinline preload="metadata" width="1140" height="722" aria-label="LEVEL UP"></video></div>
 </div></section>
 <section class="lvl rev" id="lvl2"><div class="wrap lvw">
   <div class="lvt">
-    <div class="qc" style="--p:40%"><span class="qn"><b>LVL 2</b> · <span data-i="l2K"></span></span><span class="qx">XP 2/5</span><i></i></div>
-    <h2 data-i="l2H"></h2><p class="sub" data-i="l2P"></p>
-    <ul class="lvb"><li data-i="l2a"></li><li data-i="l2b"></li><li data-i="l2c"></li></ul>
+    <div class="qc" style="--p:40%"><span class="qn"><b>LVL 2</b> · <span data-i="l2K">ПРИВЫЧКИ И ЗДОРОВЬЕ</span></span><span class="qx">XP 2/5</span><i></i></div>
+    <h2 data-i="l2H">Привычки и здоровье на одном экране</h2><p class="sub" data-i="l2P">Сон, вода, кофе, настроение и витамины — в пару кликов. Программа сама замечает связи: например, сколько сна отнимает лишняя чашка кофе.</p>
+    <ul class="lvb"><li data-i="l2a">Готовые привычки или свои</li><li data-i="l2b">Напоминания в нужное время</li><li data-i="l2c">Тренировки, шаги и километры — во вкладке «Спорт»</li></ul>
   </div>
   <div class="lvm"><img class="frame zoom" data-f="lvl2" width="1326" height="1184" alt="" loading="lazy"></div>
 </div></section>
 <section class="lvl" id="lvl3"><div class="wrap lvw">
   <div class="lvt">
-    <div class="qc" style="--p:60%"><span class="qn"><b>LVL 3</b> · <span data-i="l3K"></span></span><span class="qx">XP 3/5</span><i></i></div>
-    <h2 data-i="l3H"></h2><p class="sub" data-i="l3P"></p>
-    <ul class="lvb"><li data-i="l3a"></li><li data-i="l3b"></li><li data-i="l3c"></li></ul>
+    <div class="qc" style="--p:60%"><span class="qn"><b>LVL 3</b> · <span data-i="l3K">ДЕНЬГИ</span></span><span class="qx">XP 3/5</span><i></i></div>
+    <h2 data-i="l3H">Деньги под контролем</h2><p class="sub" data-i="l3P">Доходы и расходы по категориям, лимиты на месяц, капитал и курсы валют. Для трейдеров — журнал сделок: просадка, дисциплина и какие эмоции стоят тебе денег.</p>
+    <ul class="lvb"><li data-i="l3a">Лимиты с подсказкой, сколько можно тратить в день</li><li data-i="l3b">Регулярные платежи и счета</li><li data-i="l3c">Журнал сделок с разбором месяца</li></ul>
   </div>
   <div class="lvm"><img class="frame zoom" data-f="lvl3" width="1326" height="920" alt="" loading="lazy"><img class="frame zoom" data-f="lvl3b" width="1326" height="676" alt="" loading="lazy"></div>
 </div></section>
 <section class="lvl wide" id="lvl4"><div class="wrap lvw">
   <div class="lvt">
-    <div class="qc" style="--p:80%"><span class="qn"><b>LVL 4</b> · <span data-i="l4K"></span></span><span class="qx">XP 4/5</span><i></i></div>
-    <h2 data-i="l4H"></h2><p class="sub" data-i="l4P"></p>
-    <ul class="lvb"><li data-i="l4a"></li><li data-i="l4b"></li><li data-i="l4c"></li></ul>
+    <div class="qc" style="--p:80%"><span class="qn"><b>LVL 4</b> · <span data-i="l4K">ИИ</span></span><span class="qx">XP 4/5</span><i></i></div>
+    <h2 data-i="l4H">Пиши как другу — программа разложит сама</h2><p class="sub" data-i="l4P">Одна фраза — и трата, тренировка, занятие и привычка уже на своих местах. Работает и без ключа ИИ.</p>
+    <ul class="lvb"><li data-i="l4a">Несколько дел в одной фразе</li><li data-i="l4b">Понимает «вчера» и разные валюты</li><li data-i="l4c">С ключом ИИ — фото чека и итоги месяца</li></ul>
   </div>
   <div class="lvm"><img class="frame zoom" data-f="lvl4" width="1686" height="524" alt="" loading="lazy"></div>
 </div></section>
 <section class="lvl" id="lvl5"><div class="wrap lvw">
   <div class="lvt">
-    <div class="qc" style="--p:100%"><span class="qn"><b>LVL 5</b> · <span data-i="l5K"></span></span><span class="qx">XP 5/5</span><i></i></div>
-    <h2 data-i="l5H"></h2><p class="sub" data-i="l5P"></p>
-    <ul class="lvb"><li data-i="l5a"></li><li data-i="l5b"></li><li data-i="l5c"></li></ul>
+    <div class="qc" style="--p:100%"><span class="qn"><b>LVL 5</b> · <span data-i="l5K">ПОД СЕБЯ</span></span><span class="qx">XP 5/5</span><i></i></div>
+    <h2 data-i="l5H">Программа под тебя</h2><p class="sub" data-i="l5P">Темы, живые фоны, форма карточек и кнопок, шрифты и размер текста. Лишние вкладки можно спрятать, виджеты главной — переставить.</p>
+    <ul class="lvb"><li data-i="l5a">Новые темы открываются с уровнем</li><li data-i="l5b">Стеклянные карточки и живые фоны</li><li data-i="l5c">Свои цвета темы</li></ul>
   </div>
   <div class="lvm">
     <div class="dots" id="dots">
-      <button class="on" data-t="levelup" style="--c:#2ee66b"><i></i>LEVEL UP</button><button data-t="night" style="--c:#8ec5ff"><i></i><span data-i="thNight"></span></button><button data-t="nebula" style="--c:#9d8cf2"><i></i><span data-i="thNebula"></span></button><button data-t="pluto" style="--c:#9d4edd"><i></i><span data-i="thPluto"></span></button><button data-t="champagne" style="--c:#c8b27d"><i></i><span data-i="thChamp"></span></button><button data-t="gold" style="--c:#e8b923"><i></i><span data-i="thGold"></span></button>
+      <button class="on" data-t="levelup" style="--c:#2ee66b"><i></i>LEVEL UP</button><button data-t="night" style="--c:#8ec5ff"><i></i><span data-i="thNight">Звёздная ночь</span></button><button data-t="nebula" style="--c:#9d8cf2"><i></i><span data-i="thNebula">Звёздный аметист</span></button><button data-t="pluto" style="--c:#9d4edd"><i></i><span data-i="thPluto">Полночь Плутона</span></button><button data-t="champagne" style="--c:#c8b27d"><i></i><span data-i="thChamp">Шампань</span></button><button data-t="gold" style="--c:#e8b923"><i></i><span data-i="thGold">Золото</span></button>
     </div>
     <video class="frame" id="thv" muted loop playsinline preload="none" width="1280" height="800" aria-label="LEVEL UP"></video>
   </div>
@@ -245,81 +253,81 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 </div>
 
 <section id="more"><div class="wrap">
-  <div class="kicker" data-i="mK"></div>
-  <h2 data-i="mH"></h2>
+  <div class="kicker" data-i="mK">А ещё</div>
+  <h2 data-i="mH">И несколько вещей, которые пригодятся</h2>
   <div class="grid g3">
-    <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M4 10h16M9 15l2 2 4-4"/></svg><h3 data-i="m1"></h3><p data-i="m1d"></p></div>
-    <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7M9 3v2c0 4.5-2.5 8-5 9M5 9c0 2.5 3.5 4.5 7 5M12 20l4-9 4 9M13.5 17h5"/></svg><h3 data-i="m2"></h3><p data-i="m2d"></p></div>
-    <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><h3 data-i="m3"></h3><p data-i="m3d"></p></div>
-    <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><h3 data-i="m4"></h3><p data-i="m4d"></p></div>
-    <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a15 15 0 0 1 20 0M5.5 12a10 10 0 0 1 13 0M9 15.5a5 5 0 0 1 6 0M12 19h.01M3 3l18 18"/></svg><h3 data-i="m5"></h3><p data-i="m5d"></p></div>
-    <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg><h3 data-i="m6"></h3><p data-i="m6d"></p></div>
+    <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M4 10h16M9 15l2 2 4-4"/></svg><h3 data-i="m1">Ежедневник</h3><p data-i="m1d">Дела на день и главная цель недели.</p></div>
+    <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7M9 3v2c0 4.5-2.5 8-5 9M5 9c0 2.5 3.5 4.5 7 5M12 20l4-9 4 9M13.5 17h5"/></svg><h3 data-i="m2">Английский</h3><p data-i="m2d">Уроки, сериалы и разговорная практика — часы и уровень от A1 до C2.</p></div>
+    <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><h3 data-i="m3">Статистика</h3><p data-i="m3d">Тепловые карты, итоги недели, месяца и года.</p></div>
+    <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><h3 data-i="m4">Данные только у вас</h3><p data-i="m4d">Без аккаунта и рекламы. Автокопии — в вашу папку, например OneDrive.</p></div>
+    <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a15 15 0 0 1 20 0M5.5 12a10 10 0 0 1 13 0M9 15.5a5 5 0 0 1 6 0M12 19h.01M3 3l18 18"/></svg><h3 data-i="m5">Работает офлайн</h3><p data-i="m5d">Интернет нужен только для курсов валют, обновлений и ИИ.</p></div>
+    <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg><h3 data-i="m6">Обновляется сама</h3><p data-i="m6d">Новые возможности приходят сами — скачивать заново не нужно.</p></div>
   </div>
 </div></section>
 
 <section id="install"><div class="wrap">
-  <div class="kicker" data-i="nInst"></div>
-  <h2 data-i="iH"></h2><p class="sub" data-i="iSub"></p>
+  <div class="kicker" data-i="nInst">Как установить</div>
+  <h2 data-i="iH">Установка за минуту</h2><p class="sub" data-i="iSub">Программа обновляется сама — скачать нужно один раз.</p>
   <div class="steps">
-    <div class="step"><h3 data-i="s1"></h3><p data-i="s1d"></p></div>
-    <div class="step"><h3 data-i="s2"></h3><p data-i="s2d"></p></div>
-    <div class="step"><h3 data-i="s3"></h3><p data-i="s3d"></p></div>
+    <div class="step"><h3 data-i="s1">Скачайте</h3><p data-i="s1d">Нажмите «Скачать для Windows» — это файл Level-Up-setup.exe.</p></div>
+    <div class="step"><h3 data-i="s2">Запустите</h3><p data-i="s2d">Откройте файл. Если Windows покажет синее окно — смотрите ниже.</p></div>
+    <div class="step"><h3 data-i="s3">Готово</h3><p data-i="s3d">Выберите привычки из списка или добавьте свои — и начните свой первый день.</p></div>
   </div>
   <div class="ss">
-    <div><h3 data-i="ssH"></h3><p data-i="ssP"></p><ol><li data-i="ss1" data-html></li><li data-i="ss2" data-html></li></ol></div>
+    <div><h3 data-i="ssH">Синее окно «Система Windows защитила ваш компьютер»</h3><p data-i="ssP">Так бывает с новыми программами, у которых ещё мало скачиваний. Программа безопасна — просто Windows её пока не знает.</p><ol><li data-i="ss1" data-html>Нажмите <b>«Подробнее»</b></li><li data-i="ss2" data-html>Затем <b>«Выполнить в любом случае»</b></li></ol></div>
     <div class="win" aria-hidden="true">
-      <div class="t" data-i="wT"></div>
-      <div data-i="wP"></div>
-      <div style="margin-top:10px"><span class="u" data-i="wMore"></span></div>
-      <div class="r"><span class="hl" data-i="wRun"></span><span data-i="wNo"></span></div>
+      <div class="t" data-i="wT">Система Windows защитила ваш компьютер</div>
+      <div data-i="wP">Фильтр SmartScreen в Microsoft Defender предотвратил запуск неопознанного приложения.</div>
+      <div style="margin-top:10px"><span class="u" data-i="wMore">Подробнее</span></div>
+      <div class="r"><span class="hl" data-i="wRun">Выполнить в любом случае</span><span data-i="wNo">Не выполнять</span></div>
     </div>
   </div>
 </div></section>
 
 <section id="pricing"><div class="wrap">
-  <div class="kicker" data-i="nPrice"></div>
-  <h2 data-i="pH"></h2><p class="sub" data-i="pSub"></p>
+  <div class="kicker" data-i="nPrice">Цены</div>
+  <h2 data-i="pH">Сейчас — бесплатно</h2><p class="sub" data-i="pSub">Пока идёт открытая бета, все функции доступны бесплатно. Цены появятся позже — всё, что вы запишете в бете, сохранится.</p>
   <div class="prices">
-    <div class="price now"><span class="pill" data-i="pNow"></span><div class="n" data-i="pFree"></div><p style="margin:0;color:var(--muted);font-size:13.5px" data-i="pFreeD"></p>
-      <ul><li data-i="p1"></li><li data-i="p2"></li><li data-i="p3"></li><li data-i="p4"></li></ul>
-      <a class="btn main dl" href="#"><span data-i="dl"></span></a></div>
-    <div class="price soon" id="paid"><span class="pill" style="background:var(--card2);color:var(--muted)" data-i="pSoon"></span><div class="n">LEVEL UP</div><p style="margin:0;color:var(--muted);font-size:13.5px" data-i="pPaidD"></p>
-      <ul><li data-i="q1"></li><li data-i="q2"></li></ul></div>
+    <div class="price now"><span class="pill" data-i="pNow">Сейчас</span><div class="n" data-i="pFree">Бета · 0</div><p style="margin:0;color:var(--muted);font-size:13.5px" data-i="pFreeD">Все функции, без ограничений.</p>
+      <ul><li data-i="p1">Привычки, финансы, спорт, цели</li><li data-i="p2">ИИ-функции с вашим ключом</li><li data-i="p3">Автообновления</li><li data-i="p4">Автокопии данных</li></ul>
+      <a class="btn main dl" href="#"><span data-i="dl">Скачать для Windows</span></a></div>
+    <div class="price soon" id="paid"><span class="pill" style="background:var(--card2);color:var(--muted)" data-i="pSoon">Позже</span><div class="n">LEVEL UP</div><p style="margin:0;color:var(--muted);font-size:13.5px" data-i="pPaidD">Полная версия после беты. Цену и условия объявим здесь.</p>
+      <ul><li data-i="q1">Ваши данные из беты переходят в полную версию</li><li data-i="q2">Покупка — прямо на этом сайте</li></ul></div>
   </div>
 </div></section>
 
 <section id="news"><div class="wrap" style="max-width:820px">
-  <div class="kicker" data-i="nNews"></div>
-  <h2 data-i="nwH"></h2><p class="sub" data-i="nwSub"></p>
+  <div class="kicker" data-i="nNews">Что нового</div>
+  <h2 data-i="nwH">Программа постоянно обновляется</h2><p class="sub" data-i="nwSub">Последние обновления — они приходят сами, ничего скачивать не нужно.</p>
   <div id="newsList"></div>
 </div></section>
 
 <section id="faq"><div class="wrap" style="max-width:820px">
-  <div class="kicker" data-i="nFaq"></div>
-  <h2 data-i="qH"></h2>
-  <details><summary data-i="a1"></summary><p data-i="a1d"></p></details>
-  <details><summary data-i="a2"></summary><p data-i="a2d"></p></details>
-  <details id="privacy"><summary data-i="a3"></summary><p data-i="a3d"></p></details>
-  <details><summary data-i="a4"></summary><p data-i="a4d"></p></details>
-  <details><summary data-i="a5"></summary><p data-i="a5d"></p></details>
-  <details><summary data-i="a6"></summary><p data-i="a6d"></p></details>
+  <div class="kicker" data-i="nFaq">Вопросы</div>
+  <h2 data-i="qH">Частые вопросы</h2>
+  <details><summary data-i="a1">Это правда бесплатно?</summary><p data-i="a1d">Да, пока идёт бета. Позже программа станет платной — цену мы покажем здесь заранее.</p></details>
+  <details><summary data-i="a2">Нужен интернет?</summary><p data-i="a2d">Нет. Интернет нужен только для курсов валют, обновлений и ИИ-функций (по желанию).</p></details>
+  <details id="privacy"><summary data-i="a3">Где хранятся мои данные?</summary><p data-i="a3d">Только на вашем компьютере. Аккаунта нет, разработчик ваших записей не видит. Отчёт об ошибке отправляется только с вашего согласия и без ваших записей.</p></details>
+  <details><summary data-i="a4">Есть версия для Mac или телефона?</summary><p data-i="a4d">Пока только Windows 10 и 11.</p></details>
+  <details><summary data-i="a5">Как сообщить об ошибке или идее?</summary><p data-i="a5d">Прямо в программе: Настройки → Общие → «Написать разработчику». Сообщение приходит сразу.</p></details>
+  <details><summary data-i="a6">Как обновлять программу?</summary><p data-i="a6d">Ничего делать не нужно: программа сама проверяет обновления и предлагает установить.</p></details>
 </div></section>
 
 <section class="fin"><div class="wrap">
-  <h2 class="px" data-i="cH" data-html></h2>
-  <p class="sub" data-i="cP"></p>
-  <a class="btn main dl" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.4 4.5v7H3zM11.4 4.4 21 3v8.5h-9.6zM3 12.5h7.4v7L3 18.5zM11.4 12.5H21V21l-9.6-1.4z"/></svg><span data-i="dl"></span></a>
-  <div class="meta" data-i="req"></div>
+  <h2 class="px" data-i="cH" data-html>Твой <b>LVL 1</b> начинается сегодня</h2>
+  <p class="sub" data-i="cP">Бесплатно, пока идёт бета. Установка за минуту.</p>
+  <a class="btn main dl" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.4 4.5v7H3zM11.4 4.4 21 3v8.5h-9.6zM3 12.5h7.4v7L3 18.5zM11.4 12.5H21V21l-9.6-1.4z"/></svg><span data-i="dl">Скачать для Windows</span></a>
+  <div class="meta" data-i="req">Windows 10 / 11 · бесплатно</div>
 </div></section>
 </main>
 
 <footer><div class="wrap">
-  <div class="flinks"><span>© 2026 LEVEL UP</span><a href="about.html" data-i="fAbout"></a><a href="terms.html" data-i="fTerms"></a><a href="privacy.html" data-i="priv"></a><a href="contact.html" data-i="fContact"></a></div>
+  <div class="flinks"><span>© 2026 LEVEL UP</span><a href="/about.html" data-i="fAbout">О проекте</a><a href="/terms.html" data-i="fTerms">Условия использования</a><a href="/privacy.html" data-i="priv">Конфиденциальность</a><a href="/contact.html" data-i="fContact">Контакты</a></div>
   <div class="quote">DISCIPLINE = <b>FREEDOM</b></div>
 </div></footer>
 
 <dialog id="lb" aria-label="Screenshot"><div class="lbx"></div><button aria-label="Close">×</button></dialog>
-<script src="changes.js"></script>
+<script src="/changes.js"></script>
 <script>
 // Посилання на установник і версія — з GitHub-релізу, звідки програма й оновлюється.
 const REPO = 'Samurai-Alex/habit-tracker-updates', DL = `https://github.com/${REPO}/releases/download/levelup/Level-Up-setup.exe`;
@@ -329,6 +337,7 @@ const CNT = 'https://dl.levelup-tracker.com';
 const SHOP = {buy: false, url: '', price: ''};
 const L = {
 uk: {nFeat:'Можливості', nInst:'Як встановити', nPrice:'Ціни', nFaq:'Питання', dlShort:'Завантажити', dlCount:'Завантажень', beta:'Бета — безкоштовно',
+ mT:'LEVEL UP — трекер звичок, фінансів і спорту', mD:'LEVEL UP — програма для Windows: звички, бюджет, спорт і цілі в одному місці. Дані зберігаються тільки у вас. Відкрита бета — безкоштовно.', oT:'LEVEL UP — прокачуй себе як персонажа гри', oD:'Відкрита бета — безкоштовно. Windows 10/11. Дані тільки на вашому компʼютері.',
  h1:'Прокачуй себе <b>як персонажа гри</b>', lead:'Звички, гроші та спорт дають досвід (XP). Зростає рівень, відкриваються звання й 30+ досягнень — і видно, як змінюється твоє життя.',
  dl:'Завантажити для Windows', howInst:'Як встановити', req:'Windows 10 / 11 · безкоштовно',
  l1K:'ГРА', l1H:'Кожна галочка — це досвід', l1P:'Відмітив звичку — отримав XP і бачиш, як він летить до шкали рівня. Закрив день — салют і хвиля світла на живому фоні.', l1a:'Рівні, звання й 30+ досягнень',
@@ -367,6 +376,7 @@ uk: {nFeat:'Можливості', nInst:'Як встановити', nPrice:'Ц
  ab2:'Зате в іграх сили волі вистачало на сотні годин. Якось я засидівся до ранку, щоб отримати рідкісне досягнення, і подумав: якби я так само старався в житті, у мене давно було б усе, чого я хочу. Виявилося, справа не в силі волі. Мозку потрібна нагорода тут і зараз, а не через пів року.',
  ab3:'Я зробив програму, де нагорода приходить одразу. Пробіжка дає досвід. Відкладені гроші піднімають рівень. Серія днів без пропусків відкриває звання. Прогрес видно на графіках, і вже за місяць можна озирнутися й побачити, як змінилося життя. Спершу я зробив це для себе, а тепер LEVEL UP користуються й інші.'},
 ru: {nFeat:'Возможности', nInst:'Как установить', nPrice:'Цены', nFaq:'Вопросы', dlShort:'Скачать', dlCount:'Скачиваний', beta:'Бета — бесплатно',
+ mT:'LEVEL UP — трекер привычек, финансов и спорта', mD:'LEVEL UP — программа для Windows: привычки, бюджет, спорт и цели в одном месте. Данные хранятся только у вас. Открытая бета — бесплатно.', oT:'LEVEL UP — прокачивай себя как персонажа игры', oD:'Открытая бета — бесплатно. Windows 10/11. Данные только на вашем компьютере.',
  h1:'Прокачивай себя <b>как персонажа игры</b>', lead:'Привычки, деньги и спорт дают опыт (XP). Растёт уровень, открываются звания и 30+ достижений — и видно, как меняется твоя жизнь.',
  dl:'Скачать для Windows', howInst:'Как установить', req:'Windows 10 / 11 · бесплатно',
  l1K:'ИГРА', l1H:'Каждая галочка — это опыт', l1P:'Отметил привычку — получил XP и видишь, как он летит к шкале уровня. Закрыл день — салют и волна света на живом фоне.', l1a:'Уровни, звания и 30+ достижений',
@@ -405,6 +415,7 @@ ru: {nFeat:'Возможности', nInst:'Как установить', nPrice
  ab2:'Зато в играх силы воли хватало на сотни часов. Однажды я засиделся до утра, чтобы получить редкое достижение, и подумал: если бы я так же старался в жизни, у меня давно было бы всё, чего я хочу. Оказалось, дело не в силе воли. Мозгу нужна награда здесь и сейчас, а не через полгода.',
  ab3:'Я сделал программу, где награда приходит сразу. Пробежка даёт опыт. Отложенные деньги поднимают уровень. Серия дней без пропусков открывает звание. Прогресс видно на графиках, и уже через месяц можно оглянуться и увидеть, как изменилась жизнь. Сначала я сделал это для себя, а теперь LEVEL UP пользуются и другие.'},
 en: {nFeat:'Features', nInst:'Install', nPrice:'Pricing', nFaq:'FAQ', dlShort:'Download', dlCount:'Downloads', beta:'Beta — free',
+ mT:'LEVEL UP — habit, money and fitness tracker', mD:'LEVEL UP is a Windows app for habits, budget, sport and goals in one place. Your data stays on your computer only. Free during the open beta.', oT:'LEVEL UP — level yourself up like a game character', oD:'Open beta — free. Windows 10/11. Your data stays on your computer only.',
  h1:'Level yourself up <b>like a game character</b>', lead:'Habits, money and workouts earn you XP. Your level grows, titles and 30+ achievements unlock — and you can see your life changing.',
  dl:'Download for Windows', howInst:'How to install', req:'Windows 10 / 11 · free',
  l1K:'GAME', l1H:'Every check-off is XP', l1P:'Tick a habit — earn XP and watch it fly to your level bar. Close the day — confetti and a wave of light on the live background.', l1a:'Levels, titles and 30+ achievements',
@@ -442,35 +453,28 @@ en: {nFeat:'Features', nInst:'Install', nPrice:'Pricing', nFaq:'FAQ', dlShort:'D
  ab1:'For a long time I thought something was wrong with me. My friends ran in the mornings, kept budgets, read a book a week — and I dropped everything after a few days. I must have downloaded a dozen habit trackers, and they were all the same: a list, checkboxes, reminders. Ticking boxes is boring, and within a week I’d just stop opening them.',
  ab2:'Yet in games I had willpower for hundreds of hours. Once I stayed up till morning to get a rare achievement and thought: if I tried this hard in real life, I’d have everything I want by now. Turns out it isn’t about willpower. Your brain needs a reward here and now, not in six months.',
  ab3:'So I built an app where the reward comes right away. A run earns XP. Money saved raises your level. A streak of days unlocks a title. Progress shows up on charts, and after just a month you can look back and see how your life has changed. I made it for myself first — now other people use LEVEL UP too.'}};
-let lang;
-try { lang = localStorage.getItem('lang'); } catch (e) { /* приватне вікно */ }
-if (!L[lang]) { const n = (navigator.language || 'en').slice(0, 2); lang = n === 'uk' ? 'uk' : n === 'ru' || n === 'be' ? 'ru' : 'en'; }
-function setLang(l) {
-  lang = l; document.documentElement.lang = l;
-  document.querySelectorAll('[data-i]').forEach(e => { const v = L[l][e.dataset.i]; if (v != null) e[e.hasAttribute('data-html') ? 'innerHTML' : 'textContent'] = v; });
-  document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('on', b.dataset.l === l));
-  try { localStorage.setItem('lang', l); } catch (e) { /* */ }
-  langImgs();
-}
+// мова сторінки — з її адреси: / російською, /uk/ і /en/ (збирає tools/pages.mjs; тексти вже в HTML)
+const lang = document.documentElement.lang;
 // скриншоти програми — мовою сайту (img/<мова>/, знімає tools/capture.mjs)
 const still = matchMedia('(prefers-reduced-motion: reduce)').matches;   // без анімацій для тих, хто їх вимкнув у системі
 function langImgs() {
-  document.querySelectorAll('img[data-f]').forEach(i => i.src = `img/${lang}/${i.dataset.f}.webp`);
+  document.querySelectorAll('img[data-f]').forEach(i => i.src = `/img/${lang}/${i.dataset.f}.webp`);
   // «Закритий день» (LVL 1) — відео мовою сайту; заставка — кадр, де «+XP» летить до шкали
-  const v = document.getElementById('game'), src = `img/${lang}/game.mp4`;
-  if (!v.src.endsWith(src)) { if (still) v.removeAttribute('autoplay'); v.poster = `img/${lang}/game.jpg`; v.src = src; }
+  const v = document.getElementById('game'), src = `/img/${lang}/game.mp4`;
+  if (!v.src.endsWith(src)) { if (still) v.removeAttribute('autoplay'); v.poster = `/img/${lang}/game.jpg`; v.src = src; }
   // «Під себе» (LVL 5): теми по черзі з живими фонами — вантажиться, лише коли розділ близько
-  thv.poster = `img/${lang}/themes.jpg`; if (thv.dataset.on) thLoad();
+  thv.poster = `/img/${lang}/themes.jpg`; if (thv.dataset.on) thLoad();
 }
 const thv = document.getElementById('thv'), TH_SEC = 2.53;   // секунд на тему — як THEME_SEC у tools/capture.mjs (з поправкою на перемикання)
 const thBtns = [...document.querySelectorAll('#dots button')];
-function thLoad() { const src = `img/${lang}/themes.mp4`; if (thv.src.endsWith(src)) return; const t = thv.currentTime; thv.src = src; thv.currentTime = t; if (!still) thv.play().catch(() => {}); }
+function thLoad() { const src = `/img/${lang}/themes.mp4`; if (thv.src.endsWith(src)) return; const t = thv.currentTime; thv.src = src; thv.currentTime = t; if (!still) thv.play().catch(() => {}); }
 new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { thv.dataset.on = 1; thLoad(); o.disconnect(); } }, {rootMargin: '300px'}).observe(thv);
 thv.ontimeupdate = () => { const i = Math.min(thBtns.length - 1, Math.floor(thv.currentTime / TH_SEC)), b = thBtns[i]; if (b.classList.contains('on')) return;
   thBtns.forEach(x => x.classList.toggle('on', x === b));
   const row = b.parentElement; row.scrollTo({left: row.scrollLeft + b.getBoundingClientRect().left - row.getBoundingClientRect().left - 20, behavior: 'smooth'}); };   // на телефоні ряд тем гортається — поточна завжди на виду
-document.querySelectorAll('.lang button').forEach(b => b.onclick = () => setLang(b.dataset.l));
-setLang(lang);
+// вибір у перемикачі запам'ятовується — наступного разу «/» одразу відкриє цю мову
+document.querySelectorAll('.lang a').forEach(a => { a.classList.toggle('on', a.dataset.l === lang); a.onclick = e => { e.preventDefault(); try { localStorage.setItem('lang', a.dataset.l); } catch (x) { /* */ } location.href = a.getAttribute('href') + location.hash; }; });
+langImgs();
 document.querySelectorAll('.dl').forEach(a => a.href = CNT + '/dl');
 // «Хто робить»: «Читати далі»
 const abOpen = () => { document.querySelectorAll('.abx').forEach(p => p.hidden = false); document.getElementById('abMore').hidden = true; };
@@ -494,7 +498,6 @@ function drawNews() {
   document.getElementById('newsList').innerHTML = (window.CHANGES || []).map((c, i) => `<details ${i ? '' : 'open'}><summary>v${c.v}${i ? '' : ` <span class="pill">${L[lang].nwLast}</span>`}</summary><ul class="nl">${(c[lang] || c.en).map(x => `<li>${x.replace(/[<>&]/g, s => ({'<': '&lt;', '>': '&gt;', '&': '&amp;'}[s]))}</li>`).join('')}</ul></details>`).join('');
 }
 drawNews();
-document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', drawNews));
 // «Конфіденційність» у підвалі: розкрити відповідь, прокрутити до неї й підсвітити (просто якір нічого не показував — блок згорнутий)
 function showPrivacy() { const d = document.getElementById('privacy'); d.open = true; d.scrollIntoView({behavior: 'smooth', block: 'center'}); d.classList.remove('flash'); void d.offsetWidth; d.classList.add('flash'); }
 document.querySelectorAll('a[href="#privacy"]').forEach(a => a.onclick = e => { e.preventDefault(); history.replaceState(null, '', '#privacy'); showPrivacy(); });

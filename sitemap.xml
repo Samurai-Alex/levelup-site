@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://levelup-tracker.com/</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://levelup-tracker.com/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uk/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/"/>
+  </url>
   <url><loc>https://levelup-tracker.com/about.html</loc></url>
   <url><loc>https://levelup-tracker.com/terms.html</loc></url>
   <url><loc>https://levelup-tracker.com/privacy.html</loc></url>
