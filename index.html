@@ -99,6 +99,17 @@ h2{font-size:clamp(22px,3vw,30px);line-height:1.3;margin:0 0 12px}
 .price li{padding:3px 0 3px 22px;position:relative}
 .price li::before{content:"";position:absolute;left:2px;top:10px;width:9px;height:5px;border:2px solid var(--acc);border-top:0;border-right:0;transform:rotate(-45deg)}
 .price.soon{opacity:.75}
+/* хто робить — «картка персонажа» */
+.dev{display:grid;grid-template-columns:200px minmax(0,1fr);gap:34px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px;max-width:960px}
+.devc{text-align:center}
+.ava{width:136px;height:136px;margin:0 auto;padding:8px;background:var(--bg);border:4px solid var(--acc);box-shadow:6px 6px 0 var(--acc-d)}
+.ava svg{width:100%;height:100%;display:block}
+.devc .nm{font:400 14px var(--pixel);margin:20px 0 8px}
+.devc .lv{font-size:12px;color:var(--acc)}
+.dev p{color:var(--muted);margin:0 0 12px}
+.dev .more{all:unset;cursor:pointer;color:var(--acc);font-size:13.5px;font-weight:700;display:inline-block;margin-bottom:18px}
+.dev .more[hidden]{display:none}
+@media (max-width:720px){.dev{grid-template-columns:1fr;gap:22px;padding:22px}}
 /* питання */
 details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:10px}
 summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:16px}
@@ -218,6 +229,20 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   </div>
 </div></section>
 
+<section id="author"><div class="wrap">
+  <div class="dev">
+    <div class="devc"><div class="ava" id="ava" role="img" aria-label="Alex"></div><div class="nm" data-i="abName"></div><div class="lv" data-i="abLvl"></div></div>
+    <div>
+      <div class="kicker" data-i="abK"></div>
+      <h2 data-i="abH"></h2>
+      <p data-i="ab1"></p>
+      <p class="abx" data-i="ab2" hidden></p><p class="abx" data-i="ab3" hidden></p>
+      <button class="more" id="abMore" data-i="abMore"></button>
+      <div><a class="btn" href="https://t.me/levelup_otzyvy_bot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.5 4.2 2.9 11.4c-1.2.5-1.2 1.2 0 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8s.7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.7-1.4zM9.9 14.5l-.4 4.3-1.4-4.6L18 8.2z"/></svg><span data-i="abTg"></span></a></div>
+    </div>
+  </div>
+</div></section>
+
 <section id="pricing"><div class="wrap">
   <div class="kicker" data-i="nPrice"></div>
   <h2 data-i="pH"></h2><p class="sub" data-i="pSub"></p>
@@ -292,7 +317,11 @@ uk: {nFeat:'Можливості', nInst:'Як встановити', nPrice:'Ц
  priv:'Конфіденційність', fAbout:'Про проєкт', fTerms:'Умови використання', fContact:'Контакти',
  tr1:'Без облікового запису', tr2:'Працює офлайн', tr3:'Дані тільки у вас', tr4:'Автооновлення',
  thK:'Теми', thH:'Під ваш смак', thSub:'Колір, форма карток і кнопок, шрифт — усе налаштовується. Ось кілька готових тем:',
- nNews:'Що нового', nwH:'Програма постійно оновлюється', nwSub:'Останні оновлення — вони приходять самі, нічого завантажувати не треба.', nwLast:'остання'},
+ nNews:'Що нового', nwH:'Програма постійно оновлюється', nwSub:'Останні оновлення — вони приходять самі, нічого завантажувати не треба.', nwLast:'остання',
+ abK:'Хто робить', abH:'Привіт, я Алекс', abName:'Алекс', abLvl:'Lvl 99 · Розробник', abMore:'Читати далі', abTg:'Написати в Telegram',
+ ab1:'Довго я думав, що зі мною щось не так. Друзі бігали зранку, вели бюджет, читали по книжці на тиждень, а я кидав усе за кілька днів. Я завантажив, мабуть, з десяток трекерів звичок — і всі однакові: список, галочки, нагадування. Ставити галочки нудно, і за тиждень я просто переставав їх відкривати.',
+ ab2:'Зате в іграх сили волі вистачало на сотні годин. Якось я засидівся до ранку, щоб отримати рідкісне досягнення, і подумав: якби я так само старався в житті, у мене давно було б усе, чого я хочу. Виявилося, справа не в силі волі. Мозку потрібна нагорода тут і зараз, а не через пів року.',
+ ab3:'Я зробив програму, де нагорода приходить одразу. Пробіжка дає досвід. Відкладені гроші піднімають рівень. Серія днів без пропусків відкриває звання. Прогрес видно на графіках, і вже за місяць можна озирнутися й побачити, як змінилося життя. Спершу я зробив це для себе, а тепер LEVEL UP користуються й інші.'},
 ru: {nFeat:'Возможности', nInst:'Как установить', nPrice:'Цены', nFaq:'Вопросы', dlShort:'Скачать', dlCount:'Скачиваний', beta:'Бета — бесплатно',
  h1:'Прокачивай себя <b>как персонажа игры</b>', lead:'Привычки, деньги и спорт дают опыт (XP). Растёт уровень, открываются звания и 30+ достижений — и видно, как меняется твоя жизнь.',
  dl:'Скачать для Windows', howInst:'Как установить', req:'Windows 10 / 11 · бесплатно',
@@ -322,7 +351,11 @@ ru: {nFeat:'Возможности', nInst:'Как установить', nPrice
  priv:'Конфиденциальность', fAbout:'О проекте', fTerms:'Условия использования', fContact:'Контакты',
  tr1:'Без аккаунта', tr2:'Работает офлайн', tr3:'Данные только у вас', tr4:'Автообновление',
  thK:'Темы', thH:'На ваш вкус', thSub:'Цвет, форма карточек и кнопок, шрифт — всё настраивается. Вот несколько готовых тем:',
- nNews:'Что нового', nwH:'Программа постоянно обновляется', nwSub:'Последние обновления — они приходят сами, ничего скачивать не нужно.', nwLast:'последняя'},
+ nNews:'Что нового', nwH:'Программа постоянно обновляется', nwSub:'Последние обновления — они приходят сами, ничего скачивать не нужно.', nwLast:'последняя',
+ abK:'Кто делает', abH:'Привет, я Алекс', abName:'Алекс', abLvl:'Lvl 99 · Разработчик', abMore:'Читать дальше', abTg:'Написать в Telegram',
+ ab1:'Долгое время я думал, что со мной что-то не так. Друзья бегали по утрам, вели бюджет, читали по книге в неделю, а я бросал всё через несколько дней. Я скачал, наверное, десяток трекеров привычек — и все одинаковые: список, галочки, напоминания. Ставить галочки скучно, и через неделю я просто переставал их открывать.',
+ ab2:'Зато в играх силы воли хватало на сотни часов. Однажды я засиделся до утра, чтобы получить редкое достижение, и подумал: если бы я так же старался в жизни, у меня давно было бы всё, чего я хочу. Оказалось, дело не в силе воли. Мозгу нужна награда здесь и сейчас, а не через полгода.',
+ ab3:'Я сделал программу, где награда приходит сразу. Пробежка даёт опыт. Отложенные деньги поднимают уровень. Серия дней без пропусков открывает звание. Прогресс видно на графиках, и уже через месяц можно оглянуться и увидеть, как изменилась жизнь. Сначала я сделал это для себя, а теперь LEVEL UP пользуются и другие.'},
 en: {nFeat:'Features', nInst:'Install', nPrice:'Pricing', nFaq:'FAQ', dlShort:'Download', dlCount:'Downloads', beta:'Beta — free',
  h1:'Level yourself up <b>like a game character</b>', lead:'Habits, money and workouts earn you XP. Your level grows, titles and 30+ achievements unlock — and you can see your life changing.',
  dl:'Download for Windows', howInst:'How to install', req:'Windows 10 / 11 · free',
@@ -352,7 +385,11 @@ en: {nFeat:'Features', nInst:'Install', nPrice:'Pricing', nFaq:'FAQ', dlShort:'D
  priv:'Privacy', fAbout:'About', fTerms:'Terms of use', fContact:'Contacts',
  tr1:'No account', tr2:'Works offline', tr3:'Your data stays yours', tr4:'Auto-updates',
  thK:'Themes', thH:'Make it yours', thSub:'Colours, card and button shapes, fonts — all adjustable. A few ready-made themes:',
- nNews:'What’s new', nwH:'Updated all the time', nwSub:'The latest updates — they arrive by themselves, nothing to download.', nwLast:'latest'}};
+ nNews:'What’s new', nwH:'Updated all the time', nwSub:'The latest updates — they arrive by themselves, nothing to download.', nwLast:'latest',
+ abK:'Who makes it', abH:'Hi, I’m Alex', abName:'Alex', abLvl:'Lvl 99 · Developer', abMore:'Read more', abTg:'Message on Telegram',
+ ab1:'For a long time I thought something was wrong with me. My friends ran in the mornings, kept budgets, read a book a week — and I dropped everything after a few days. I must have downloaded a dozen habit trackers, and they were all the same: a list, checkboxes, reminders. Ticking boxes is boring, and within a week I’d just stop opening them.',
+ ab2:'Yet in games I had willpower for hundreds of hours. Once I stayed up till morning to get a rare achievement and thought: if I tried this hard in real life, I’d have everything I want by now. Turns out it isn’t about willpower. Your brain needs a reward here and now, not in six months.',
+ ab3:'So I built an app where the reward comes right away. A run earns XP. Money saved raises your level. A streak of days unlocks a title. Progress shows up on charts, and after just a month you can look back and see how your life has changed. I made it for myself first — now other people use LEVEL UP too.'}};
 let lang;
 try { lang = localStorage.getItem('lang'); } catch (e) { /* приватне вікно */ }
 if (!L[lang]) { const n = (navigator.language || 'en').slice(0, 2); lang = n === 'uk' ? 'uk' : n === 'ru' || n === 'be' ? 'ru' : 'en'; }
@@ -365,6 +402,11 @@ function setLang(l) {
 document.querySelectorAll('.lang button').forEach(b => b.onclick = () => setLang(b.dataset.l));
 setLang(lang);
 document.querySelectorAll('.dl').forEach(a => a.href = CNT + '/dl');
+// «Хто робить»: тимчасова піксельна аватарка (замінити на фото) і «Читати далі»
+const AVA = ['...hhhhhh...', '..hhhhhhhh..', '.hhhhhhhhhh.', '.hssssssssh.', '.ssessssess.', '.ssessssess.', '.ssssssssss.', '..sssmmsss..', '...ssssss...', '..gggggggg..', '.gggggggggg.', 'gggggggggggg'];
+const AVC = {h: '#4a3324', s: '#e8c39e', e: '#050605', m: '#b5654a', g: '#2ee66b'};
+document.getElementById('ava').innerHTML = `<svg viewBox="0 0 12 12" shape-rendering="crispEdges">${AVA.flatMap((r, y) => [...r].map((c, x) => AVC[c] ? `<rect x="${x}" y="${y}" width="1" height="1" fill="${AVC[c]}"/>` : '')).join('')}</svg>`;
+document.getElementById('abMore').onclick = e => { document.querySelectorAll('.abx').forEach(p => p.hidden = false); e.currentTarget.hidden = true; };
 document.getElementById('tabs').onclick = e => { const b = e.target.closest('button'); if (!b) return;
   document.querySelectorAll('#tabs button').forEach(x => x.classList.toggle('on', x === b)); document.getElementById('gal').src = `img/${b.dataset.s}.webp`; };
 document.getElementById('dots').onclick = e => { const b = e.target.closest('button'); if (!b) return;
