@@ -1,6 +1,33 @@
 // згенеровано tools/changes.mjs — не редагувати вручну
 window.CHANGES = [
  {
+  "v": "1.7.7",
+  "uk": [
+   "Щойно відмічена звичка на «Головній» і в «Сьогодні» одразу показує галочку, клацає й підстрибує",
+   "Мова, яку ви вибрали в установнику, — це й мова програми з першого запуску",
+   "Валюта нового користувача — за регіоном Windows (Параметри → Час і мова → Регіон): гривня, рубль, долар, євро",
+   "Приклад даних у кожній мові — у своїй валюті й із правдоподібними сумами; поле суми переходить на нову валюту після заміни даних",
+   "«Зарядка» — готова звичка в розділі «Спорт», і швидкий рядок її розуміє",
+   "Швидкий рядок розуміє знак рубля: «кава 250 ₽» — це витрата, а не чашка кави"
+  ],
+  "ru": [
+   "Только что отмеченная привычка на «Главной» и в «Сегодня» сразу показывает галочку, щёлкает и подпрыгивает",
+   "Язык, выбранный в установщике, — это и язык программы с первого запуска",
+   "Валюта нового пользователя — по региону Windows (Параметры → Время и язык → Регион): гривна, рубль, доллар, евро",
+   "Пример данных на каждом языке — в своей валюте и с правдоподобными суммами; на русском по умолчанию рубль",
+   "«Зарядка» — готовая привычка в разделе «Спорт», и быстрая строка её понимает",
+   "Быстрая строка понимает знак рубля: «кофе 250 ₽» — это расход, а не чашка кофе"
+  ],
+  "en": [
+   "A habit you just ticked on Home and in Today shows its tick at once, clicks and bounces",
+   "The language you pick in the installer is the app language from the first start",
+   "A new user's currency follows the Windows region (Settings > Time & language > Region): hryvnia, rouble, dollar, euro",
+   "The example data in each language uses its own currency with believable amounts; the amount field follows the currency after data is replaced",
+   "«Morning exercise» is a ready habit in the Sport section, and the quick line understands it",
+   "The quick line understands the rouble sign: «coffee 250 ₽» is an expense, not a cup of coffee"
+  ]
+ },
+ {
   "v": "1.7.6",
   "uk": [
    "Нові версії приходять без перезапуску: програма перевіряє оновлення, коли ви відкриваєте вікно з трею, і щогодини",
@@ -52,39 +79,6 @@ window.CHANGES = [
    "Light themes: the «New badge / level» banner and «+XP» are easy to read",
    "Switching tabs no longer twitches the page width",
    "The «Pick your habits» window no longer jumps when you tick habits or flip sections"
-  ]
- },
- {
-  "v": "1.7.3",
-  "uk": [
-   "«Подивитися приклад» на старті: програма з вигаданими даними — лише подивитися; «Налаштувати під себе» — почати своє. Перший запуск — в одному вікні, а в новачка замість нулів — підказка, з чого почати",
-   "Нова екскурсія: меню збирається на очах, у кожної вкладки — підказка в один рядок. «Дашборд» відкривається після 7 днів із відмітками, «Аналітика» — після 14",
-   "Нова «Головна»: дата, привітання й фраза дня, три кільця — сьогодні, тиждень, місяць, поруч серія й рівень; верхньої смуги більше немає. У кожного віджета свій характер: кава — чашки з парою, цілі — банки з монетками, капітал — бублик, у «Сьогодні» спершу незроблене; шість нових віджетів у галереї",
-   "Дві світлі теми — «Сніг» і «Папір», значок програми в світлій темі теж світлий; смужки прогресу — від червоного до кольору теми; новий шрифт Manrope (старий вигляд — у «Вигляді»); нові живі фони — «Level Up» із кристалами досвіду, «Сяйво», «Частинки» і свій GIF чи відео",
-   "«Фінанси → Бюджет» по-новому: залишок місяця, запис в один рядок, «Куди йдуть гроші»; кілька лімітів — одне сповіщення, не частіше разу на день; клік по частині діаграми витрат відкриває операції цієї категорії",
-   "«Трейдинг» очима трейдера: підсумок місяця великими цифрами, розбір за тиждень / місяць / весь час, пауза після збитку й стоп на день, імпорт історії Pocket Option, OTC і звичайні пари окремо, голос у швидкому рядку",
-   "«Налаштування» простіші: зверху підсумок (копія, версія, що нового, написати розробнику), налаштування звичок, спорту й фінансів — під шестернею на своїх вкладках; вечірнє нагадування про те, що лишилося на сьогодні; «Справи на тиждень» тепер у «Щоденнику»",
-   "Швидше й надійніше: фото зберігаються окремим файлом, збереження йде у фоні, клік у таблиці «Рік» удвічі швидший; перед скиданням, демо й імпортом — копія «до»; галочка з анімацією, обличчя настрою — «камінці»; опівночі день змінюється сам; якщо вкладка не відкрилася, програма скаже про це й запропонує спробувати знову"
-  ],
-  "ru": [
-   "«Посмотреть пример» на старте: программа с выдуманными данными — только посмотреть; «Настроить под себя» — начать своё. Первый запуск — в одном окне, а у новичка вместо нулей — подсказка, с чего начать",
-   "Новая экскурсия: меню собирается на глазах, у каждой вкладки — подсказка в одну строку. «Дашборд» открывается после 7 дней с отметками, «Аналитика» — после 14",
-   "Новая «Главная»: дата, приветствие и фраза дня, три кольца — сегодня, неделя, месяц, рядом серия и уровень; верхней полосы больше нет. У каждого виджета свой характер: кофе — чашки с паром, цели — банки с монетками, капитал — бублик, в «Сегодня» сначала несделанное; шесть новых виджетов в галерее",
-   "Две светлые темы — «Снег» и «Бумага», значок программы в светлой теме тоже светлый; полоски прогресса — от красного к цвету темы; новый шрифт Manrope (старый вид — в «Виде»); новые живые фоны — «Level Up» с кристаллами опыта, «Сияние», «Частицы» и свой GIF или видео",
-   "«Финансы → Бюджет» по-новому: остаток месяца, запись в одну строку, «Куда уходят деньги»; несколько лимитов — одно уведомление, не чаще раза в день; клик по части диаграммы расходов открывает операции этой категории",
-   "«Трейдинг» глазами трейдера: итог месяца крупными цифрами, разбор за неделю / месяц / всё время, пауза после убытка и стоп на день, импорт истории Pocket Option, OTC и обычные пары отдельно, голос в быстрой строке",
-   "«Настройки» проще: сверху сводка (копия, версия, что нового, написать разработчику), настройки привычек, спорта и финансов — под шестерёнкой на своих вкладках; вечернее напоминание о том, что осталось на сегодня; «Дела на неделю» теперь в «Ежедневнике»",
-   "Быстрее и надёжнее: фото хранятся отдельным файлом, сохранение идёт в фоне, клик в таблице «Год» вдвое быстрее; перед сбросом, демо и импортом — копия «до»; галочка с анимацией, лица настроения — «камешки»; в полночь день меняется сам; если вкладка не открылась, программа скажет об этом и предложит попробовать снова"
-  ],
-  "en": [
-   "«See an example» on the start screen: the app with made-up data, view only; «Make it mine» starts your own. First launch fits in one window, and a newcomer sees a first step instead of zeros",
-   "New tour: the menu builds up before your eyes with a one-line hint next to each tab. Dashboard unlocks after 7 days of check-ins, Insights after 14",
-   "New Home: date, greeting and phrase of the day, three rings — today, week, month — with your streak and level; no top bar any more. Every widget has its own character: coffee in steaming cups, goals as jars with coins, capital as a donut, «Today» lists what is left first; six new widgets in the gallery",
-   "Two light themes, «Snow» and «Paper», with a light program icon to match; progress bars run from red to the theme colour; new Manrope font (the old look is under «Look»); new live backgrounds: «Level Up» with XP crystals, «Aurora», «Particles» and your own GIF or video",
-   "Finance → Budget redone: what is left this month, one-line entry, «Where the money goes»; several limits make one note, at most once a day; clicking a slice of the expenses chart opens that category's operations",
-   "Trading through a trader's eyes: the month result in big numbers, a review for the week / month / all time, a pause after a loss and a daily stop, Pocket Option history import, OTC and regular pairs apart, voice in the quick line",
-   "Simpler Settings: a summary on top (backup, version, what's new, write to the developer); habit, sport and finance settings live under the gear on their own tabs; an evening reminder of what is left for today; «Weekly to-dos» now live in the Planner",
-   "Faster and safer: photos are kept in their own file, saving runs in the background, a click in the «Year» table is twice as fast; reset, demo and import keep a «before» copy first; an animated tick, mood faces as «pebbles»; the day changes at midnight by itself; if a tab fails to open, the app says so and offers to try again"
   ]
  }
 ];
