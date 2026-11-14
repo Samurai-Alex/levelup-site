@@ -40,15 +40,26 @@ img{max-width:100%;height:auto;display:block}
 .px{font-family:var(--pixel);font-weight:400;letter-spacing:0}
 .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font:700 14px var(--mono);text-decoration:none;border:1px solid var(--line);background:var(--card2);color:var(--text);cursor:pointer;transition:transform .15s,background .15s}
 .btn:hover{transform:translateY(-1px);background:#182018}
-/* «скло» поверх живого фону (bg.js), як скляні картки в програмі */
+/* «скло» поверх живого фону (bg.js), як скляні картки в програмі: м'який відсвіт у кутку, ніби на скло падає світло */
+.f,.qc,.step,.ss,.price,.dev,details{background-image:radial-gradient(120% 90% at 0 0,rgba(234,220,198,.07),transparent 55%)}
+/* розділи спливають знизу, коли до них доходиш (клас .rv ставить скрипт; без анімацій — одразу видно) */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}.rv.in{opacity:1;transform:none}
+/* картки піднімаються при наведенні (після .rv — щоб не перебивалося) */
+@media (hover:hover){.f,.step,.price,.qc{transition:opacity .7s ease,transform .3s ease,border-color .3s}.f:hover,.step:hover,.price:hover,.qc:hover{transform:translateY(-4px);border-color:rgba(31,184,70,.4)}}
+@media (prefers-reduced-motion:reduce){.btn.main::after{animation:none;display:none}.rv{opacity:1;transform:none;transition:none}}
 .f,.qc,.step,.ss,.price,.dev,details,.dlc{-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.btn.main{background:var(--acc);color:#04120a;border-color:var(--acc)}
+.btn.main{background:var(--acc);color:#04120a;border-color:var(--acc);position:relative;overflow:hidden}
+.btn.main::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,250,235,.55) 50%,transparent 65%) no-repeat;background-size:250% 100%;background-position:150% 0;animation:glint 5s ease-in-out 1.5s infinite;pointer-events:none}
+@keyframes glint{0%{background-position:150% 0}22%,100%{background-position:-60% 0}}
 .btn.main:hover{background:#2fc955}
 .btn svg{width:18px;height:18px;flex:none}
 .pill{display:inline-block;padding:5px 14px;border-radius:999px;background:var(--acc-d);color:var(--acc);font-size:12px;font-weight:700}
 /* шапка */
-header{position:sticky;top:0;z-index:5;background:rgba(5,6,5,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.bar{display:flex;align-items:center;gap:22px;height:64px}
+header{position:sticky;top:0;z-index:5;pointer-events:none}
+.bar{display:flex;align-items:center;gap:22px;height:58px}
+/* шапка-капсула: окрема від краю, скляна */
+header .bar{position:relative;overflow:hidden;pointer-events:auto;max-width:1140px;width:calc(100% - 24px);margin:10px auto 0;padding:0 18px;box-sizing:border-box;border:1px solid var(--line);border-radius:16px;background:rgba(10,13,10,.62);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);box-shadow:0 14px 40px -18px rgba(0,0,0,.8)}
+header .xpb{position:absolute;left:0;right:0;bottom:0;background:transparent}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--pixel);font-size:13px}
 .logo img{width:30px;height:30px;border-radius:8px}
 .links{display:flex;gap:20px;margin-left:auto;font-size:13px}
@@ -146,8 +157,8 @@ h2{font-size:clamp(22px,3vw,30px);line-height:1.3;margin:0 0 12px}
 /* питання */
 details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:10px}
 summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:16px}
-summary::after{content:"+";color:var(--acc);font-family:var(--pixel);font-size:12px}
-details[open] summary::after{content:"−"}
+summary::after{content:"+";color:var(--acc);font-family:var(--pixel);font-size:12px;display:inline-block;transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
 details p{color:var(--muted);margin:10px 0 0;font-size:14px}
 details.flash{animation:flash 1.6s ease-out}
 @keyframes flash{0%,30%{border-color:var(--acc);box-shadow:0 0 0 3px rgba(31,184,70,.25)}}
@@ -180,7 +191,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <nav class="links"><a href="#features" data-i="nFeat">Возможности</a><a href="#install" data-i="nInst">Как установить</a><a href="#pricing" data-i="nPrice">Цены</a><a href="#faq" data-i="nFaq">Вопросы</a></nav>
   <div class="lang" role="group" aria-label="Language"><a href="/uk/" hreflang="uk" data-l="uk">UA</a><a href="/" hreflang="ru" data-l="ru" class="on">RU</a><a href="/en/" hreflang="en" data-l="en">EN</a></div>
   <a class="btn main dl" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg><span data-i="dlShort">Скачать</span></a>
-</div><div class="xpb" aria-hidden="true"><i id="xpb"></i></div></header>
+<div class="xpb" aria-hidden="true"><i id="xpb"></i></div></div></header>
 
 <main>
 <div class="wrap hero">
@@ -534,6 +545,9 @@ document.querySelectorAll('.sw').forEach(sw => {
   new IntersectionObserver(es => seen = es[0].isIntersecting, {threshold: .4}).observe(sw);
   setInterval(() => { if (auto && seen && !document.hidden) show((i + 1) % imgs.length); }, SW_SEC * 1000);
 });
+// розділи спливають при прокрутці; те, що вже на екрані, — одразу
+if (!still && 'IntersectionObserver' in window) { const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }), {rootMargin: '0px 0px -8% 0px'});
+  document.querySelectorAll('section h2, section .kicker, .lvt, .lvm, .f, .step, .price, .ss, .dev, details').forEach(el => { el.classList.add('rv'); ro.observe(el); }); }
 // збільшення скриншота на весь екран
 const lb = document.getElementById('lb');
 document.addEventListener('click', e => { const z = e.target.closest('.zoom'); if (!z || lb.contains(z)) return;
