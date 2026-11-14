@@ -13,8 +13,8 @@ const FFMPEG = path.resolve(SITE, '../level-up-promo/node_modules/@remotion/comp
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const PAGES = ['home'];   // перший екран сайту
 export const THEMES = ['levelup', 'night', 'nebula', 'pluto', 'champagne', 'gold'];   // темні теми, відкриті з початку (classic, amethyst, ice у програмі більше немає)
-// живий фон до кожної теми у відео «Під себе»: [фон, колір] ('' — природний, 'acc' — колір теми)
-const THEME_BG = {levelup: ['levelup', ''], night: ['stars', ''], nebula: ['aurora', 'acc'], pluto: ['particles', 'acc'], champagne: ['stars', 'acc'], gold: ['levelup', 'acc']};
+// живий фон у відео «Під себе» — завжди «Level Up» (кристали), у темах кольору теми: [фон, колір] ('' — природний, 'acc' — колір теми)
+const THEME_BG = Object.fromEntries(THEMES.map(th => [th, ['levelup', th === 'levelup' ? '' : 'acc']]));
 const THEME_SEC = 2.5;   // скільки секунд кожна тема; у index.html — TH_SEC (≈2.53: перемикання теми забирає ще ~0.03 с)
 const LANGS = ['ru', 'uk', 'en'];   // знімки кладуться в img/<мова>/ — сайт показує ті, що мовою відвідувача
 const W = 1440, H = 900, only = process.argv[2];
