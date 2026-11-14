@@ -2,6 +2,7 @@
 // (Google бачить одну мову на адресу). Збирає tools/pages.mjs; тексти правити тут. Лише те, що програма справді вміє.
 import fs from 'node:fs';
 import path from 'node:path';
+import {PACKS_LIVE, PACK_URLS, PACK_TEXT} from './packs.mjs';
 
 const URL0 = 'https://levelup-tracker.com';
 const HOME = {ru: '/', uk: '/uk/', en: '/en/'};
@@ -58,6 +59,8 @@ const C = {
       q: [['Is it free?', 'Yes, during the beta. Everyone who downloads the app during the beta gets the full version at 50% off.'], ['Does it connect to my bank?', 'No. You log entries yourself — as a phrase, by hand or from a receipt photo. In return, your data goes nowhere.'], ['Which systems does it run on?', 'Windows 10 and 11.']]},
   },
 };
+
+if (PACKS_LIVE) { Object.assign(LANDING, PACK_URLS); Object.assign(C, PACK_TEXT); }   // готові набори — з релізом 1.7.9
 
 const esc = v => String(v).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 export function buildLanding(site) {
