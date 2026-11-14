@@ -3,7 +3,7 @@
 // на паузі, коли вкладка схована; кому в системі вимкнено анімації — фону немає.
 (() => {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const PAL = [['#ffffff', 4, 1], ['#1fd65f', 3, 1], ['#4cc9f0', 2, 1.08], ['#a970ff', 1.5, 1.18], ['#ffcf5a', 1.2, 1.3]];   // колір, вага, яскравість — як BG_LV у програмі
+  const PAL = [['#ffffff', 4, 1], ['#1fb846', 3, 1], ['#4cc9f0', 2, 1.08], ['#a970ff', 1.5, 1.18], ['#ffcf5a', 1.2, 1.3]];   // колір, вага, яскравість — як BG_LV у програмі
   const DIM = .5, phone = matchMedia('(max-width: 700px)').matches, DEN = phone ? .2 : .4;
   const rgb = c => [1, 3, 5].map(i => parseInt(c.slice(i, i + 2), 16)), rgba = (c, a) => `rgba(${rgb(c)},${a})`;
   const tint = (c, k) => '#' + rgb(c).map(v => Math.round(v + (255 - v) * k).toString(16).padStart(2, '0')).join('');
