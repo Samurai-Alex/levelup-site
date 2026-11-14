@@ -1,4 +1,4 @@
-// Сторінки під готові набори звичок (LEVEL UP 1.7.9): 4 набори × 3 мови. Склад — як у програмі (app/js, коміт abb2d9f).
+// Сторінки під готові набори звичок (LEVEL UP 1.7.9+): 10 наборів × 3 мови. Склад — як у програмі (app/js, коміт abb2d9f).
 // Поки PACKS_LIVE = false, сторінки не збираються й не потрапляють у sitemap. У день релізу 1.7.9 — поставити true і запустити node tools/pages.mjs.
 export const PACKS_LIVE = false || process.env.PACKS === '1';   // PACKS=1 — зібрати локально для перегляду, не комітити результат
 
@@ -7,6 +7,12 @@ export const PACK_URLS = {
   freelancer: {ru: '/privychki-dlya-frilansera.html', uk: '/uk/zvychky-dlya-frilansera.html', en: '/en/habits-for-freelancers.html'},
   sport: {ru: '/privychki-dlya-sporta.html', uk: '/uk/zvychky-dlya-sportu.html', en: '/en/fitness-habits.html'},
   cushion: {ru: '/finansovaya-podushka.html', uk: '/uk/finansova-podushka.html', en: '/en/emergency-fund.html'},
+  morning: {ru: '/utrenniy-ritual.html', uk: '/uk/rankovyi-rytual.html', en: '/en/morning-routine.html'},
+  sleep: {ru: '/zdorovyy-son.html', uk: '/uk/zdorovyi-son.html', en: '/en/healthy-sleep-habits.html'},
+  weight: {ru: '/privychki-dlya-pohudeniya.html', uk: '/uk/zvychky-dlya-skhudnennya.html', en: '/en/weight-loss-habits.html'},
+  quit: {ru: '/bez-vrednyh-privychek.html', uk: '/uk/bez-shkidlyvyh-zvychok.html', en: '/en/quit-bad-habits.html'},
+  calm: {ru: '/spokoystvie-i-balans.html', uk: '/uk/spokii-i-balans.html', en: '/en/calm-and-balance.html'},
+  focus: {ru: '/privychki-dlya-produktivnosti.html', uk: '/uk/zvychky-dlya-produktyvnosti.html', en: '/en/productivity-habits.html'},
 };
 
 // name — як набір підписаний у програмі; h — звички; w — віджети на Головній
@@ -67,6 +73,91 @@ const P = {
       lead: 'A ready set in LEVEL UP: track expenses, no impulse buys and save money — the three habits an emergency fund is made of. Plus widgets for capital, savings goals and budget limits.',
       why: 'An emergency fund is usually 3–6 months of expenses. To build it, you need to know where money goes, avoid emotional spending and save regularly. A savings goal shows how much is left, and <a href="{money}">expense tracking</a> shows where the money leaks.'},
   },
+  // нові набори (запит власника 14.11.2026): склад — з задачі сесії програми; w (віджети) і точні назви — звірити з її підсумком
+  morning: {
+    ru: {name: 'Утренний ритуал', h: ['Ранний подъём', 'Пить воду', 'Зарядка', 'Без телефона первый час', 'Медитация 10 мин', 'Спланировать день'], w: [],
+      t: 'Утренний ритуал — готовый набор привычек | LEVEL UP', h1: 'Утренний ритуал',
+      lead: 'Готовый набор в LEVEL UP: ранний подъём, вода, зарядка, медитация и план на день — без телефона первый час. Утро, после которого день идёт по-твоему.',
+      why: 'Как прошло утро, так часто проходит и день. Если первый час не уходит в ленту, остаётся время проснуться, размяться и решить, что важно сегодня. Галочки с опытом помогают продержаться первые недели, пока ритуал не станет привычкой.'},
+    uk: {name: 'Ранковий ритуал', h: ['Ранній підйом', 'Пити воду', 'Зарядка', 'Без телефону першу годину', 'Медитація 10 хв', 'Спланувати день'], w: [],
+      t: 'Ранковий ритуал — готовий набір звичок | LEVEL UP', h1: 'Ранковий ритуал',
+      lead: 'Готовий набір у LEVEL UP: ранній підйом, вода, зарядка, медитація й план на день — без телефону першу годину. Ранок, після якого день іде по-твоєму.',
+      why: 'Який ранок, такий часто й день. Якщо перша година не йде в стрічку, лишається час прокинутися, розім’ятися й вирішити, що важливо сьогодні. Галочки з досвідом допомагають протриматися перші тижні, поки ритуал не стане звичкою.'},
+    en: {name: 'Morning routine', h: ['Wake up early', 'Drink water', 'Morning exercise', 'No phone for the first hour', 'Meditate 10 min', 'Plan the day'], w: [],
+      t: 'Morning routine — a ready set of habits | LEVEL UP', h1: 'Morning routine',
+      lead: 'A ready set in LEVEL UP: wake up early, water, exercise, meditation and a plan for the day — with no phone for the first hour. A morning that sets the day on your terms.',
+      why: 'The way your morning goes is often the way your day goes. When the first hour doesn’t disappear into a feed, there’s time to wake up, move and decide what matters today. Ticks with XP help you get through the first weeks until the routine sticks.'},
+  },
+  sleep: {
+    ru: {name: 'Здоровый сон', h: ['Лечь до 23:00', 'Сон 8 часов', 'Без телефона перед сном', 'Без кофе после 15:00', 'Прогулка на улице', 'Без энергетиков'], w: [],
+      t: 'Как наладить сон — готовый набор привычек | LEVEL UP', h1: 'Здоровый сон',
+      lead: 'Готовый набор в LEVEL UP: лечь до 23:00, спать 8 часов, без телефона перед сном и без кофе после 15:00. Плюс прогулка днём и без энергетиков.',
+      why: 'Сон портят не одна поздняя ночь, а мелочи каждый день: кофе вечером, экран в кровати, энергетик вместо отдыха. В разделе «Здоровье» видно, сколько ты спишь, а программа подсказывает связи — например, как кофе влияет на сон.'},
+    uk: {name: 'Здоровий сон', h: ['Лягти до 23:00', 'Сон 8 годин', 'Без телефону перед сном', 'Без кави після 15:00', 'Прогулянка надворі', 'Без енергетиків'], w: [],
+      t: 'Як налагодити сон — готовий набір звичок | LEVEL UP', h1: 'Здоровий сон',
+      lead: 'Готовий набір у LEVEL UP: лягти до 23:00, спати 8 годин, без телефону перед сном і без кави після 15:00. Плюс прогулянка вдень і без енергетиків.',
+      why: 'Сон псує не одна пізня ніч, а дрібниці щодня: кава ввечері, екран у ліжку, енергетик замість відпочинку. У розділі «Здоровʼя» видно, скільки ти спиш, а програма підказує зв’язки — наприклад, як кава впливає на сон.'},
+    en: {name: 'Healthy sleep', h: ['In bed by 11 pm', 'Sleep 8 hours', 'No phone before bed', 'No coffee after 3 pm', 'Walk outside', 'No energy drinks'], w: [],
+      t: 'Healthy sleep habits — a ready set | LEVEL UP', h1: 'Healthy sleep habits',
+      lead: 'A ready set in LEVEL UP: in bed by 11 pm, 8 hours of sleep, no phone before bed and no coffee after 3 pm. Plus a walk during the day and no energy drinks.',
+      why: 'Sleep isn’t ruined by one late night but by small things every day: evening coffee, a screen in bed, an energy drink instead of rest. The Health section shows how much you sleep, and the app points out links — for example, how coffee affects your sleep.'},
+  },
+  weight: {
+    ru: {name: 'Похудение', h: ['Без сахара', 'Пить воду', '10 000 шагов', 'Тренировка', 'Не есть после 19:00', 'Без фастфуда', 'Без алкоголя'], w: [],
+      t: 'Привычки для похудения — готовый набор в трекере | LEVEL UP', h1: 'Привычки для похудения',
+      lead: 'Готовый набор в LEVEL UP: без сахара, вода, 10 000 шагов, тренировки и без еды после 19:00. Без диет на неделю — привычки, которые держатся.',
+      why: 'Вес уходит не от рывка на две недели, а от того, что повторяется каждый день. Набор собирает простые правила в один список: отметил — получил опыт, пропустил — видно, где сорвался. Серия дней без сахара мотивирует сильнее, чем обещание «с понедельника».'},
+    uk: {name: 'Схуднення', h: ['Без цукру', 'Пити воду', '10 000 кроків', 'Тренування', 'Не їсти після 19:00', 'Без фастфуду', 'Без алкоголю'], w: [],
+      t: 'Звички для схуднення — готовий набір у трекері | LEVEL UP', h1: 'Звички для схуднення',
+      lead: 'Готовий набір у LEVEL UP: без цукру, вода, 10 000 кроків, тренування й без їжі після 19:00. Без дієт на тиждень — звички, які тримаються.',
+      why: 'Вага йде не від ривка на два тижні, а від того, що повторюється щодня. Набір збирає прості правила в один список: відмітив — отримав досвід, пропустив — видно, де зірвався. Серія днів без цукру мотивує сильніше, ніж обіцянка «з понеділка».'},
+    en: {name: 'Weight loss', h: ['No sugar', 'Drink water', '10,000 steps', 'Workout', 'No eating after 7 pm', 'No fast food', 'No alcohol'], w: [],
+      t: 'Weight loss habits — a ready set in a habit tracker | LEVEL UP', h1: 'Weight loss habits',
+      lead: 'A ready set in LEVEL UP: no sugar, water, 10,000 steps, workouts and no eating after 7 pm. Not a one-week diet — habits that last.',
+      why: 'Weight comes off not from a two-week sprint but from what you repeat every day. The set puts simple rules into one list: tick it and get XP, skip it and you see where you slipped. A streak of days without sugar motivates more than a promise to start on Monday.'},
+  },
+  quit: {
+    ru: {name: 'Без вредных привычек', h: ['Не курить', 'Без алкоголя', 'Без энергетиков', 'Соцсети до 30 мин', 'Без импульсивных покупок'], w: [],
+      t: 'Как избавиться от вредных привычек — готовый набор | LEVEL UP', h1: 'Без вредных привычек',
+      lead: 'Готовый набор в LEVEL UP: не курить, без алкоголя и энергетиков, соцсети до 30 минут и без импульсивных покупок. Каждый день «без» — это галочка и опыт.',
+      why: 'Бросать тяжело, потому что награды не видно: ты просто чего-то лишаешься. Здесь каждый чистый день даёт опыт, а серия растёт на глазах — её жалко обрывать. Прогресс видно по дням, неделям и месяцам.'},
+    uk: {name: 'Без шкідливих звичок', h: ['Не палити', 'Без алкоголю', 'Без енергетиків', 'Соцмережі до 30 хв', 'Без імпульсивних покупок'], w: [],
+      t: 'Як позбутися шкідливих звичок — готовий набір | LEVEL UP', h1: 'Без шкідливих звичок',
+      lead: 'Готовий набір у LEVEL UP: не палити, без алкоголю й енергетиків, соцмережі до 30 хвилин і без імпульсивних покупок. Кожен день «без» — це галочка й досвід.',
+      why: 'Кидати важко, бо нагороди не видно: ти просто чогось позбавляєшся. Тут кожен чистий день дає досвід, а серія росте на очах — її шкода обривати. Прогрес видно по днях, тижнях і місяцях.'},
+    en: {name: 'Quit bad habits', h: ['No smoking', 'No alcohol', 'No energy drinks', 'Social media under 30 min', 'No impulse buys'], w: [],
+      t: 'Quit bad habits — a ready set in a habit tracker | LEVEL UP', h1: 'Quit bad habits',
+      lead: 'A ready set in LEVEL UP: no smoking, no alcohol or energy drinks, social media under 30 minutes and no impulse buys. Every day “without” is a tick and XP.',
+      why: 'Quitting is hard because you don’t see a reward — you just give something up. Here every clean day earns XP, and the streak grows in front of you, so you don’t want to break it. Progress shows by day, week and month.'},
+  },
+  calm: {
+    ru: {name: 'Спокойствие и баланс', h: ['Медитация 10 мин', 'Записать мысли', '3 благодарности', 'Прогулка на улице', 'Звонок близким', 'Йога'], w: [],
+      t: 'Привычки для спокойствия и баланса — готовый набор | LEVEL UP', h1: 'Спокойствие и баланс',
+      lead: 'Готовый набор в LEVEL UP: медитация, записи мыслей, три благодарности, прогулка, звонок близким и йога. Немного тишины каждый день.',
+      why: 'Стресс копится незаметно, и снимать его тоже лучше понемногу каждый день. Десять минут медитации, пара строк в заметках и прогулка помогают выдохнуть. В разделе «Здоровье» видно, как меняется настроение.'},
+    uk: {name: 'Спокій і баланс', h: ['Медитація 10 хв', 'Записати думки', '3 вдячності', 'Прогулянка надворі', 'Дзвінок рідним', 'Йога'], w: [],
+      t: 'Звички для спокою й балансу — готовий набір | LEVEL UP', h1: 'Спокій і баланс',
+      lead: 'Готовий набір у LEVEL UP: медитація, записи думок, три вдячності, прогулянка, дзвінок рідним і йога. Трохи тиші щодня.',
+      why: 'Стрес накопичується непомітно, і знімати його теж краще потроху щодня. Десять хвилин медитації, кілька рядків у нотатках і прогулянка допомагають видихнути. У розділі «Здоровʼя» видно, як змінюється настрій.'},
+    en: {name: 'Calm and balance', h: ['Meditate 10 min', 'Write down thoughts', '3 things I’m grateful for', 'Walk outside', 'Call family', 'Yoga'], w: [],
+      t: 'Habits for calm and balance — a ready set | LEVEL UP', h1: 'Calm and balance',
+      lead: 'A ready set in LEVEL UP: meditation, writing down thoughts, three things you’re grateful for, a walk, a call to family and yoga. A little quiet every day.',
+      why: 'Stress builds up quietly, and it’s best let go of a little every day too. Ten minutes of meditation, a few lines of notes and a walk help you breathe out. The Health section shows how your mood changes.'},
+  },
+  focus: {
+    ru: {name: 'Продуктивность', h: ['Спланировать день', 'Глубокая работа 1 час', 'Соцсети до 30 мин', 'Чтение 20 мин', 'Записать мысли'], w: [],
+      t: 'Привычки для продуктивности — готовый набор в трекере | LEVEL UP', h1: 'Привычки для продуктивности',
+      lead: 'Готовый набор в LEVEL UP: план на день, час глубокой работы без отвлечений, соцсети до 30 минут, чтение и записи мыслей. Меньше суеты — больше сделанного.',
+      why: 'Продуктивность — это не работать больше, а не распыляться. Один час без уведомлений даёт больше, чем полдня с ними. Таймер фокуса помогает этот час выдержать, а план на день — знать, на что его потратить.'},
+    uk: {name: 'Продуктивність', h: ['Спланувати день', 'Глибока робота 1 год', 'Соцмережі до 30 хв', 'Читання 20 хв', 'Записати думки'], w: [],
+      t: 'Звички для продуктивності — готовий набір у трекері | LEVEL UP', h1: 'Звички для продуктивності',
+      lead: 'Готовий набір у LEVEL UP: план на день, година глибокої роботи без відволікань, соцмережі до 30 хвилин, читання й записи думок. Менше метушні — більше зробленого.',
+      why: 'Продуктивність — це не працювати більше, а не розпорошуватися. Одна година без сповіщень дає більше, ніж пів дня з ними. Таймер фокусу допомагає цю годину витримати, а план на день — знати, на що її витратити.'},
+    en: {name: 'Productivity', h: ['Plan the day', '1 hour of deep work', 'Social media under 30 min', 'Read 20 min', 'Write down thoughts'], w: [],
+      t: 'Productivity habits — a ready set in a habit tracker | LEVEL UP', h1: 'Productivity habits',
+      lead: 'A ready set in LEVEL UP: a plan for the day, an hour of deep work without distractions, social media under 30 minutes, reading and writing down thoughts. Less busywork, more done.',
+      why: 'Productivity isn’t working more — it’s not scattering your attention. One hour without notifications gets more done than half a day with them. The focus timer helps you hold that hour, and the daily plan tells you what to spend it on.'},
+  },
 };
 
 const L = {
@@ -95,5 +186,5 @@ const esc = v => String(v).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', 
 export const PACK_TEXT = Object.fromEntries(Object.entries(P).map(([id, by]) => [id, {img: 'game.jpg', ...Object.fromEntries(Object.entries(by).map(([l, T]) => {
   const U = L[l], other = Object.keys(P).filter(k => k !== id).map(k => `<a href="${PACK_URLS[k][l]}">${esc(P[k][l].name)}</a>`).join(' · ');
   return [l, {t: T.t, d: U.d(T.name, T.h), h1: T.h1, lead: T.lead,
-    s: [[U.s[0], T.h], [U.s[1], T.w], [U.s[2], esc(U.how(T.name))], [U.s[3], T.why], [U.s[4], other]], q: U.q}];
+    s: [[U.s[0], T.h], ...(T.w.length ? [[U.s[1], T.w]] : []), [U.s[2], esc(U.how(T.name))], [U.s[3], T.why], [U.s[4], other]], q: U.q}];
 }))}]));
