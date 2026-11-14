@@ -1,0 +1,43 @@
+<!doctype html>
+<!-- Аватар профілю Facebook у стилі програми (1080×1080, Facebook обрізає колом). Портрет — level-up-promo/public/avatar/face.png, його сірий фон прибирається заливкою від країв:
+     "C:/Program Files/Google/Chrome/Application/chrome.exe" --headless=new --allow-file-access-from-files --hide-scrollbars --window-size=1080,1080 --virtual-time-budget=3000 --screenshot="%CD%/tools/promo/img/fb-avatar.png" "file:///%CD%/tools/promo/fb-avatar.html"   (з кореня сайту) -->
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:P;src:url(../../fonts/press-start-2p-latin-400-normal.woff2)}
+html,body{margin:0;width:1080px;height:1080px;overflow:hidden;background:#050605}
+canvas{position:absolute;left:0;top:0}
+</style></head><body>
+<canvas id="c" width="1080" height="1080"></canvas>
+<script>
+const c = document.getElementById('c'), x = c.getContext('2d');
+// фон: тёмный, сетка и зелёное свечение за головой — как в программе и на фоне профиля
+x.fillStyle = '#050605'; x.fillRect(0, 0, 1080, 1080);
+x.strokeStyle = 'rgba(31,184,70,.07)'; x.lineWidth = 1;
+for (let i = 0; i <= 1080; i += 40) { x.beginPath(); x.moveTo(i + .5, 0); x.lineTo(i + .5, 1080); x.moveTo(0, i + .5); x.lineTo(1080, i + .5); x.stroke(); }
+const g = x.createRadialGradient(540, 470, 40, 540, 470, 520);
+g.addColorStop(0, 'rgba(31,184,70,.45)'); g.addColorStop(1, 'rgba(31,184,70,0)');
+x.fillStyle = g; x.fillRect(0, 0, 1080, 1080);
+const im = new Image();
+im.onload = () => {
+  const t = document.createElement('canvas'); t.width = t.height = 1024;
+  const tx = t.getContext('2d'); tx.drawImage(im, 0, 0);
+  const d = tx.getImageData(0, 0, 1024, 1024), p = d.data, W = 1024;
+  // заливка от краёв: убираем всё, что связано с краем и близко по цвету к соседу (фон — плавный градиент)
+  const seen = new Uint8Array(W * W), st = [];
+  for (let i = 0; i < W; i++) st.push(i, (W - 1) * W + i, i * W, i * W + W - 1);
+  const near = (a, b) => Math.abs(p[a*4]-p[b*4]) + Math.abs(p[a*4+1]-p[b*4+1]) + Math.abs(p[a*4+2]-p[b*4+2]) < 18;
+  const bgLike = a => p[a*4] > 35 && p[a*4] < 110 && p[a*4+2] > p[a*4] + 6; // синевато-серый фон
+  st.forEach(i => seen[i] = 1);
+  while (st.length) {
+    const i = st.pop(); p[i*4+3] = 0;
+    const xx = i % W, yy = (i / W) | 0;
+    for (const j of [xx > 0 ? i - 1 : -1, xx < W - 1 ? i + 1 : -1, yy > 0 ? i - W : -1, yy < W - 1 ? i + W : -1])
+      if (j >= 0 && !seen[j] && near(i, j) && bgLike(j)) { seen[j] = 1; st.push(j); }
+  }
+  tx.putImageData(d, 0, 0);
+  x.drawImage(t, 28, 60, 1024, 1024);
+  document.title = 'done';
+};
+im.src = '../../../level-up-promo/public/avatar/face.png';
+</script>
+</body></html>
