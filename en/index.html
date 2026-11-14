@@ -83,7 +83,7 @@ header .xpb{position:absolute;left:0;right:0;bottom:0;background:transparent}
 .hero p.lead{color:var(--muted);font-size:17px;max-width:620px;margin:0 auto 30px}
 .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .meta{margin-top:14px;color:var(--text);opacity:.72;font-size:13px}
-.hero h1{text-wrap:balance;margin-top:0}.kick{font:600 12px var(--mono);color:var(--acc);text-transform:uppercase;letter-spacing:.14em;margin:0 0 16px}.mhint{margin:14px auto 0;max-width:340px;color:var(--text);opacity:.8;font-size:13px}#reviews[data-few]:not(:target){display:none}.hero p.lead{margin-bottom:24px}#lvl1{padding-top:40px}#lvl1 .lvw{align-items:start}.vs{margin:24px auto 0;max-width:620px;color:var(--text);font-size:15px}
+.hero h1{text-wrap:balance;margin-top:0}.kick{font:600 12px var(--mono);color:var(--acc);text-transform:uppercase;letter-spacing:.14em;margin:0 0 16px}.mhint{margin:14px auto 0;max-width:340px;color:var(--text);opacity:.8;font-size:13px}.hero p.lead{margin-bottom:24px}#lvl1{padding-top:40px}#lvl1 .lvw{align-items:start}.vs{margin:24px auto 0;max-width:620px;color:var(--text);font-size:15px}
 .dlc{display:inline-flex;align-items:center;gap:14px;margin-top:20px;padding:10px 18px;border:1px solid var(--acc-d);border-radius:10px;background:var(--card)}
 .dlc[hidden]{display:none}
 .dlc span{font:12px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
@@ -264,12 +264,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 <section class="lvl" id="lvl3"><div class="wrap lvw">
   <div class="lvt">
     <div class="qc" style="--p:60%"><span class="qn"><b>LVL 3</b> · <span data-i="l3K">MONEY</span></span><span class="qx">XP 3/5</span><i></i></div>
-    <h2 data-i="l3H">Money under control</h2><p class="sub" data-i="l3P">See where your money goes and how much you can spend today. Income and spending by category, monthly limits and exchange rates. And if you need them — Capital with all your money, plus a crypto portfolio.</p>
-    <ul class="lvb"><li data-i="l3a">Limits that tell you how much you can spend per day</li><li data-i="l3b">Recurring payments and accounts</li><li data-i="l3c">Capital by month and crypto assets</li></ul>
+    <h2 data-i="l3H">Money under control</h2><p class="sub" data-i="l3P">See where your money goes and how much you can spend today to stay on track until the month ends. An expense takes a couple of seconds — into the right category and account — and Capital shows how your savings grow.</p>
+    <ul class="lvb"><li data-i="l3a">Limits by category with a hint on how much you can spend per day</li><li data-i="l3b">Recurring payments and bills — with reminders</li><li data-i="l3c">Spending chart and month-by-month trend</li></ul>
   </div>
   <div class="lvm">
-    <div class="seg"><button class="on"><span data-i="swB">Budget</span></button><button><span data-i="swC">Capital</span></button><button><span data-i="swA">Assets</span></button></div>
-    <div class="sw"><img class="frame zoom on" data-f="lvl3" width="1326" height="820" alt="Budget in LEVEL UP: income and spending by category with monthly limits" data-alt="altL3" loading="lazy"><img class="frame zoom" data-f="lvl3b" width="1326" height="820" alt="Capital in LEVEL UP: all your money and its growth by month" data-alt="altL3b" loading="lazy"><img class="frame zoom" data-f="lvl3c" width="1326" height="820" alt="Assets in LEVEL UP: crypto portfolio at current prices" data-alt="altL3c" loading="lazy"></div>
+    <div class="seg"><button class="on"><span data-i="swB">Budget</span></button><button><span data-i="swC">Capital</span></button></div>
+    <div class="sw"><img class="frame zoom on" data-f="lvl3" width="1326" height="820" alt="Budget in LEVEL UP: income and spending by category with monthly limits" data-alt="altL3" loading="lazy"><img class="frame zoom" data-f="lvl3b" width="1326" height="820" alt="Capital in LEVEL UP: all your money and its growth by month" data-alt="altL3b" loading="lazy"></div>
   </div>
 </div></section>
 <section class="lvl wide" id="lvl4"><div class="wrap lvw">
@@ -366,7 +366,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   </div>
 </div></section>
 
-<section id="reviews" class="solo" data-few><div class="wrap" style="max-width:820px">
+<section id="reviews" class="solo"><div class="wrap" style="max-width:820px">
   <div id="rvTop" hidden>
   <div class="kicker" data-i="nRev">Reviews</div>
   <h2 data-i="rvH">What players say</h2><p class="sub" data-i="rvSub">Only real reviews from users. Published after a spam check — never edited.</p>
@@ -435,8 +435,8 @@ uk: {nFeat:'Можливості', nInst:'Як встановити', nPrice:'Ц
  l1K:'ГРА', l1H:'Кожна галочка — це досвід', l1P:'Відмітив звичку — отримав XP і бачиш, як він летить до шкали рівня. Закрив день — салют і хвиля світла на живому фоні.', l1a:'Рівні, звання й 30+ досягнень',
  l1b:'Серії днів без пропусків', l1c:'Нагороди: нові теми й живі фони', l2K:'ЗВИЧКИ Й ЗДОРОВʼЯ', l2H:'Звички й здоровʼя на одному екрані',
  l2P:'Сон, вода, кава, настрій і вітаміни — у кілька кліків. Програма сама помічає звʼязки: наприклад, скільки сну забирає зайва чашка кави.', l2a:'Готові звички або свої', l2b:'Нагадування в потрібний час', l2c:'Тренування, кроки й кілометри — у вкладці «Спорт»',
- l3K:'ГРОШІ', l3H:'Гроші під контролем', l3P:'Видно, куди йдуть гроші й скільки можна витрачати за день. Доходи й витрати за категоріями, ліміти на місяць і курси валют. А якщо потрібно — «Капітал» з усіма грошима й криптопортфель.', l3a:'Ліміти з підказкою, скільки можна витратити за день',
- l3b:'Регулярні платежі й рахунки', l3c:'Капітал по місяцях і криптоактиви', l4K:'ШІ', l4H:'Пиши як другові — програма розкладе сама',
+ l3K:'ГРОШІ', l3H:'Гроші під контролем', l3P:'Видно, куди йдуть гроші й скільки можна витратити сьогодні, щоб укластися до кінця місяця. Витрата записується за пару секунд — у потрібну категорію й на потрібний рахунок, а «Капітал» показує, як ростуть заощадження.', l3a:'Ліміти за категоріями з підказкою, скільки можна витрачати за день',
+ l3b:'Регулярні платежі й рахунки — з нагадуванням', l3c:'Діаграма витрат і динаміка по місяцях', l4K:'ШІ', l4H:'Пиши як другові — програма розкладе сама',
  l4P:'Одна фраза — і витрата, тренування, заняття та звичка вже на своїх місцях. Працює й без ШІ.', l4a:'Кілька справ в одній фразі', l4b:'Розуміє «вчора» і різні валюти', l4c:'З безкоштовним ШІ — фото чека й підсумки місяця',
  l5K:'ПІД СЕБЕ', l5H:'Програма під тебе', l5P:'Теми, живі фони, форма карток і кнопок, шрифти й розмір тексту. Зайві вкладки можна сховати, віджети головної — переставити.', l5a:'Нові теми відкриваються з рівнем',
  l5b:'Скляні картки й живі фони', l5c:'Власні кольори теми', swH:'Здоров’я', swS:'Спорт', swB:'Бюджет', swC:'Капітал', swA:'Активи', thNight:'Зоряна ніч', thNebula:'Зоряний аметист',
@@ -476,8 +476,8 @@ ru: {nFeat:'Возможности', nInst:'Как установить', nPrice
  l1K:'ИГРА', l1H:'Каждая галочка — это опыт', l1P:'Отметил привычку — получил XP и видишь, как он летит к шкале уровня. Закрыл день — салют и волна света на живом фоне.', l1a:'Уровни, звания и 30+ достижений',
  l1b:'Серии дней без пропусков', l1c:'Награды: новые темы и живые фоны', l2K:'ПРИВЫЧКИ И ЗДОРОВЬЕ', l2H:'Привычки и здоровье на одном экране',
  l2P:'Сон, вода, кофе, настроение и витамины — в пару кликов. Программа сама замечает связи: например, сколько сна отнимает лишняя чашка кофе.', l2a:'Готовые привычки или свои', l2b:'Напоминания в нужное время', l2c:'Тренировки, шаги и километры — во вкладке «Спорт»',
- l3K:'ДЕНЬГИ', l3H:'Деньги под контролем', l3P:'Видно, куда уходят деньги и сколько можно тратить в день. Доходы и расходы по категориям, лимиты на месяц и курсы валют. А если нужно — «Капитал» со всеми деньгами и криптопортфель.', l3a:'Лимиты с подсказкой, сколько можно тратить в день',
- l3b:'Регулярные платежи и счета', l3c:'Капитал по месяцам и криптоактивы', l4K:'ИИ', l4H:'Пиши как другу — программа разложит сама',
+ l3K:'ДЕНЬГИ', l3H:'Деньги под контролем', l3P:'Видно, куда уходят деньги и сколько можно потратить сегодня, чтобы уложиться до конца месяца. Трата записывается за пару секунд — в нужную категорию и на нужный счёт, а «Капитал» показывает, как растут сбережения.', l3a:'Лимиты по категориям с подсказкой, сколько можно тратить в день',
+ l3b:'Регулярные платежи и счета — с напоминанием', l3c:'Диаграмма расходов и динамика по месяцам', l4K:'ИИ', l4H:'Пиши как другу — программа разложит сама',
  l4P:'Одна фраза — и трата, тренировка, занятие и привычка уже на своих местах. Работает и без ИИ.', l4a:'Несколько дел в одной фразе', l4b:'Понимает «вчера» и разные валюты', l4c:'С бесплатным ИИ — фото чека и итоги месяца',
  l5K:'ПОД СЕБЯ', l5H:'Программа под тебя', l5P:'Темы, живые фоны, форма карточек и кнопок, шрифты и размер текста. Лишние вкладки можно спрятать, виджеты главной — переставить.', l5a:'Новые темы открываются с уровнем',
  l5b:'Стеклянные карточки и живые фоны', l5c:'Свои цвета темы', swH:'Здоровье', swS:'Спорт', swB:'Бюджет', swC:'Капитал', swA:'Активы', thNight:'Звёздная ночь', thNebula:'Звёздный аметист',
@@ -517,8 +517,8 @@ en: {nFeat:'Features', nInst:'Install', nPrice:'Pricing', nFaq:'FAQ', dlShort:'D
  l1K:'GAME', l1H:'Every check-off is XP', l1P:'Tick a habit — earn XP and watch it fly to your level bar. Close the day — confetti and a wave of light on the live background.', l1a:'Levels, titles and 30+ achievements',
  l1b:'Streaks of days without a miss', l1c:'Rewards: new themes and live backgrounds', l2K:'HABITS & HEALTH', l2H:'Habits and health on one screen',
  l2P:'Sleep, water, coffee, mood and vitamins in a couple of clicks. The app spots patterns itself — like how much sleep an extra cup of coffee costs you.', l2a:'Ready-made habits or your own', l2b:'Reminders at the right time', l2c:'Workouts, steps and kilometres in the Sport tab',
- l3K:'MONEY', l3H:'Money under control', l3P:'See where your money goes and how much you can spend today. Income and spending by category, monthly limits and exchange rates. And if you need them — Capital with all your money, plus a crypto portfolio.', l3a:'Limits that tell you how much you can spend per day',
- l3b:'Recurring payments and accounts', l3c:'Capital by month and crypto assets', l4K:'AI', l4H:'Type it like to a friend — the app sorts it out',
+ l3K:'MONEY', l3H:'Money under control', l3P:'See where your money goes and how much you can spend today to stay on track until the month ends. An expense takes a couple of seconds — into the right category and account — and Capital shows how your savings grow.', l3a:'Limits by category with a hint on how much you can spend per day',
+ l3b:'Recurring payments and bills — with reminders', l3c:'Spending chart and month-by-month trend', l4K:'AI', l4H:'Type it like to a friend — the app sorts it out',
  l4P:'One phrase — and the expense, workout, lesson and habit are all in place. Works without AI too.', l4a:'Several things in one phrase', l4b:'Understands “yesterday” and different currencies', l4c:'With free AI — receipt photos and monthly reviews',
  l5K:'YOUR WAY', l5H:'Make it yours', l5P:'Themes, live backgrounds, card and button shapes, fonts and text size. Hide the tabs you don’t need, rearrange the home widgets.', l5a:'New themes unlock as you level up',
  l5b:'Glass cards and live backgrounds', l5c:'Your own theme colours', swH:'Health', swS:'Sport', swB:'Budget', swC:'Capital', swA:'Assets', thNight:'Starry night', thNebula:'Starry amethyst',
@@ -609,7 +609,7 @@ const rvSec = document.getElementById('reviews'), rvTop = document.getElementByI
 let rvStars = 0;
 rvSt.forEach((b, i) => { b.setAttribute('aria-checked', 'false'); b.onclick = () => { rvStars = i + 1; rvSt.forEach((x, k) => { x.classList.toggle('on', k <= i); x.setAttribute('aria-checked', k === i); }); }; });
 new IntersectionObserver((es, o) => { if (!es[0].isIntersecting) return; o.disconnect();
-  fetch(CNT + '/reviews').then(r => r.json()).then(list => { if (list.length < 3) return; rvSec.removeAttribute('data-few'); rvTop.hidden = false; rvSec.classList.remove('solo'); rvList.replaceChildren(...list.map(x => { const c = document.createElement('div'); c.className = 'rwc';
+  fetch(CNT + '/reviews').then(r => r.json()).then(list => { if (list.length < 3) return; rvTop.hidden = false; rvSec.classList.remove('solo'); rvList.replaceChildren(...list.map(x => { const c = document.createElement('div'); c.className = 'rwc';
     c.innerHTML = `<div class="rws">${'★'.repeat(x.stars)}<i>${'★'.repeat(5 - x.stars)}</i></div><p></p><small></small>`;
     c.querySelector('p').textContent = x.text; c.querySelector('small').textContent = x.name + ' · ' + new Date(x.at).toLocaleDateString(lang, {month: 'long', year: 'numeric'}); return c; })); }).catch(() => {});
 }, {rootMargin: '400px'}).observe(document.getElementById('pricing'));   // секція відгуків до 3 відгуків схована — стежимо за «Цінами» над нею
