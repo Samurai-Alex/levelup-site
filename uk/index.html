@@ -518,5 +518,7 @@ fetch(CNT + '/count').then(r => r.json()).then(({n}) => {
 }).catch(() => {});
 if (SHOP.buy) { const p = document.getElementById('paid'); p.classList.remove('soon'); p.querySelector('.n').textContent = SHOP.price; p.insertAdjacentHTML('beforeend', `<a class="btn main" href="${SHOP.url}">${{uk: 'Купити', ru: 'Купить', en: 'Buy'}[lang]}</a>`); }
 </script>
+<!-- Cloudflare Web Analytics: відвідування без cookies; токен публічний (вкладка Web Analytics у Cloudflare) -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "4bdae1f94f8e42ca974cc4a9470ef2e1"}'></script>
 </body>
 </html>
