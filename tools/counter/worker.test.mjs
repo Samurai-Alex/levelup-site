@@ -49,3 +49,31 @@ test('звіт: частки, порівняння з минулим тижне�
 test('звіт без відвідувань — один рядок', async () => {
   assert.match(await report({DB: fakeDB([])}), /Посещений пока не было\.$/);
 });
+
+// відгуки: у базу — неопублікованим, адміну — повідомлення з посиланнями; пастка й порожні поля відсікаються
+const rvDB = () => { const runs = []; return {runs, prepare: sql => ({bind: (...a) => ({first: async () => (runs.push([sql, a]), {id: 7}), run: async () => runs.push([sql, a])})})}; };
+const post = body => new Request('https://dl.x/review', {method: 'POST', headers: UA, body: new URLSearchParams(body)});
+test('POST /review: зберігає й надсилає адміну на перевірку', async () => {
+  const DB = rvDB(), sent = [], f0 = globalThis.fetch;
+  globalThis.fetch = async (u, o) => (sent.push(JSON.parse(o.body).text), new Response('{}'));
+  try {
+    const r = await w.fetch(post({name: ' Оля<b> ', stars: '4', text: 'Нормально работает, нравятся уровни', lang: 'uk'}), {DB, BOT_TOKEN: 't', ADMIN_CHAT: '1', REPORT_KEY: 'k'});
+    assert.equal(r.status, 200);
+    assert.deepEqual(DB.runs[0][1].slice(1), ['uk', 'Оляb', 4, 'Нормально работает, нравятся уровни']);
+    assert.match(sent[0], /Новый отзыв #7 \(uk\) · ★★★★☆\nОляb:/);
+    assert.match(sent[0], /Опубликовать: https:\/\/dl\.x\/rv\?id=7&ok=1&key=k/);
+  } finally { globalThis.fetch = f0; }
+});
+test('POST /review: пастка, короткий текст і чужі зірки не проходять', async () => {
+  const DB = rvDB();
+  assert.equal((await w.fetch(post({name: 'Bot', stars: '5', text: 'buy cheap pills now', web: 'x'}), {DB})).status, 200);
+  assert.equal((await w.fetch(post({name: 'Ян', stars: '5', text: 'ok'}), {DB})).status, 400);
+  assert.equal((await w.fetch(post({name: 'Ян', stars: '9', text: 'Хорошая программа'}), {DB})).status, 400);
+  assert.equal(DB.runs.length, 0);
+});
+test('/rv: без ключа не публикуется', async () => {
+  const DB = rvDB();
+  assert.equal((await w.fetch(new Request('https://dl.x/rv?id=7&ok=1&key=bad', {headers: UA}), {DB, REPORT_KEY: 'k'})).status, 404);
+  assert.match(await (await w.fetch(new Request('https://dl.x/rv?id=7&ok=1&key=k', {headers: UA}), {DB, REPORT_KEY: 'k'})).text(), /опубликован/);
+  assert.match(DB.runs[0][0], /UPDATE rv SET ok = 1/);
+});

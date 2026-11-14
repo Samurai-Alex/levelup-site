@@ -156,6 +156,15 @@ h2{font-size:clamp(22px,3vw,30px);line-height:1.3;margin:0 0 12px}
 @media (max-width:720px){.dev{grid-template-columns:1fr;gap:22px;padding:22px}}
 /* питання */
 details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:10px}
+/* відгуки: картки як у FAQ, форма — скляна картка; зірки зелені */
+.rwc,.rwf{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:12px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.rwc p{margin:8px 0 10px;white-space:pre-line}.rwc small,.rwe{color:var(--muted);font-size:13px}.rws{color:var(--acc);letter-spacing:2px}.rws i{font-style:normal;color:var(--line)}
+.rwf{display:grid;gap:12px;margin-top:22px}.rwf h3{margin:0;font-size:16px}.rwf .btn{justify-self:start}
+.rwf input,.rwf textarea{font:14px var(--mono);color:var(--text);background:rgba(5,6,5,.6);border:1px solid var(--line);border-radius:10px;padding:11px 13px;resize:vertical}
+.rwf input:focus,.rwf textarea:focus{outline:none;border-color:rgba(31,184,70,.6)}.rwf .hp{position:absolute;left:-9999px;width:1px;height:1px}
+.stars{display:flex;gap:4px}.stars button{all:unset;cursor:pointer;font-size:26px;line-height:1;color:var(--line);transition:color .15s}.stars button.on{color:var(--acc)}.stars button:focus-visible{outline:2px solid var(--acc);border-radius:4px}
+.rwm{margin:0;font-size:13.5px;color:var(--muted)}.rwm.ok{color:var(--acc)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:9;background:var(--card2);border:1px solid rgba(31,184,70,.45);border-radius:12px;padding:12px 16px;font-size:13.5px;max-width:calc(100% - 32px);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
 summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:16px}
 summary::after{content:"+";color:var(--acc);font-family:var(--pixel);font-size:12px;display:inline-block;transition:transform .25s}
 details[open] summary::after{transform:rotate(45deg)}
@@ -247,8 +256,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 <section class="lvl" id="lvl3"><div class="wrap lvw">
   <div class="lvt">
     <div class="qc" style="--p:60%"><span class="qn"><b>LVL 3</b> · <span data-i="l3K">ДЕНЬГИ</span></span><span class="qx">XP 3/5</span><i></i></div>
-    <h2 data-i="l3H">Деньги под контролем</h2><p class="sub" data-i="l3P">Доходы и расходы по категориям, лимиты на месяц и курсы валют. А во вкладке «Капитал» видно, сколько у тебя всего денег и как они растут от месяца к месяцу.</p>
-    <ul class="lvb"><li data-i="l3a">Лимиты с подсказкой, сколько можно тратить в день</li><li data-i="l3b">Регулярные платежи и счета</li><li data-i="l3c">Капитал и его рост по месяцам</li></ul>
+    <h2 data-i="l3H">Деньги под контролем</h2><p class="sub" data-i="l3P">Доходы и расходы по категориям, лимиты на месяц и курсы валют. «Капитал» показывает, сколько у тебя всего денег и как они растут, а «Активы» — криптопортфель с актуальными ценами.</p>
+    <ul class="lvb"><li data-i="l3a">Лимиты с подсказкой, сколько можно тратить в день</li><li data-i="l3b">Регулярные платежи и счета</li><li data-i="l3c">Капитал по месяцам и криптоактивы</li></ul>
   </div>
   <div class="lvm">
     <div class="seg"><button class="on"><span data-i="swB">Бюджет</span></button><button><span data-i="swC">Капитал</span></button><button><span data-i="swA">Активы</span></button></div>
@@ -328,6 +337,21 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div id="newsList"></div>
 </div></section>
 
+<section id="reviews"><div class="wrap" style="max-width:820px">
+  <div class="kicker" data-i="nRev">Отзывы</div>
+  <h2 data-i="rvH">Что говорят игроки</h2><p class="sub" data-i="rvSub">Только настоящие отзывы пользователей. Публикуем после проверки на спам — без правок.</p>
+  <div id="rvList"><p class="rwe" data-i="rvFirst">Отзывов пока нет — ваш может стать первым.</p></div>
+  <form id="rvForm" class="rwf" novalidate>
+    <h3 data-i="rvAdd">Пользуетесь LEVEL UP? Расскажите, как вам</h3>
+    <div class="stars" role="radiogroup" data-al="rvStars"><button type="button" role="radio" aria-label="1">★</button><button type="button" role="radio" aria-label="2">★</button><button type="button" role="radio" aria-label="3">★</button><button type="button" role="radio" aria-label="4">★</button><button type="button" role="radio" aria-label="5">★</button></div>
+    <input name="name" maxlength="40" autocomplete="nickname" data-ph="rvName">
+    <textarea name="text" maxlength="700" rows="4" data-ph="rvText"></textarea>
+    <input name="web" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="btn main" type="submit"><span data-i="rvSend">Отправить отзыв</span></button>
+    <p id="rvMsg" class="rwm" role="status"></p>
+  </form>
+</div></section>
+
 <section id="faq"><div class="wrap" style="max-width:820px">
   <div class="kicker" data-i="nFaq">Вопросы</div>
   <h2 data-i="qH">Частые вопросы</h2>
@@ -363,14 +387,16 @@ const CNT = 'https://dl.levelup-tracker.com';
 const SHOP = {buy: false, url: '', price: ''};
 const L = {
 uk: {nFeat:'Можливості', nInst:'Як встановити', nPrice:'Ціни', nFaq:'Питання', dlShort:'Завантажити', dlCount:'Завантажень', beta:'Бета — безкоштовно',
+ dlSend:'Надіслати посилання на компʼютер', dlSendS:'Посилання на ПК', shareT:'LEVEL UP — програма для Windows: звички, гроші й спорт. Завантажити:', copied:'Посилання скопійовано — відкрийте його на компʼютері',
+ nRev:'Відгуки', rvH:'Що кажуть гравці', rvSub:'Лише справжні відгуки користувачів. Публікуємо після перевірки на спам — без правок.', rvFirst:'Відгуків поки немає — ваш може стати першим.', rvAdd:'Користуєтеся LEVEL UP? Розкажіть, як вам', rvStars:'Оцінка', rvName:'Ваше імʼя', rvText:'Що подобається, чого бракує', rvSend:'Надіслати відгук', rvOk:'Дякуємо! Відгук зʼявиться після перевірки.', rvErr:'Не вдалося надіслати. Перевірте оцінку, імʼя й текст (від 10 символів) і спробуйте ще раз.',
  mT:'LEVEL UP — трекер звичок, фінансів і спорту', mD:'LEVEL UP — програма для Windows: звички, бюджет, спорт і цілі в одному місці. Дані зберігаються тільки у вас. Відкрита бета — безкоштовно.', oT:'LEVEL UP — прокачуй себе як персонажа гри', oD:'Відкрита бета — безкоштовно. Windows 10/11. Дані тільки на вашому компʼютері.',
  h1:'Прокачуй себе <b>як персонажа гри</b>', lead:'Звички, гроші та спорт дають досвід (XP). Зростає рівень, відкриваються звання й 30+ досягнень — і видно, як змінюється твоє життя.',
  dl:'Завантажити для Windows', howInst:'Як встановити', req:'Windows 10 / 11 · безкоштовно',
  l1K:'ГРА', l1H:'Кожна галочка — це досвід', l1P:'Відмітив звичку — отримав XP і бачиш, як він летить до шкали рівня. Закрив день — салют і хвиля світла на живому фоні.', l1a:'Рівні, звання й 30+ досягнень',
  l1b:'Серії днів без пропусків', l1c:'Нагороди: нові теми й живі фони', l2K:'ЗВИЧКИ Й ЗДОРОВʼЯ', l2H:'Звички й здоровʼя на одному екрані',
  l2P:'Сон, вода, кава, настрій і вітаміни — у кілька кліків. Програма сама помічає звʼязки: наприклад, скільки сну забирає зайва чашка кави.', l2a:'Готові звички або свої', l2b:'Нагадування в потрібний час', l2c:'Тренування, кроки й кілометри — у вкладці «Спорт»',
- l3K:'ГРОШІ', l3H:'Гроші під контролем', l3P:'Доходи й витрати за категоріями, ліміти на місяць і курси валют. А у вкладці «Капітал» видно, скільки в тебе всього грошей і як вони ростуть з місяця в місяць.', l3a:'Ліміти з підказкою, скільки можна витратити за день',
- l3b:'Регулярні платежі й рахунки', l3c:'Капітал і його ріст по місяцях', l4K:'ШІ', l4H:'Пиши як другові — програма розкладе сама',
+ l3K:'ГРОШІ', l3H:'Гроші під контролем', l3P:'Доходи й витрати за категоріями, ліміти на місяць і курси валют. «Капітал» показує, скільки в тебе всього грошей і як вони ростуть, а «Активи» — криптопортфель з актуальними цінами.', l3a:'Ліміти з підказкою, скільки можна витратити за день',
+ l3b:'Регулярні платежі й рахунки', l3c:'Капітал по місяцях і криптоактиви', l4K:'ШІ', l4H:'Пиши як другові — програма розкладе сама',
  l4P:'Одна фраза — і витрата, тренування, заняття та звичка вже на своїх місцях. Працює й без ключа ШІ.', l4a:'Кілька справ в одній фразі', l4b:'Розуміє «вчора» і різні валюти', l4c:'З ключем ШІ — фото чека й підсумки місяця',
  l5K:'ПІД СЕБЕ', l5H:'Програма під тебе', l5P:'Теми, живі фони, форма карток і кнопок, шрифти й розмір тексту. Зайві вкладки можна сховати, віджети головної — переставити.', l5a:'Нові теми відкриваються з рівнем',
  l5b:'Скляні картки й живі фони', l5c:'Власні кольори теми', swH:'Здоров’я', swS:'Спорт', swB:'Бюджет', swC:'Капітал', swA:'Активи', thNight:'Зоряна ніч', thNebula:'Зоряний аметист',
@@ -402,14 +428,16 @@ uk: {nFeat:'Можливості', nInst:'Як встановити', nPrice:'Ц
  ab2:'Зате в іграх сили волі вистачало на сотні годин. Якось я засидівся до ранку, щоб отримати рідкісне досягнення, і подумав: якби я так само старався в житті, у мене давно було б усе, чого я хочу. Виявилося, справа не в силі волі. Мозку потрібна нагорода тут і зараз, а не через пів року.',
  ab3:'Я зробив програму, де нагорода приходить одразу. Пробіжка дає досвід. Відкладені гроші піднімають рівень. Серія днів без пропусків відкриває звання. Прогрес видно на графіках, і вже за місяць можна озирнутися й побачити, як змінилося життя. Спершу я зробив це для себе, а тепер LEVEL UP користуються й інші.'},
 ru: {nFeat:'Возможности', nInst:'Как установить', nPrice:'Цены', nFaq:'Вопросы', dlShort:'Скачать', dlCount:'Скачиваний', beta:'Бета — бесплатно',
+ dlSend:'Отправить ссылку на компьютер', dlSendS:'Ссылка на ПК', shareT:'LEVEL UP — программа для Windows: привычки, деньги и спорт. Скачать:', copied:'Ссылка скопирована — откройте её на компьютере',
+ nRev:'Отзывы', rvH:'Что говорят игроки', rvSub:'Только настоящие отзывы пользователей. Публикуем после проверки на спам — без правок.', rvFirst:'Отзывов пока нет — ваш может стать первым.', rvAdd:'Пользуетесь LEVEL UP? Расскажите, как вам', rvStars:'Оценка', rvName:'Ваше имя', rvText:'Что нравится, чего не хватает', rvSend:'Отправить отзыв', rvOk:'Спасибо! Отзыв появится после проверки.', rvErr:'Не получилось отправить. Проверьте оценку, имя и текст (от 10 символов) и попробуйте ещё раз.',
  mT:'LEVEL UP — трекер привычек, финансов и спорта', mD:'LEVEL UP — программа для Windows: привычки, бюджет, спорт и цели в одном месте. Данные хранятся только у вас. Открытая бета — бесплатно.', oT:'LEVEL UP — прокачивай себя как персонажа игры', oD:'Открытая бета — бесплатно. Windows 10/11. Данные только на вашем компьютере.',
  h1:'Прокачивай себя <b>как персонажа игры</b>', lead:'Привычки, деньги и спорт дают опыт (XP). Растёт уровень, открываются звания и 30+ достижений — и видно, как меняется твоя жизнь.',
  dl:'Скачать для Windows', howInst:'Как установить', req:'Windows 10 / 11 · бесплатно',
  l1K:'ИГРА', l1H:'Каждая галочка — это опыт', l1P:'Отметил привычку — получил XP и видишь, как он летит к шкале уровня. Закрыл день — салют и волна света на живом фоне.', l1a:'Уровни, звания и 30+ достижений',
  l1b:'Серии дней без пропусков', l1c:'Награды: новые темы и живые фоны', l2K:'ПРИВЫЧКИ И ЗДОРОВЬЕ', l2H:'Привычки и здоровье на одном экране',
  l2P:'Сон, вода, кофе, настроение и витамины — в пару кликов. Программа сама замечает связи: например, сколько сна отнимает лишняя чашка кофе.', l2a:'Готовые привычки или свои', l2b:'Напоминания в нужное время', l2c:'Тренировки, шаги и километры — во вкладке «Спорт»',
- l3K:'ДЕНЬГИ', l3H:'Деньги под контролем', l3P:'Доходы и расходы по категориям, лимиты на месяц и курсы валют. А во вкладке «Капитал» видно, сколько у тебя всего денег и как они растут от месяца к месяцу.', l3a:'Лимиты с подсказкой, сколько можно тратить в день',
- l3b:'Регулярные платежи и счета', l3c:'Капитал и его рост по месяцам', l4K:'ИИ', l4H:'Пиши как другу — программа разложит сама',
+ l3K:'ДЕНЬГИ', l3H:'Деньги под контролем', l3P:'Доходы и расходы по категориям, лимиты на месяц и курсы валют. «Капитал» показывает, сколько у тебя всего денег и как они растут, а «Активы» — криптопортфель с актуальными ценами.', l3a:'Лимиты с подсказкой, сколько можно тратить в день',
+ l3b:'Регулярные платежи и счета', l3c:'Капитал по месяцам и криптоактивы', l4K:'ИИ', l4H:'Пиши как другу — программа разложит сама',
  l4P:'Одна фраза — и трата, тренировка, занятие и привычка уже на своих местах. Работает и без ключа ИИ.', l4a:'Несколько дел в одной фразе', l4b:'Понимает «вчера» и разные валюты', l4c:'С ключом ИИ — фото чека и итоги месяца',
  l5K:'ПОД СЕБЯ', l5H:'Программа под тебя', l5P:'Темы, живые фоны, форма карточек и кнопок, шрифты и размер текста. Лишние вкладки можно спрятать, виджеты главной — переставить.', l5a:'Новые темы открываются с уровнем',
  l5b:'Стеклянные карточки и живые фоны', l5c:'Свои цвета темы', swH:'Здоровье', swS:'Спорт', swB:'Бюджет', swC:'Капитал', swA:'Активы', thNight:'Звёздная ночь', thNebula:'Звёздный аметист',
@@ -441,14 +469,16 @@ ru: {nFeat:'Возможности', nInst:'Как установить', nPrice
  ab2:'Зато в играх силы воли хватало на сотни часов. Однажды я засиделся до утра, чтобы получить редкое достижение, и подумал: если бы я так же старался в жизни, у меня давно было бы всё, чего я хочу. Оказалось, дело не в силе воли. Мозгу нужна награда здесь и сейчас, а не через полгода.',
  ab3:'Я сделал программу, где награда приходит сразу. Пробежка даёт опыт. Отложенные деньги поднимают уровень. Серия дней без пропусков открывает звание. Прогресс видно на графиках, и уже через месяц можно оглянуться и увидеть, как изменилась жизнь. Сначала я сделал это для себя, а теперь LEVEL UP пользуются и другие.'},
 en: {nFeat:'Features', nInst:'Install', nPrice:'Pricing', nFaq:'FAQ', dlShort:'Download', dlCount:'Downloads', beta:'Beta — free',
+ dlSend:'Send the link to my computer', dlSendS:'Link to PC', shareT:'LEVEL UP — a Windows app for habits, money and fitness. Download:', copied:'Link copied — open it on your computer',
+ nRev:'Reviews', rvH:'What players say', rvSub:'Only real reviews from users. Published after a spam check — never edited.', rvFirst:'No reviews yet — yours could be the first.', rvAdd:'Using LEVEL UP? Tell us how it’s going', rvStars:'Rating', rvName:'Your name', rvText:'What you like, what’s missing', rvSend:'Send review', rvOk:'Thanks! Your review will appear after a check.', rvErr:'Couldn’t send it. Check the rating, your name and the text (10+ characters) and try again.',
  mT:'LEVEL UP — habit, money and fitness tracker', mD:'LEVEL UP is a Windows app for habits, budget, sport and goals in one place. Your data stays on your computer only. Free during the open beta.', oT:'LEVEL UP — level yourself up like a game character', oD:'Open beta — free. Windows 10/11. Your data stays on your computer only.',
  h1:'Level yourself up <b>like a game character</b>', lead:'Habits, money and workouts earn you XP. Your level grows, titles and 30+ achievements unlock — and you can see your life changing.',
  dl:'Download for Windows', howInst:'How to install', req:'Windows 10 / 11 · free',
  l1K:'GAME', l1H:'Every check-off is XP', l1P:'Tick a habit — earn XP and watch it fly to your level bar. Close the day — confetti and a wave of light on the live background.', l1a:'Levels, titles and 30+ achievements',
  l1b:'Streaks of days without a miss', l1c:'Rewards: new themes and live backgrounds', l2K:'HABITS & HEALTH', l2H:'Habits and health on one screen',
  l2P:'Sleep, water, coffee, mood and vitamins in a couple of clicks. The app spots patterns itself — like how much sleep an extra cup of coffee costs you.', l2a:'Ready-made habits or your own', l2b:'Reminders at the right time', l2c:'Workouts, steps and kilometres in the Sport tab',
- l3K:'MONEY', l3H:'Money under control', l3P:'Income and spending by category, monthly limits and exchange rates. The Capital tab shows how much you have in total and how it grows month by month.', l3a:'Limits that tell you how much you can spend per day',
- l3b:'Recurring payments and accounts', l3c:'Your capital and its growth by month', l4K:'AI', l4H:'Type it like to a friend — the app sorts it out',
+ l3K:'MONEY', l3H:'Money under control', l3P:'Income and spending by category, monthly limits and exchange rates. Capital shows how much you have in total and how it grows, and Assets tracks your crypto portfolio at current prices.', l3a:'Limits that tell you how much you can spend per day',
+ l3b:'Recurring payments and accounts', l3c:'Capital by month and crypto assets', l4K:'AI', l4H:'Type it like to a friend — the app sorts it out',
  l4P:'One phrase — and the expense, workout, lesson and habit are all in place. Works even without an AI key.', l4a:'Several things in one phrase', l4b:'Understands “yesterday” and different currencies', l4c:'With an AI key — receipt photos and monthly reviews',
  l5K:'YOUR WAY', l5H:'Make it yours', l5P:'Themes, live backgrounds, card and button shapes, fonts and text size. Hide the tabs you don’t need, rearrange the home widgets.', l5a:'New themes unlock as you level up',
  l5b:'Glass cards and live backgrounds', l5c:'Your own theme colours', swH:'Health', swS:'Sport', swB:'Budget', swC:'Capital', swA:'Assets', thNight:'Starry night', thNebula:'Starry amethyst',
@@ -523,6 +553,33 @@ let via = ses('lu_via');
   } }
 // кнопка «Завантажити» — лічильник знає, з якої натиснули (шапка, перший екран, ціни, фінальний заклик) і звідки людина прийшла
 document.querySelectorAll('.dl').forEach(a => a.href = CNT + '/dl?from=' + (a.closest('.bar') ? 'head' : a.closest('.fin') ? 'fin' : a.closest('#pricing') ? 'price' : 'hero') + '&v=' + (via || 'direct'));
+const T = L[lang], toast = t => { const d = Object.assign(document.createElement('div'), {className: 'toast', role: 'status', textContent: t}); document.body.append(d); setTimeout(() => d.remove(), 3500); };
+// на телефоні програму не встановити — кнопки «Завантажити» надсилають посилання на компʼютер (собі в месенджер чи пошту); відкриття з ?s=share видно у воронці
+if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) && !/Windows/i.test(navigator.userAgent)) document.querySelectorAll('.dl').forEach(a => {
+  const s = a.querySelector('span'); s.textContent = T[s.dataset.i === 'dlShort' ? 'dlSendS' : 'dlSend'];
+  a.querySelector('svg')?.remove(); a.insertAdjacentHTML('afterbegin', '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13"/></svg>');
+  a.onclick = e => { e.preventDefault(); ev.add('share'); const url = 'https://levelup-tracker.com' + {ru: '/', uk: '/uk/', en: '/en/'}[lang] + '?s=share';
+    if (navigator.share) navigator.share({title: 'LEVEL UP', text: T.shareT, url}).catch(() => {});
+    else navigator.clipboard?.writeText(url).then(() => toast(T.copied), () => prompt('', url)); };
+});
+// відгуки (tools/counter): опубліковані — з лічильника, коли розділ близько; нові йдуть розробнику на перевірку
+document.querySelectorAll('[data-ph]').forEach(e => e.placeholder = T[e.dataset.ph]);
+document.querySelectorAll('[data-al]').forEach(e => e.setAttribute('aria-label', T[e.dataset.al]));
+const rvList = document.getElementById('rvList'), rvF = document.getElementById('rvForm'), rvSt = [...rvF.querySelectorAll('.stars button')], rvMsg = document.getElementById('rvMsg');
+let rvStars = 0;
+rvSt.forEach((b, i) => { b.setAttribute('aria-checked', 'false'); b.onclick = () => { rvStars = i + 1; rvSt.forEach((x, k) => { x.classList.toggle('on', k <= i); x.setAttribute('aria-checked', k === i); }); }; });
+new IntersectionObserver((es, o) => { if (!es[0].isIntersecting) return; o.disconnect();
+  fetch(CNT + '/reviews').then(r => r.json()).then(list => { if (!list.length) return; rvList.replaceChildren(...list.map(x => { const c = document.createElement('div'); c.className = 'rwc';
+    c.innerHTML = `<div class="rws">${'★'.repeat(x.stars)}<i>${'★'.repeat(5 - x.stars)}</i></div><p></p><small></small>`;
+    c.querySelector('p').textContent = x.text; c.querySelector('small').textContent = x.name + ' · ' + new Date(x.at).toLocaleDateString(lang, {month: 'long', year: 'numeric'}); return c; })); }).catch(() => {});
+}, {rootMargin: '400px'}).observe(rvList);
+rvF.onsubmit = async e => { e.preventDefault(); const f = new FormData(rvF), b = rvF.querySelector('[type=submit]');
+  f.set('stars', rvStars); f.set('lang', lang); rvMsg.className = 'rwm';
+  if (!rvStars || f.get('name').trim().length < 2 || f.get('text').trim().length < 10) { rvMsg.textContent = T.rvErr; return; }
+  b.disabled = true;
+  try { const r = await fetch(CNT + '/review', {method: 'POST', body: new URLSearchParams(f)}); if (!r.ok) throw 0;
+    rvF.reset(); rvSt.forEach(x => x.classList.remove('on')); rvStars = 0; rvMsg.className = 'rwm ok'; rvMsg.textContent = T.rvOk; ev.add('review');
+  } catch (x) { rvMsg.textContent = T.rvErr; } b.disabled = false; };
 const evo = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { ev.add(e.target.dataset.ev); evo.unobserve(e.target); } }), {threshold: .35});
 [['#lvl1', 'lvl1'], ['#lvl2', 'lvl2'], ['#lvl3', 'lvl3'], ['#lvl4', 'lvl4'], ['#lvl5', 'lvl5'], ['#more', 'more'], ['#install', 'inst'], ['#pricing', 'price'], ['#faq', 'faq'], ['.fin', 'fin']].forEach(([q, k]) => { const el = document.querySelector(q); if (el) { el.dataset.ev = k; evo.observe(el); } });
 document.getElementById('dots').addEventListener('click', () => ev.add('theme'));

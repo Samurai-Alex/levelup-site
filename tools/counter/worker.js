@@ -2,13 +2,15 @@
 //   /dl?from=head|hero|price|fin&v=src_tg — рахує натискання (з якої кнопки й звідки прийшла людина) й віддає установник; /count — скільки всього
 //   /e?k=a,b,c — події сторінки за день: перегляди, мова, дійшов до розділу, звідки прийшов (воронка)
 //   щопонеділка о 9:00 за Києвом — звіт за тиждень у Telegram (бот підтримки, секрети BOT_TOKEN і ADMIN_CHAT);
+//   /reviews — опубліковані відгуки; POST /review — новий відгук (ім'я, зірки, текст) іде адміну в Telegram на перевірку,
+//   /rv?id=N&ok=1|0&key=REPORT_KEY — опублікувати чи видалити (посилання з того ж повідомлення)
 //   /report?key=REPORT_KEY — надіслати звіт зараз, &send=0 — лише повернути текст (для /stats у боті)
 // Розгортання й секрети: node tools/counter/setup.mjs
 const FILE = 'https://github.com/Samurai-Alex/habit-tracker-updates/releases/download/levelup/Level-Up-setup.exe';
 const BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|curl|wget|lighthouse/i;
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Cache-Control': 'public, max-age=60' };
 // лише відомі події — щоб ніхто не засмічував базу довільними ключами
-const EV = /^(view_(ru|uk|en)|mob|win|lvl[1-5]|more|inst|price|faq|fin|theme|howto|dl_(head|hero|price|fin)|cc_[A-Z]{2}|direct|ref_[a-z0-9]{1,20}|src_[a-z0-9]{1,12}|dlv_(direct|ref_[a-z0-9]{1,20}|src_[a-z0-9]{1,12}))$/;
+const EV = /^(view_(ru|uk|en)|mob|win|lvl[1-5]|more|inst|price|faq|fin|theme|howto|share|review|dl_(head|hero|price|fin)|cc_[A-Z]{2}|direct|ref_[a-z0-9]{1,20}|src_[a-z0-9]{1,12}|dlv_(direct|ref_[a-z0-9]{1,20}|src_[a-z0-9]{1,12}))$/;
 const day = (d = new Date()) => d.toISOString().slice(0, 10);
 const add = (env, keys) => env.DB.batch(keys.map(k => env.DB.prepare('INSERT INTO ev (day, k, n) VALUES (?1, ?2, 1) ON CONFLICT (day, k) DO UPDATE SET n = n + 1').bind(day(), k)));
 
@@ -39,10 +41,36 @@ export default {
       }
       return new Response(null, { status: 204, headers: CORS });
     }
+    if (url.pathname === '/reviews') {
+      const { results } = await env.DB.prepare('SELECT name, stars, text, lang, at FROM rv WHERE ok = 1 ORDER BY id DESC LIMIT 30').all();
+      return Response.json(results, { headers: CORS });
+    }
+    if (url.pathname === '/review' && req.method === 'POST') return review(req, env, url, human);
+    if (url.pathname === '/rv' && env.REPORT_KEY && url.searchParams.get('key') === env.REPORT_KEY) {
+      const id = +url.searchParams.get('id');
+      await env.DB.prepare(url.searchParams.get('ok') === '1' ? 'UPDATE rv SET ok = 1 WHERE id = ?1' : 'DELETE FROM rv WHERE id = ?1').bind(id).run();
+      return new Response(url.searchParams.get('ok') === '1' ? 'Отзыв #' + id + ' опубликован' : 'Отзыв #' + id + ' удалён', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+    }
     return new Response('Not found', { status: 404 });
   },
   async scheduled(ev, env) { await report(env); },
 };
+
+// відгук із сайту: форма (urlencoded — без preflight), перевірка полів, у базу неопублікованим, адміну — текст і два посилання.
+// Пастка для ботів — приховане поле web: людина його не бачить і не заповнює.
+// shortcut: від спаму лише пастка й ручна перевірка; якщо почнуть засипати — Turnstile на форму
+export async function review(req, env, url, human) {
+  const f = await req.formData().catch(() => null), H = { headers: CORS };
+  if (!f || !human) return Response.json({ ok: false }, { status: 400, ...H });
+  if (f.get('web')) return Response.json({ ok: true }, H);   // бот: робимо вигляд, що прийняли
+  const clean = (v, n) => String(v || '').replace(/[\u0000-\u0009\u000B-\u001F\u007F<>]/g, '').trim().slice(0, n);
+  const name = clean(f.get('name'), 40), text = clean(f.get('text'), 700), stars = Math.round(+f.get('stars')), lang = /^(ru|uk|en)$/.test(f.get('lang')) ? f.get('lang') : 'ru';
+  if (name.length < 2 || text.length < 10 || !(stars >= 1 && stars <= 5)) return Response.json({ ok: false }, { status: 400, ...H });
+  const r = await env.DB.prepare('INSERT INTO rv (at, lang, name, stars, text, ok) VALUES (?1, ?2, ?3, ?4, ?5, 0) RETURNING id').bind(day(), lang, name, stars, text).first();
+  const link = ok => `${url.origin}/rv?id=${r.id}&ok=${ok}&key=${env.REPORT_KEY}`;
+  await deliver(env, `Новый отзыв #${r.id} (${lang}) · ${'★'.repeat(stars)}${'☆'.repeat(5 - stars)}\n${name}:\n${text}\n\nОпубликовать: ${link(1)}\nУдалить: ${link(0)}`, true);
+  return Response.json({ ok: true }, H);
+}
 
 // звіт за останні 7 днів (без сьогоднішнього) і порівняння з тижнем перед ними; порожні рядки не показуються
 const STAGES = [['lvl1', 'LVL 1 Игра'], ['lvl2', 'LVL 2 Привычки'], ['lvl3', 'LVL 3 Деньги'], ['lvl4', 'LVL 4 ИИ'], ['lvl5', 'LVL 5 Под себя'], ['more', 'А ещё'], ['inst', 'Как установить'], ['price', 'Цены'], ['faq', 'Вопросы'], ['fin', 'Финальный призыв']];
@@ -69,7 +97,7 @@ export async function report(env, days = 7, send = true) {
     `Скачали: ${dl}${dt(dl, tot(p, DK))} — ${pc(dl)} посетителей${btn ? ` (${btn})` : ''}`,
     `С телефона: ${pc(g('mob'))} · с Windows: ${pc(g('win'))}`];
   if (st.length) lines.push('', 'Дошли до:', ...st.map(([k, t]) => `  ${t}: ${pc(g(k))}`));
-  const act = [g('theme') && `переключали темы ${g('theme')}`, g('howto') && `нажали «Как установить» ${g('howto')}`].filter(Boolean);
+  const act = [g('theme') && `переключали темы ${g('theme')}`, g('howto') && `нажали «Как установить» ${g('howto')}`, g('share') && `с телефона отправили ссылку на ПК ${g('share')}`, g('review') && `оставили отзыв ${g('review')}`].filter(Boolean);
   if (act.length) lines.push(act.join(' · '));
   const cc = list('cc_'), via = Object.keys(m).filter(k => /^(direct|ref_|src_)/.test(k)).sort((a, b) => g(b) - g(a)).slice(0, 6).map(k => `${srcName(k)} ${g(k)}${g('dlv_' + k) ? ` (скачали ${g('dlv_' + k)})` : ''}`).join(', ');
   if (cc || via) lines.push('');
