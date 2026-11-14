@@ -97,7 +97,7 @@ h2{font-size:clamp(22px,3vw,30px);line-height:1.3;margin:0 0 12px}
 .lvb li::before{content:"";position:absolute;left:2px;top:12px;width:9px;height:5px;border:2px solid var(--acc);border-top:0;border-right:0;transform:rotate(-45deg)}
 .lvm{display:grid;gap:16px}
 .frame{width:100%;height:auto;display:block;border-radius:14px;border:1px solid rgba(31,184,70,.45);box-shadow:0 0 0 4px rgba(31,184,70,.06),0 24px 70px -24px rgba(31,184,70,.35);background:#000}
-.lvm .dots{justify-content:flex-start;margin:0}
+.lvm .dots{justify-content:flex-start;margin:0;flex-wrap:nowrap;gap:4px;overflow-x:auto;scrollbar-width:none}.lvm .dots button{flex:none;gap:7px;padding:6px 10px 6px 9px;font-size:12px;line-height:16px}.lvm .dots i{flex:none;width:10px;height:10px;box-shadow:0 0 0 2px color-mix(in srgb,var(--c) 25%,transparent)}
 /* LVL 2 і 3: перемикач як у програмі («Сьогодні / Тиждень / Рік» у «Звичках», .hb-seg) */
 .seg{display:inline-flex;justify-self:start;gap:2px;padding:3px;border-radius:10px;background:var(--card2);border:1px solid var(--line)}
 .seg button{all:unset;cursor:pointer;padding:6px 14px;border-radius:7px;font-size:13px;color:var(--muted);transition:background .3s,color .3s}
@@ -260,7 +260,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   </div>
   <div class="lvm">
     <div class="dots" id="dots">
-      <button class="on" data-t="levelup" style="--c:#1fb846"><i></i>LEVEL UP</button><button data-t="night" style="--c:#8ec5ff"><i></i><span data-i="thNight">Звёздная ночь</span></button><button data-t="nebula" style="--c:#9d8cf2"><i></i><span data-i="thNebula">Звёздный аметист</span></button><button data-t="pluto" style="--c:#9d4edd"><i></i><span data-i="thPluto">Полночь Плутона</span></button><button data-t="champagne" style="--c:#c8b27d"><i></i><span data-i="thChamp">Шампань</span></button><button data-t="gold" style="--c:#e8b923"><i></i><span data-i="thGold">Золото</span></button>
+      <button class="on" data-t="levelup" style="--c:#1fb846"><i></i>LEVEL UP</button><button data-t="night" style="--c:#8ec5ff"><i></i><span data-i="thNight">Звёздная ночь</span></button><button data-t="nebula" style="--c:#9d8cf2"><i></i><span data-i="thNebula">Звёздный аметист</span></button><button data-t="champagne" style="--c:#c8b27d"><i></i><span data-i="thChamp">Шампань</span></button><button data-t="gold" style="--c:#e8b923"><i></i><span data-i="thGold">Золото</span></button>
     </div>
     <video class="frame" id="thv" muted loop playsinline preload="none" width="1280" height="800" aria-label="LEVEL UP"></video>
   </div>
@@ -363,7 +363,7 @@ uk: {nFeat:'Можливості', nInst:'Як встановити', nPrice:'Ц
  l4P:'Одна фраза — і витрата, тренування, заняття та звичка вже на своїх місцях. Працює й без ключа ШІ.', l4a:'Кілька справ в одній фразі', l4b:'Розуміє «вчора» і різні валюти', l4c:'З ключем ШІ — фото чека й підсумки місяця',
  l5K:'ПІД СЕБЕ', l5H:'Програма під тебе', l5P:'Теми, живі фони, форма карток і кнопок, шрифти й розмір тексту. Зайві вкладки можна сховати, віджети головної — переставити.', l5a:'Нові теми відкриваються з рівнем',
  l5b:'Скляні картки й живі фони', l5c:'Власні кольори теми', swH:'Здоров’я', swS:'Спорт', swB:'Бюджет', swC:'Капітал', swA:'Активи', thNight:'Зоряна ніч', thNebula:'Зоряний аметист',
- thPluto:'Опівнічний Плутон', thChamp:'Шампань', thGold:'Золото', mK:'А ще',
+ thChamp:'Шампань', thGold:'Золото', mK:'А ще',
  mH:'І кілька речей, які стануть у пригоді', m1:'Щоденник', m1d:'Справи на день і головна ціль тижня.', m2:'Англійська',
  m2d:'Уроки, серіали й розмовна практика — години й рівень від A1 до C2.', m3:'Статистика', m3d:'Теплові карти, підсумки тижня, місяця й року.', m4:'Дані тільки у вас',
  m4d:'Без облікового запису й реклами. Автокопії — у вашу папку, наприклад OneDrive.', m5:'Працює офлайн', m5d:'Інтернет потрібен лише для курсів валют, оновлень і ШІ.', m6:'Оновлюється сама',
@@ -402,7 +402,7 @@ ru: {nFeat:'Возможности', nInst:'Как установить', nPrice
  l4P:'Одна фраза — и трата, тренировка, занятие и привычка уже на своих местах. Работает и без ключа ИИ.', l4a:'Несколько дел в одной фразе', l4b:'Понимает «вчера» и разные валюты', l4c:'С ключом ИИ — фото чека и итоги месяца',
  l5K:'ПОД СЕБЯ', l5H:'Программа под тебя', l5P:'Темы, живые фоны, форма карточек и кнопок, шрифты и размер текста. Лишние вкладки можно спрятать, виджеты главной — переставить.', l5a:'Новые темы открываются с уровнем',
  l5b:'Стеклянные карточки и живые фоны', l5c:'Свои цвета темы', swH:'Здоровье', swS:'Спорт', swB:'Бюджет', swC:'Капитал', swA:'Активы', thNight:'Звёздная ночь', thNebula:'Звёздный аметист',
- thPluto:'Полночь Плутона', thChamp:'Шампань', thGold:'Золото', mK:'А ещё',
+ thChamp:'Шампань', thGold:'Золото', mK:'А ещё',
  mH:'И несколько вещей, которые пригодятся', m1:'Ежедневник', m1d:'Дела на день и главная цель недели.', m2:'Английский',
  m2d:'Уроки, сериалы и разговорная практика — часы и уровень от A1 до C2.', m3:'Статистика', m3d:'Тепловые карты, итоги недели, месяца и года.', m4:'Данные только у вас',
  m4d:'Без аккаунта и рекламы. Автокопии — в вашу папку, например OneDrive.', m5:'Работает офлайн', m5d:'Интернет нужен только для курсов валют, обновлений и ИИ.', m6:'Обновляется сама',
@@ -441,7 +441,7 @@ en: {nFeat:'Features', nInst:'Install', nPrice:'Pricing', nFaq:'FAQ', dlShort:'D
  l4P:'One phrase — and the expense, workout, lesson and habit are all in place. Works even without an AI key.', l4a:'Several things in one phrase', l4b:'Understands “yesterday” and different currencies', l4c:'With an AI key — receipt photos and monthly reviews',
  l5K:'YOUR WAY', l5H:'Make it yours', l5P:'Themes, live backgrounds, card and button shapes, fonts and text size. Hide the tabs you don’t need, rearrange the home widgets.', l5a:'New themes unlock as you level up',
  l5b:'Glass cards and live backgrounds', l5c:'Your own theme colours', swH:'Health', swS:'Sport', swB:'Budget', swC:'Capital', swA:'Assets', thNight:'Starry night', thNebula:'Starry amethyst',
- thPluto:'Pluto midnight', thChamp:'Champagne', thGold:'Gold', mK:'And more',
+ thChamp:'Champagne', thGold:'Gold', mK:'And more',
  mH:'A few more things you’ll find handy', m1:'Planner', m1d:'Today’s tasks and the main goal of the week.', m2:'English',
  m2d:'Lessons, series and speaking practice — hours and your level from A1 to C2.', m3:'Statistics', m3d:'Heat maps, week, month and year reviews.', m4:'Your data stays yours',
  m4d:'No account, no ads. Auto-backups to your folder, such as OneDrive.', m5:'Works offline', m5d:'The internet is only used for exchange rates, updates and AI.', m6:'Updates itself',

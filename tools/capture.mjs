@@ -12,7 +12,7 @@ const SITE = path.resolve(import.meta.dirname, '..'), APP = path.resolve(SITE, '
 const FFMPEG = path.resolve(SITE, '../level-up-promo/node_modules/@remotion/compositor-win32-x64-msvc/ffmpeg.exe');
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const PAGES = ['home'];   // перший екран сайту
-export const THEMES = ['levelup', 'night', 'nebula', 'pluto', 'champagne', 'gold'];   // темні теми, відкриті з початку (classic, amethyst, ice у програмі більше немає)
+export const THEMES = ['levelup', 'night', 'nebula', 'champagne', 'gold'];   // темні теми, відкриті з початку (classic, amethyst, ice у програмі більше немає)
 // живий фон у відео «Під себе» — завжди «Level Up» (кристали), у темах кольору теми: [фон, колір] ('' — природний, 'acc' — колір теми)
 const THEME_BG = Object.fromEntries(THEMES.map(th => [th, ['levelup', th === 'levelup' ? '' : 'acc']]));
 // у відео тема триває THEME_SEC, сусідні перетікають одна в одну за THEME_FADE; кінець плавно переходить у початок (безшовний повтор).
