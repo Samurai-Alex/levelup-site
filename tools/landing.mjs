@@ -70,7 +70,7 @@ export function buildLanding(site) {
     const T = C[id][l], U = UI[l], home = HOME[l] + '?s=seo';
     const fill = s => s.replace(/\{(\w+)\}/g, (m, k) => { if (!LANDING[k]) throw new Error(`${id}: немає сторінки {${k}}`); return LANDING[k][l]; });
     const table = rows => `<div class="tw"><table>${rows.map((r, i) => `<tr>${r.map((x, j) => i && j ? `<td>${esc(x)}</td>` : `<th>${esc(x)}</th>`).join('')}</tr>`).join('')}</table></div>`;
-    const ld = {'@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'LEVEL UP', operatingSystem: 'Windows 10, Windows 11', applicationCategory: id === 'money' ? 'FinanceApplication' : 'LifestyleApplication',
+    const ld = {'@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'LEVEL UP', alternateName: 'LEVEL UP Tracker', operatingSystem: 'Windows 10, Windows 11', applicationCategory: id === 'money' ? 'FinanceApplication' : 'LifestyleApplication',
       description: T.d, url: URL0 + P[l], inLanguage: l, image: URL0 + '/img/og.png', offers: {'@type': 'Offer', price: '0', priceCurrency: 'USD'}};
     const faq = {'@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: T.q.map(([q, a]) => ({'@type': 'Question', name: q, acceptedAnswer: {'@type': 'Answer', text: a}}))};
     const html = `<!doctype html>

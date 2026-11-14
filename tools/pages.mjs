@@ -23,7 +23,7 @@ if (used.length) throw new Error('немає в L: ' + [...new Set(used)].join('
 
 // Google: програма для Windows, безкоштовна; питання й відповіді — з розділу «Питання» (ключі a1, a1d…)
 const ldJson = (l, p, T) => JSON.stringify([
-  {'@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'LEVEL UP', operatingSystem: 'Windows 10, Windows 11', applicationCategory: 'LifestyleApplication', description: T.mD, url: URL0 + p, inLanguage: l, image: URL0 + '/img/og.png', offers: {'@type': 'Offer', price: '0', priceCurrency: 'USD'}},
+  {'@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'LEVEL UP', alternateName: 'LEVEL UP Tracker', operatingSystem: 'Windows 10, Windows 11', applicationCategory: 'LifestyleApplication', description: T.mD, url: URL0 + p, inLanguage: l, image: URL0 + '/img/og.png', offers: {'@type': 'Offer', price: '0', priceCurrency: 'USD'}},
   {'@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: Object.keys(T).filter(k => /^a\d+$/.test(k)).map(k => ({'@type': 'Question', name: T[k], acceptedAnswer: {'@type': 'Answer', text: T[k + 'd']}}))},
 ]).replace(/</g, '\\u003c');
 const LAND_SRC = {'trekker-privychek': 'habits', 'uchet-rashodov': 'money'};   // у підвалі головної — посилання на сторінки під запити мовою сторінки
