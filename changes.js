@@ -1,6 +1,39 @@
 // згенеровано tools/changes.mjs — не редагувати вручну
 window.CHANGES = [
  {
+  "v": "1.7.8",
+  "uk": [
+   "Шкала рівня в шапці наповнюється повільно й помітно, коли долітає «+XP»; «Рівень N!» з'являється, коли смужка перейшла на новий рівень",
+   "Програма пам'ятає, що ви бета-тестер: у «Налаштуваннях» видно «бета-тестер: повна версія −50 %»",
+   "Новини від розробника приходять у ваше листування у «Відгуку»",
+   "Стовпчики графіків — зі скругленою верхівкою",
+   "Шапка «Головної» більше не смикається, коли день закрито",
+   "Кнопка-стрілка біля швидкого рядка — того ж кольору, що кнопки віджетів; порожній рядок вона не надсилає",
+   "Розібрана фраза швидкого рядка — у спокійній рамці кольору поля",
+   "«Здоров'я»: підписи на кшталт «склянка 330 мл · 2,64 л» не переносяться"
+  ],
+  "ru": [
+   "Шкала уровня в шапке заполняется медленно и заметно, когда долетает «+XP»; «Уровень N!» появляется, когда полоска перешла на новый уровень",
+   "Программа помнит, что вы бета-тестер: в «Настройках» видно «бета-тестер: полная версия −50 %»",
+   "Новости от разработчика приходят в вашу переписку в «Отзыве»",
+   "Столбики графиков — со скруглённой верхушкой",
+   "Шапка «Главной» больше не дёргается, когда день закрыт",
+   "Кнопка-стрелка у быстрой строки — того же цвета, что кнопки виджетов; пустую строку она не отправляет",
+   "Разобранная фраза быстрой строки — в спокойной рамке цвета поля",
+   "«Здоровье»: подписи вроде «стакан 330 мл · 2,64 л» не переносятся"
+  ],
+  "en": [
+   "The level bar in the header fills slowly and visibly when the «+XP» lands; «Level N!» appears when the bar moves to the new level",
+   "The app remembers you are a beta tester: Settings show «beta tester: full version −50%»",
+   "News from the developer arrives in your conversation under Feedback",
+   "Chart bars have rounded tops",
+   "The Home header no longer jumps when the day is closed",
+   "The arrow button next to the quick line has the same colour as the widget buttons; it does not send an empty line",
+   "The parsed quick-line phrase sits in a calm frame of the field colour",
+   "Health: labels like «glass 330 ml · 2.64 L» stay on one line"
+  ]
+ },
+ {
   "v": "1.7.7",
   "uk": [
    "Щойно відмічена звичка на «Головній» і в «Сьогодні» одразу показує галочку, клацає й підстрибує",
@@ -52,33 +85,6 @@ window.CHANGES = [
    "Other windows the app opens by itself no longer close the update window; they show up after it",
    "«Later» (or Esc) and the app reminds you of this version the next day, not every hour",
    "No internet during a check: the app tries again by itself"
-  ]
- },
- {
-  "v": "1.7.4",
-  "uk": [
-   "Привітання й перша екскурсія новачка — на живому фоні «Level Up», а не на порожньому чорному",
-   "Вибір звичок після першої екскурсії теж на живому фоні; закрили вікно — фон такий, як ви вибрали",
-   "Білоруський рубль у списку валют — з офіційним курсом Нацбанку Білорусі, і для минулих операцій теж",
-   "Світлі теми: банер «Новий значок / рівень» і «+XP» добре читаються",
-   "Перемикання вкладок більше не смикає ширину сторінки",
-   "Вікно «Вибери звички» більше не стрибає, коли відмічаєте звички чи гортаєте розділи"
-  ],
-  "ru": [
-   "Приветствие и первая экскурсия новичка — на живом фоне «Level Up», а не на пустом чёрном",
-   "Выбор привычек после первой экскурсии тоже на живом фоне; закрыли окно — фон такой, как вы выбрали",
-   "Белорусский рубль в списке валют — с официальным курсом Нацбанка Беларуси, и для прошлых операций тоже",
-   "Светлые темы: баннер «Новый значок / уровень» и «+XP» хорошо читаются",
-   "Переключение вкладок больше не дёргает ширину страницы",
-   "Окно «Выбери привычки» больше не прыгает, когда отмечаете привычки или листаете разделы"
-  ],
-  "en": [
-   "A newcomer's welcome and first tour sit on the live «Level Up» background, not on plain black",
-   "Picking habits after the first tour is on the live background too; close the window and the background is the one you chose",
-   "Belarusian ruble in the currency list, with the official National Bank of Belarus rate, past operations included",
-   "Light themes: the «New badge / level» banner and «+XP» are easy to read",
-   "Switching tabs no longer twitches the page width",
-   "The «Pick your habits» window no longer jumps when you tick habits or flip sections"
   ]
  }
 ];
