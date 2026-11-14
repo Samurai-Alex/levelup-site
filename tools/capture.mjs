@@ -106,25 +106,31 @@ try {
   if (!only || only === 'game') for (const l of LANGS) {
     // «Закритий день» (розділ «Гра» на сайті): остання звичка → «+XP» летить до шкали рівня, банер, хвиля на живому фоні «Level Up»
     await setup(l);
-    await ev(`{ const tk = keyOf(new Date()); S.habits.forEach((h, i) => { if (i !== 5) S.checks[tk][h.id] = 1; else delete S.checks[tk][h.id]; }); } UI.tdKeep = {}; [0, 1, 2, 3, 5].forEach(i => UI.tdKeep[S.habits[i].id] = 1);   // і остання звичка лишається в списку — кінець відео спокійний
+    await ev(`{ const tk = keyOf(new Date()); S.habits.forEach((h, i) => { if (![5, 6, 7].includes(i)) S.checks[tk][h.id] = 1; else delete S.checks[tk][h.id]; }); } UI.tdKeep = {}; [0, 1, 5, 6, 7].forEach(i => UI.tdKeep[S.habits[i].id] = 1); window.tdKeepOff = () => {};   // відмічені не їдуть у «Зроблено» посеред ролика — картка «Сьогодні» не стискається   // три звички відмічаються по черзі й лишаються в списку — кінець відео спокійний
       S.rw = {...(S.rw || {}), live: 'levelup'}; { const rw = rwSet; window.rwSet = () => new Set([...rw(), 'bglive']); }   // живий фон відкривається на вищому рівні — у демо вмикаємо
       TEXT_Z.l = 1.2; S.textSize = 'l'; S.cardStyle = 'glass';   // крупніше, щоб «+XP» і шкалу було видно; скляні картки — крізь них видно живий фон
-      { const xi = xpInfo(); S.xpKeep = (+S.xpKeep || 0) + xi.need - xi.rest - 3; }   // до рівня бракує 3 XP — закритий день піднімає рівень
+      { const xi = xpInfo(); S.xpKeep = (+S.xpKeep || 0) + 50 + 59 - xi.xp; }   // рівень 2, 59/65 XP: на початковому рівні шкалу видно, як вона росте (+1 за галочку, +5 за день); закритий день — рівень 3
       save(); document.documentElement.classList.remove('noxp'); UI.page = 'home'; render({nav: true}); window.scrollTo(0, 0); 1`);
     await sleep(3500);
-    const [cx, cy] = await ev(`(() => { const r = [...document.querySelectorAll('#page .tdw [data-act="toggle"]')].find(x => !x.classList.contains('on')).getBoundingClientRect(); return [r.left + 20, r.top + r.height / 2]; })()`);
+    const target = () => ev(`(() => { const r = [...document.querySelectorAll('#page .tdw [data-act="toggle"]')].find(x => !x.classList.contains('on')).getBoundingClientRect(); return [r.left + 20, r.top + r.height / 2]; })()`);
     // кадр: шапка з рівнем і перший ряд віджетів; парні розміри для H.264
     const [x, y, w, h] = await ev(`(() => { const all = [...document.querySelectorAll('#page .card')].filter(e => !e.parentElement.closest('.card')), c = all.slice(0, 5).map(e => e.getBoundingClientRect());
       all.slice(5).forEach(e => e.style.visibility = 'hidden');   // наступний ряд не стирчить смужкою внизу кадру
       const x = Math.min(...c.map(r => r.left)) - 16, y = Math.max(0, Math.min(...c.map(r => r.top)) - 16), w = Math.max(...c.map(r => r.right)) + 16 - x, h = Math.max(...c.map(r => r.bottom)) + 16 - y;
       return [x, y, w, h].map(v => Math.round(v / 2) * 2); })()`);
+    // надпис «Рівень N!» / «Усі звички виконано» програма ставить по центру вікна, а в кадрі лише частина вікна — центруємо по кадру
+    await ev(`{ const z = typeof zoomF === 'function' ? zoomF() : 1; document.head.insertAdjacentHTML('beforeend', '<style>.fx-banner{left:' + (${x + w / 2} / z) + 'px!important;top:' + (${y + h / 2} / z) + 'px!important}</style>'); } 1`);
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'lvl-game-')), frames = [];
     on['Page.screencastFrame'] = p => { const f = path.join(dir, `f${String(frames.length).padStart(4, '0')}.jpg`); fs.writeFileSync(f, Buffer.from(p.data, 'base64')); frames.push({f, t: p.metadata.timestamp}); cmd('Page.screencastFrameAck', {sessionId: p.sessionId}); };
     await cmd('Page.startScreencast', {format: 'jpeg', quality: 92, maxWidth: W, maxHeight: H, everyNthFrame: 1});
     await sleep(1200);
     const t0 = frames.at(-1)?.t ?? 0;
-    for (const type of ['mouseMoved', 'mousePressed', 'mouseReleased']) await cmd('Input.dispatchMouseEvent', {type, x: cx, y: cy, button: 'left', clickCount: 1});
-    await sleep(4800);
+    for (let k = 0; k < 3; k++) {   // три галочки з паузою: кожне «+1 XP» долітає й посуває шкалу, третя закриває день і піднімає рівень
+      const [cx, cy] = await target();
+      for (const type of ['mouseMoved', 'mousePressed', 'mouseReleased']) await cmd('Input.dispatchMouseEvent', {type, x: cx, y: cy, button: 'left', clickCount: 1});
+      await cmd('Input.dispatchMouseEvent', {type: 'mouseMoved', x: W - 4, y: H - 4});   // курсор геть із кадру — без підказки «Показати зроблені»
+      await sleep(k < 2 ? 1400 : 6000);
+    }
     await cmd('Page.stopScreencast'); delete on['Page.screencastFrame'];
     const list = frames.map((x, i) => `file '${x.f.replace(/\\/g, '/')}'\nduration ${((frames[i + 1]?.t ?? x.t + 0.04) - x.t).toFixed(3)}`).join('\n') + `\nfile '${frames.at(-1).f.replace(/\\/g, '/')}'\n`;
     fs.writeFileSync(path.join(dir, 'list.txt'), list);
