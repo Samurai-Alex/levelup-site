@@ -20,4 +20,34 @@
   <url><loc>https://levelup-tracker.com/privacy.html</loc></url>
   <url><loc>https://levelup-tracker.com/contact.html</loc></url>
   <url><loc>https://levelup-tracker.com/news.html</loc></url>
+  <url><loc>https://levelup-tracker.com/trekker-privychek.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/trekker-privychek.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/trekker-zvychok.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/habit-tracker.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uk/trekker-zvychok.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/trekker-privychek.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/trekker-zvychok.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/habit-tracker.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/en/habit-tracker.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/trekker-privychek.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/trekker-zvychok.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/habit-tracker.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uchet-rashodov.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/uchet-rashodov.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/oblik-vytrat.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/expense-tracker.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/uk/oblik-vytrat.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/uchet-rashodov.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/oblik-vytrat.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/expense-tracker.html"/>
+  </url>
+  <url><loc>https://levelup-tracker.com/en/expense-tracker.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levelup-tracker.com/uchet-rashodov.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://levelup-tracker.com/uk/oblik-vytrat.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/expense-tracker.html"/>
+  </url>
 </urlset>

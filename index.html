@@ -11,6 +11,7 @@
 <link rel="alternate" hreflang="en" href="https://levelup-tracker.com/en/">
 <link rel="alternate" hreflang="x-default" href="https://levelup-tracker.com/en/">
 <meta property="og:locale" content="ru_RU">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LEVEL UP","operatingSystem":"Windows 10, Windows 11","applicationCategory":"LifestyleApplication","description":"LEVEL UP — программа для Windows: привычки, бюджет, спорт и цели в одном месте. Данные хранятся только у вас. Открытая бета — бесплатно.","url":"https://levelup-tracker.com/","inLanguage":"ru","image":"https://levelup-tracker.com/img/og.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Это правда бесплатно?","acceptedAnswer":{"@type":"Answer","text":"Да, пока идёт бета. Позже программа станет платной — цену покажем здесь заранее, а для всех, кто скачал её в бете, будет скидка 50%."}},{"@type":"Question","name":"Нужен интернет?","acceptedAnswer":{"@type":"Answer","text":"Нет. Интернет нужен только для курсов валют, обновлений и ИИ-функций (по желанию)."}},{"@type":"Question","name":"Где хранятся мои данные?","acceptedAnswer":{"@type":"Answer","text":"Только на вашем компьютере. Аккаунта нет, разработчик ваших записей не видит. Отчёт об ошибке отправляется только с вашего согласия и без ваших записей."}},{"@type":"Question","name":"Есть версия для Mac или телефона?","acceptedAnswer":{"@type":"Answer","text":"Пока только Windows 10 и 11."}},{"@type":"Question","name":"Как сообщить об ошибке или идее?","acceptedAnswer":{"@type":"Answer","text":"Прямо в программе: Настройки → Общие → «Написать разработчику». Сообщение приходит сразу."}},{"@type":"Question","name":"Как обновлять программу?","acceptedAnswer":{"@type":"Answer","text":"Ничего делать не нужно: программа сама проверяет обновления и предлагает установить."}},{"@type":"Question","name":"Как включить ИИ и сколько это стоит?","acceptedAnswer":{"@type":"Answer","text":"Бесплатно. ИИ включается по желанию: в «Настройках» есть ссылка, где за пару минут можно взять бесплатный ключ Google Gemini или Groq — это как пароль для доступа к ИИ. Без него программа работает полностью, просто без фото чеков и выводов ИИ."}}]}]</script>
 <link rel="icon" href="/img/icon.png">
 <meta property="og:title" content="LEVEL UP — прокачивай себя как персонажа игры">
 <meta property="og:description" content="Открытая бета — бесплатно. Windows 10/11. Данные только на вашем компьютере.">
@@ -125,7 +126,7 @@ h2{font-size:clamp(24px,3.2vw,34px);line-height:1.25;font-weight:800;letter-spac
 @media (prefers-reduced-motion:reduce){.sw>img{transition:none}}
 .fin{text-align:center;border-top:1px solid var(--line)}
 .fin h2{font-size:clamp(16px,2.4vw,24px);line-height:1.6;max-width:760px;margin:0 auto 14px}.fin h2 b{color:var(--acc);font-weight:400}
-.fin .sub{margin:0 auto 26px}
+.fin .sub{margin:0 auto 18px;max-width:560px}.fin .fin-tr{margin:0 0 28px}
 /* встановлення */
 .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;counter-reset:s}
 .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;position:relative}
@@ -206,7 +207,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 @media (max-width:720px){.steps{grid-template-columns:1fr}}
 @media (max-width:600px){#more .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}#more .f{padding:14px}#more .f svg{width:22px;height:22px}#more .f h3{font-size:14px;margin:8px 0 4px}#more .f p{font-size:12.5px;line-height:1.5}
 .step{display:grid;grid-template-columns:34px 1fr;column-gap:14px;padding:16px}.step::before{grid-row:span 2;margin:0}.step h3{margin:6px 0 2px}
-.steps,.prices{grid-template-columns:1fr}.lvm .dots{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -20px;padding:0 20px}.lvm .dots button{flex:none}.bar .btn span{display:none}.hero{padding-top:44px}section{padding:52px 0}.logo span{display:none}}
+.steps,.prices{grid-template-columns:1fr}.lvm .dots{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -20px;padding:0 20px}.lvm .dots button{flex:none}.bar .btn span{display:none}.hero{padding-top:44px}section{padding:52px 0}.bar{gap:12px}.logo{gap:8px}.logo span{font-size:11px;white-space:nowrap}.rv{transform:translateY(6px);transition:opacity .45s ease,transform .45s ease}}
 </style>
 </head>
 <body>
@@ -271,8 +272,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 <section class="lvl wide" id="lvl4"><div class="wrap lvw">
   <div class="lvt">
     <div class="qc" style="--p:80%"><span class="qn"><b>LVL 4</b> · <span data-i="l4K">ИИ</span></span><span class="qx">XP 4/5</span><i></i></div>
-    <h2 data-i="l4H">Пиши как другу — программа разложит сама</h2><p class="sub" data-i="l4P">Одна фраза — и трата, тренировка, занятие и привычка уже на своих местах. Работает и без ключа ИИ.</p>
-    <ul class="lvb"><li data-i="l4a">Несколько дел в одной фразе</li><li data-i="l4b">Понимает «вчера» и разные валюты</li><li data-i="l4c">С ключом ИИ — фото чека и итоги месяца</li></ul>
+    <h2 data-i="l4H">Пиши как другу — программа разложит сама</h2><p class="sub" data-i="l4P">Одна фраза — и трата, тренировка, занятие и привычка уже на своих местах. Работает и без ИИ.</p>
+    <ul class="lvb"><li data-i="l4a">Несколько дел в одной фразе</li><li data-i="l4b">Понимает «вчера» и разные валюты</li><li data-i="l4c">С бесплатным ИИ — фото чека и итоги месяца</li></ul>
   </div>
   <div class="lvm"><img class="frame zoom" data-f="lvl4" width="1686" height="527" alt="" loading="lazy"></div>
 </div></section>
@@ -355,7 +356,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <h2 data-i="pH">Сейчас — бесплатно</h2><p class="sub" data-i="pSub">Пока идёт открытая бета, все функции бесплатны. Все, кто скачал программу в бете, получат полную версию со скидкой 50%, а всё записанное сохранится.</p>
   <div class="prices">
     <div class="price now"><span class="pill" data-i="pNow">Сейчас</span><div class="n" data-i="pFree">Бесплатно</div><p style="margin:0;color:var(--muted);font-size:13.5px" data-i="pFreeD">Все функции, без ограничений.</p>
-      <ul><li data-i="p1">Привычки, финансы, спорт, цели</li><li data-i="p2">ИИ-функции с вашим ключом</li><li data-i="p3">Автообновления</li><li data-i="p4">Автокопии данных</li></ul>
+      <ul><li data-i="p1">Привычки, финансы, спорт, цели</li><li data-i="p2">ИИ-функции — бесплатно, по желанию</li><li data-i="p3">Автообновления</li><li data-i="p4">Автокопии данных</li></ul>
       <a class="btn main dl" href="#"><span data-i="dl">Скачать для Windows</span></a></div>
     <div class="price soon" id="paid"><span class="pill" style="background:var(--card2);color:var(--muted)" data-i="pSoon">Позже</span><div class="n">LEVEL UP</div><p style="margin:0;color:var(--muted);font-size:13.5px" data-i="pPaidD">Полная версия после беты. Цену и условия объявим здесь.</p>
       <ul><li class="hl" data-i="q3">Скидка 50% для всех, кто скачал бету</li><li data-i="q1">Ваши данные из беты переходят в полную версию</li><li data-i="q2">Покупка — прямо на этом сайте</li></ul></div>
@@ -388,18 +389,24 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <details><summary data-i="a4">Есть версия для Mac или телефона?</summary><p data-i="a4d">Пока только Windows 10 и 11.</p></details>
   <details><summary data-i="a5">Как сообщить об ошибке или идее?</summary><p data-i="a5d">Прямо в программе: Настройки → Общие → «Написать разработчику». Сообщение приходит сразу.</p></details>
   <details><summary data-i="a6">Как обновлять программу?</summary><p data-i="a6d">Ничего делать не нужно: программа сама проверяет обновления и предлагает установить.</p></details>
+  <details><summary data-i="a7">Как включить ИИ и сколько это стоит?</summary><p data-i="a7d">Бесплатно. ИИ включается по желанию: в «Настройках» есть ссылка, где за пару минут можно взять бесплатный ключ Google Gemini или Groq — это как пароль для доступа к ИИ. Без него программа работает полностью, просто без фото чеков и выводов ИИ.</p></details>
 </div></section>
 
 <section class="fin"><div class="wrap">
   <h2 class="px" data-i="cH" data-html>Твой <b>LVL 1</b> начинается сегодня</h2>
-  <p class="sub" data-i="cP">Бесплатно, пока идёт бета. Установка за минуту.</p>
+  <p class="sub" data-i="cP">Бесплатно, пока идёт бета. Скачайте сейчас — и полная версия потом будет со скидкой 50%.</p>
+  <ul class="trust fin-tr">
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6M3 3l18 18"/></svg><span data-i="tr1">Без аккаунта</span></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a15 15 0 0 1 20 0M5.5 12a10 10 0 0 1 13 0M9 15.5a5 5 0 0 1 6 0M12 19h.01M3 3l18 18"/></svg><span data-i="tr2">Работает офлайн</span></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-i="tr3">Данные только у вас</span></li>
+  </ul>
   <a class="btn main dl" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.4 4.5v7H3zM11.4 4.4 21 3v8.5h-9.6zM3 12.5h7.4v7L3 18.5zM11.4 12.5H21V21l-9.6-1.4z"/></svg><span data-i="dl">Скачать для Windows</span></a>
   <div class="meta" data-i="req">Windows 10 / 11 · бесплатно</div>
 </div></section>
 </main>
 
 <footer><div class="wrap">
-  <div class="flinks"><span>© 2026 LEVEL UP</span><a href="/about.html" data-i="fAbout">О проекте</a><a href="/terms.html" data-i="fTerms">Условия использования</a><a href="/privacy.html" data-i="priv">Конфиденциальность</a><a href="/contact.html" data-i="fContact">Контакты</a></div>
+  <div class="flinks"><span>© 2026 LEVEL UP</span><a href="/about.html" data-i="fAbout">О проекте</a><a href="/terms.html" data-i="fTerms">Условия использования</a><a href="/privacy.html" data-i="priv">Конфиденциальность</a><a href="/contact.html" data-i="fContact">Контакты</a><a href="/trekker-privychek.html" data-i="fHab">Трекер привычек для Windows</a><a href="/uchet-rashodov.html" data-i="fExp">Учёт расходов на ПК</a></div>
   <div class="quote">DISCIPLINE = <b>FREEDOM</b></div>
 </div></footer>
 
@@ -423,21 +430,21 @@ uk: {nFeat:'Можливості', nInst:'Як встановити', nPrice:'Ц
  l2P:'Сон, вода, кава, настрій і вітаміни — у кілька кліків. Програма сама помічає звʼязки: наприклад, скільки сну забирає зайва чашка кави.', l2a:'Готові звички або свої', l2b:'Нагадування в потрібний час', l2c:'Тренування, кроки й кілометри — у вкладці «Спорт»',
  l3K:'ГРОШІ', l3H:'Гроші під контролем', l3P:'Доходи й витрати за категоріями, ліміти на місяць і курси валют. «Капітал» показує, скільки в тебе всього грошей і як вони ростуть, а «Активи» — криптопортфель з актуальними цінами.', l3a:'Ліміти з підказкою, скільки можна витратити за день',
  l3b:'Регулярні платежі й рахунки', l3c:'Капітал по місяцях і криптоактиви', l4K:'ШІ', l4H:'Пиши як другові — програма розкладе сама',
- l4P:'Одна фраза — і витрата, тренування, заняття та звичка вже на своїх місцях. Працює й без ключа ШІ.', l4a:'Кілька справ в одній фразі', l4b:'Розуміє «вчора» і різні валюти', l4c:'З ключем ШІ — фото чека й підсумки місяця',
+ l4P:'Одна фраза — і витрата, тренування, заняття та звичка вже на своїх місцях. Працює й без ШІ.', l4a:'Кілька справ в одній фразі', l4b:'Розуміє «вчора» і різні валюти', l4c:'З безкоштовним ШІ — фото чека й підсумки місяця',
  l5K:'ПІД СЕБЕ', l5H:'Програма під тебе', l5P:'Теми, живі фони, форма карток і кнопок, шрифти й розмір тексту. Зайві вкладки можна сховати, віджети головної — переставити.', l5a:'Нові теми відкриваються з рівнем',
  l5b:'Скляні картки й живі фони', l5c:'Власні кольори теми', swH:'Здоров’я', swS:'Спорт', swB:'Бюджет', swC:'Капітал', swA:'Активи', thNight:'Зоряна ніч', thNebula:'Зоряний аметист',
  thChamp:'Шампань', thGold:'Золото', mK:'А ще',
  mH:'І кілька речей, які стануть у пригоді', m1:'Щоденник', m1d:'Справи на день і головна ціль тижня.', m2:'Тільки потрібне',
  m2d:'Не потрібні англійська чи трейдинг? Сховайте зайві вкладки — залишиться тільки ваше.', m3:'Статистика', m3d:'Теплові карти, підсумки тижня, місяця й року.', m4:'Дані тільки у вас',
  m4d:'Без облікового запису й реклами. Автокопії — у вашу папку, наприклад OneDrive.', m5:'Працює офлайн', m5d:'Інтернет потрібен лише для курсів валют, оновлень і ШІ.', m6:'Головна під себе',
- m6d:'Таймер фокусу, курси, цілі, ліміти, настрій — виберіть віджети, перетягніть і задайте розмір.', mMore:'Ще можливості', m7:'Звуки як у грі', m7d:'8-бітний звук на галочку, досвід і новий рівень. Можна м’якше або вимкнути.', m8:'Знайти все за секунду', m8d:'Ctrl+K — і будь-яка вкладка, звичка чи налаштування під рукою.', m9:'Значки й нагороди', m9d:'Значки за успіхи, а за рівні — нові теми, стилі карток та ефекти.', m10:'ШІ налаштує за вас', m10d:'Напишіть «зроби темну тему й текст більший» — ШІ сам змінить налаштування. А ще відповість на питання про ваші дані й підбере звички під ціль.', m11:'Екскурсія на старті', m11d:'Під час першого запуску меню збирається на очах — біля кожної вкладки підказка в один рядок.', m12:'Лист розробнику', m12d:'Проблема чи ідея — просто з програми, в одному вікні.', m13:'Можна голосом', m13d:'Win + H — і диктування Windows саме напише запис у рядок швидкого вводу.', m14:'Підсумок тижня', m14d:'Щонеділі — картка: скільки звичок виконано, найкраща й відстаюча, витрати.', m15:'Три мови', m15d:'Українська, російська й англійська. Валюта — за вашим регіоном.', cH:'Твій <b>LVL 1</b> починається сьогодні', cP:'Безкоштовно, поки триває бета. Встановлення за хвилину.',
+ m6d:'Таймер фокусу, курси, цілі, ліміти, настрій — виберіть віджети, перетягніть і задайте розмір.', mMore:'Ще можливості', m7:'Звуки як у грі', m7d:'8-бітний звук на галочку, досвід і новий рівень. Можна м’якше або вимкнути.', m8:'Знайти все за секунду', m8d:'Ctrl+K — і будь-яка вкладка, звичка чи налаштування під рукою.', m9:'Значки й нагороди', m9d:'Значки за успіхи, а за рівні — нові теми, стилі карток та ефекти.', m10:'ШІ налаштує за вас', m10d:'Напишіть «зроби темну тему й текст більший» — ШІ сам змінить налаштування. А ще відповість на питання про ваші дані й підбере звички під ціль.', m11:'Екскурсія на старті', m11d:'Під час першого запуску меню збирається на очах — біля кожної вкладки підказка в один рядок.', m12:'Лист розробнику', m12d:'Проблема чи ідея — просто з програми, в одному вікні.', m13:'Можна голосом', m13d:'Win + H — і диктування Windows саме напише запис у рядок швидкого вводу.', m14:'Підсумок тижня', m14d:'Щонеділі — картка: скільки звичок виконано, найкраща й відстаюча, витрати.', m15:'Три мови', m15d:'Українська, російська й англійська. Валюта — за вашим регіоном.', cH:'Твій <b>LVL 1</b> починається сьогодні', cP:'Безкоштовно, поки триває бета. Завантажте зараз — і повна версія потім буде зі знижкою 50%.',
  iH:'Встановлення за хвилину', iSub:'Програма сама оновлюється — завантажити потрібно один раз.',
  s1:'Завантажте', s1d:'Натисніть «Завантажити для Windows» — це файл Level-Up-setup.exe.', s2:'Запустіть', s2d:'Відкрийте файл. Якщо Windows покаже синє вікно — дивіться нижче.', s3:'Готово', s3d:'Оберіть звички зі списку або додайте свої — і почніть свій перший день.',
  ssH:'Windows показала синє вікно? Як запустити', ssP:'Так буває з новими програмами, у яких ще мало завантажень. Програма безпечна — просто Windows її ще не знає.',
  ss1:'Натисніть <b>«Докладніше»</b>', ss2:'Потім <b>«Усе одно запустити»</b>',
  wT:'Windows захистила ваш ПК', wP:'Фільтр SmartScreen у Microsoft Defender заблокував запуск невідомої програми.', wMore:'Докладніше', wRun:'Усе одно запустити', wNo:'Не запускати',
  pH:'Зараз — безкоштовно', pSub:'Поки триває відкрита бета, усі функції безкоштовні. Усі, хто завантажив програму в беті, отримають повну версію зі знижкою 50%, а все записане збережеться.',
- pNow:'Зараз', pFree:'Безкоштовно', pFreeD:'Усі функції, без обмежень.', p1:'Звички, фінанси, спорт, цілі', p2:'ШІ-функції з вашим ключем', p3:'Автооновлення', p4:'Автокопії даних',
+ pNow:'Зараз', pFree:'Безкоштовно', pFreeD:'Усі функції, без обмежень.', p1:'Звички, фінанси, спорт, цілі', p2:'ШІ-функції — безкоштовно, за бажанням', p3:'Автооновлення', p4:'Автокопії даних',
  pSoon:'Згодом', pPaidD:'Повна версія після бети. Ціну й умови оголосимо тут.', q3:'Знижка 50% для всіх, хто завантажив бету', q1:'Ваші дані з бети переходять у повну версію', q2:'Покупка — прямо на цьому сайті',
  qH:'Часті питання',
  a1:'Це справді безкоштовно?', a1d:'Так, поки триває бета. Пізніше програма стане платною — ціну покажемо тут заздалегідь, а для всіх, хто завантажив її в беті, буде знижка 50%.',
@@ -445,8 +452,8 @@ uk: {nFeat:'Можливості', nInst:'Як встановити', nPrice:'Ц
  a3:'Де зберігаються мої дані?', a3d:'Тільки на вашому комп’ютері. Облікового запису немає, розробник ваших записів не бачить. Звіт про помилку надсилається лише з вашої згоди і без ваших записів.',
  a4:'Є версія для Mac чи телефона?', a4d:'Поки тільки Windows 10 і 11.',
  a5:'Як повідомити про помилку чи ідею?', a5d:'Прямо в програмі: Налаштування → Загальні → «Написати розробнику». Повідомлення приходить одразу.',
- a6:'Як оновлювати програму?', a6d:'Нічого робити не треба: програма сама перевіряє оновлення й пропонує встановити.',
- priv:'Конфіденційність', fAbout:'Про проєкт', fTerms:'Умови використання', fContact:'Контакти',
+ a6:'Як оновлювати програму?', a6d:'Нічого робити не треба: програма сама перевіряє оновлення й пропонує встановити.', a7:'Як увімкнути ШІ і скільки це коштує?', a7d:'Безкоштовно. ШІ вмикається за бажанням: у «Налаштуваннях» є посилання, де за пару хвилин можна взяти безкоштовний ключ Google Gemini або Groq — це як пароль для доступу до ШІ. Без нього програма працює повністю, просто без фото чеків і висновків ШІ.',
+ priv:'Конфіденційність', fAbout:'Про проєкт', fTerms:'Умови використання', fContact:'Контакти', fHab:'Трекер звичок для Windows', fExp:'Облік витрат на ПК',
  tr1:'Без облікового запису', tr2:'Працює офлайн', tr3:'Дані тільки у вас', tr4:'Автооновлення',
  nNews:'Що нового',
  abK:'Хто робить', abH:'Привіт, я Алекс', abName:'Алекс', abLvl:'Lvl 99 · Розробник', abMore:'Читати далі', abTg:'Написати в Telegram',
@@ -464,21 +471,21 @@ ru: {nFeat:'Возможности', nInst:'Как установить', nPrice
  l2P:'Сон, вода, кофе, настроение и витамины — в пару кликов. Программа сама замечает связи: например, сколько сна отнимает лишняя чашка кофе.', l2a:'Готовые привычки или свои', l2b:'Напоминания в нужное время', l2c:'Тренировки, шаги и километры — во вкладке «Спорт»',
  l3K:'ДЕНЬГИ', l3H:'Деньги под контролем', l3P:'Доходы и расходы по категориям, лимиты на месяц и курсы валют. «Капитал» показывает, сколько у тебя всего денег и как они растут, а «Активы» — криптопортфель с актуальными ценами.', l3a:'Лимиты с подсказкой, сколько можно тратить в день',
  l3b:'Регулярные платежи и счета', l3c:'Капитал по месяцам и криптоактивы', l4K:'ИИ', l4H:'Пиши как другу — программа разложит сама',
- l4P:'Одна фраза — и трата, тренировка, занятие и привычка уже на своих местах. Работает и без ключа ИИ.', l4a:'Несколько дел в одной фразе', l4b:'Понимает «вчера» и разные валюты', l4c:'С ключом ИИ — фото чека и итоги месяца',
+ l4P:'Одна фраза — и трата, тренировка, занятие и привычка уже на своих местах. Работает и без ИИ.', l4a:'Несколько дел в одной фразе', l4b:'Понимает «вчера» и разные валюты', l4c:'С бесплатным ИИ — фото чека и итоги месяца',
  l5K:'ПОД СЕБЯ', l5H:'Программа под тебя', l5P:'Темы, живые фоны, форма карточек и кнопок, шрифты и размер текста. Лишние вкладки можно спрятать, виджеты главной — переставить.', l5a:'Новые темы открываются с уровнем',
  l5b:'Стеклянные карточки и живые фоны', l5c:'Свои цвета темы', swH:'Здоровье', swS:'Спорт', swB:'Бюджет', swC:'Капитал', swA:'Активы', thNight:'Звёздная ночь', thNebula:'Звёздный аметист',
  thChamp:'Шампань', thGold:'Золото', mK:'А ещё',
  mH:'И несколько вещей, которые пригодятся', m1:'Ежедневник', m1d:'Дела на день и главная цель недели.', m2:'Только нужное',
  m2d:'Не нужны английский или трейдинг? Спрячьте лишние вкладки — останется только ваше.', m3:'Статистика', m3d:'Тепловые карты, итоги недели, месяца и года.', m4:'Данные только у вас',
  m4d:'Без аккаунта и рекламы. Автокопии — в вашу папку, например OneDrive.', m5:'Работает офлайн', m5d:'Интернет нужен только для курсов валют, обновлений и ИИ.', m6:'Главная под себя',
- m6d:'Таймер фокуса, курсы, цели, лимиты, настроение — выберите виджеты, перетащите и задайте размер.', mMore:'Ещё возможности', m7:'Звуки как в игре', m7d:'8-битный звук на галочку, опыт и новый уровень. Можно мягче или выключить.', m8:'Найти всё за секунду', m8d:'Ctrl+K — и любая вкладка, привычка или настройка под рукой.', m9:'Значки и награды', m9d:'Значки за успехи, а за уровни — новые темы, стили карточек и эффекты.', m10:'ИИ настроит за вас', m10d:'Напишите «сделай тёмную тему и текст крупнее» — ИИ сам поменяет настройки. А ещё ответит на вопросы о ваших данных и подберёт привычки под цель.', m11:'Экскурсия на старте', m11d:'При первом запуске меню собирается на глазах — у каждой вкладки подсказка в одну строку.', m12:'Письмо разработчику', m12d:'Проблема или идея — прямо из программы, в одном окне.', m13:'Можно голосом', m13d:'Win + H — и диктовка Windows сама напишет запись в строку быстрого ввода.', m14:'Итог недели', m14d:'Каждое воскресенье — карточка: сколько привычек выполнено, лучшая и отстающая, траты.', m15:'Три языка', m15d:'Украинский, русский и английский. Валюта — по вашему региону.', cH:'Твой <b>LVL 1</b> начинается сегодня', cP:'Бесплатно, пока идёт бета. Установка за минуту.',
+ m6d:'Таймер фокуса, курсы, цели, лимиты, настроение — выберите виджеты, перетащите и задайте размер.', mMore:'Ещё возможности', m7:'Звуки как в игре', m7d:'8-битный звук на галочку, опыт и новый уровень. Можно мягче или выключить.', m8:'Найти всё за секунду', m8d:'Ctrl+K — и любая вкладка, привычка или настройка под рукой.', m9:'Значки и награды', m9d:'Значки за успехи, а за уровни — новые темы, стили карточек и эффекты.', m10:'ИИ настроит за вас', m10d:'Напишите «сделай тёмную тему и текст крупнее» — ИИ сам поменяет настройки. А ещё ответит на вопросы о ваших данных и подберёт привычки под цель.', m11:'Экскурсия на старте', m11d:'При первом запуске меню собирается на глазах — у каждой вкладки подсказка в одну строку.', m12:'Письмо разработчику', m12d:'Проблема или идея — прямо из программы, в одном окне.', m13:'Можно голосом', m13d:'Win + H — и диктовка Windows сама напишет запись в строку быстрого ввода.', m14:'Итог недели', m14d:'Каждое воскресенье — карточка: сколько привычек выполнено, лучшая и отстающая, траты.', m15:'Три языка', m15d:'Украинский, русский и английский. Валюта — по вашему региону.', cH:'Твой <b>LVL 1</b> начинается сегодня', cP:'Бесплатно, пока идёт бета. Скачайте сейчас — и полная версия потом будет со скидкой 50%.',
  iH:'Установка за минуту', iSub:'Программа обновляется сама — скачать нужно один раз.',
  s1:'Скачайте', s1d:'Нажмите «Скачать для Windows» — это файл Level-Up-setup.exe.', s2:'Запустите', s2d:'Откройте файл. Если Windows покажет синее окно — смотрите ниже.', s3:'Готово', s3d:'Выберите привычки из списка или добавьте свои — и начните свой первый день.',
  ssH:'Windows показала синее окно? Как запустить', ssP:'Так бывает с новыми программами, у которых ещё мало скачиваний. Программа безопасна — просто Windows её пока не знает.',
  ss1:'Нажмите <b>«Подробнее»</b>', ss2:'Затем <b>«Выполнить в любом случае»</b>',
  wT:'Система Windows защитила ваш компьютер', wP:'Фильтр SmartScreen в Microsoft Defender предотвратил запуск неопознанного приложения.', wMore:'Подробнее', wRun:'Выполнить в любом случае', wNo:'Не выполнять',
  pH:'Сейчас — бесплатно', pSub:'Пока идёт открытая бета, все функции бесплатны. Все, кто скачал программу в бете, получат полную версию со скидкой 50%, а всё записанное сохранится.',
- pNow:'Сейчас', pFree:'Бесплатно', pFreeD:'Все функции, без ограничений.', p1:'Привычки, финансы, спорт, цели', p2:'ИИ-функции с вашим ключом', p3:'Автообновления', p4:'Автокопии данных',
+ pNow:'Сейчас', pFree:'Бесплатно', pFreeD:'Все функции, без ограничений.', p1:'Привычки, финансы, спорт, цели', p2:'ИИ-функции — бесплатно, по желанию', p3:'Автообновления', p4:'Автокопии данных',
  pSoon:'Позже', pPaidD:'Полная версия после беты. Цену и условия объявим здесь.', q3:'Скидка 50% для всех, кто скачал бету', q1:'Ваши данные из беты переходят в полную версию', q2:'Покупка — прямо на этом сайте',
  qH:'Частые вопросы',
  a1:'Это правда бесплатно?', a1d:'Да, пока идёт бета. Позже программа станет платной — цену покажем здесь заранее, а для всех, кто скачал её в бете, будет скидка 50%.',
@@ -486,8 +493,8 @@ ru: {nFeat:'Возможности', nInst:'Как установить', nPrice
  a3:'Где хранятся мои данные?', a3d:'Только на вашем компьютере. Аккаунта нет, разработчик ваших записей не видит. Отчёт об ошибке отправляется только с вашего согласия и без ваших записей.',
  a4:'Есть версия для Mac или телефона?', a4d:'Пока только Windows 10 и 11.',
  a5:'Как сообщить об ошибке или идее?', a5d:'Прямо в программе: Настройки → Общие → «Написать разработчику». Сообщение приходит сразу.',
- a6:'Как обновлять программу?', a6d:'Ничего делать не нужно: программа сама проверяет обновления и предлагает установить.',
- priv:'Конфиденциальность', fAbout:'О проекте', fTerms:'Условия использования', fContact:'Контакты',
+ a6:'Как обновлять программу?', a6d:'Ничего делать не нужно: программа сама проверяет обновления и предлагает установить.', a7:'Как включить ИИ и сколько это стоит?', a7d:'Бесплатно. ИИ включается по желанию: в «Настройках» есть ссылка, где за пару минут можно взять бесплатный ключ Google Gemini или Groq — это как пароль для доступа к ИИ. Без него программа работает полностью, просто без фото чеков и выводов ИИ.',
+ priv:'Конфиденциальность', fAbout:'О проекте', fTerms:'Условия использования', fContact:'Контакты', fHab:'Трекер привычек для Windows', fExp:'Учёт расходов на ПК',
  tr1:'Без аккаунта', tr2:'Работает офлайн', tr3:'Данные только у вас', tr4:'Автообновление',
  nNews:'Что нового',
  abK:'Кто делает', abH:'Привет, я Алекс', abName:'Алекс', abLvl:'Lvl 99 · Разработчик', abMore:'Читать дальше', abTg:'Написать в Telegram',
@@ -505,21 +512,21 @@ en: {nFeat:'Features', nInst:'Install', nPrice:'Pricing', nFaq:'FAQ', dlShort:'D
  l2P:'Sleep, water, coffee, mood and vitamins in a couple of clicks. The app spots patterns itself — like how much sleep an extra cup of coffee costs you.', l2a:'Ready-made habits or your own', l2b:'Reminders at the right time', l2c:'Workouts, steps and kilometres in the Sport tab',
  l3K:'MONEY', l3H:'Money under control', l3P:'Income and spending by category, monthly limits and exchange rates. Capital shows how much you have in total and how it grows, and Assets tracks your crypto portfolio at current prices.', l3a:'Limits that tell you how much you can spend per day',
  l3b:'Recurring payments and accounts', l3c:'Capital by month and crypto assets', l4K:'AI', l4H:'Type it like to a friend — the app sorts it out',
- l4P:'One phrase — and the expense, workout, lesson and habit are all in place. Works even without an AI key.', l4a:'Several things in one phrase', l4b:'Understands “yesterday” and different currencies', l4c:'With an AI key — receipt photos and monthly reviews',
+ l4P:'One phrase — and the expense, workout, lesson and habit are all in place. Works without AI too.', l4a:'Several things in one phrase', l4b:'Understands “yesterday” and different currencies', l4c:'With free AI — receipt photos and monthly reviews',
  l5K:'YOUR WAY', l5H:'Make it yours', l5P:'Themes, live backgrounds, card and button shapes, fonts and text size. Hide the tabs you don’t need, rearrange the home widgets.', l5a:'New themes unlock as you level up',
  l5b:'Glass cards and live backgrounds', l5c:'Your own theme colours', swH:'Health', swS:'Sport', swB:'Budget', swC:'Capital', swA:'Assets', thNight:'Starry night', thNebula:'Starry amethyst',
  thChamp:'Champagne', thGold:'Gold', mK:'And more',
  mH:'A few more things you’ll find handy', m1:'Planner', m1d:'Today’s tasks and the main goal of the week.', m2:'Only what you need',
  m2d:'No use for English or trading? Hide the tabs you don’t need and keep only yours.', m3:'Statistics', m3d:'Heat maps, week, month and year reviews.', m4:'Your data stays yours',
  m4d:'No account, no ads. Auto-backups to your folder, such as OneDrive.', m5:'Works offline', m5d:'The internet is only used for exchange rates, updates and AI.', m6:'Your own home screen',
- m6d:'Focus timer, rates, goals, limits, mood — pick your widgets, drag them around and resize.', mMore:'More features', m7:'Game-like sounds', m7d:'An 8-bit sound for every tick, XP and level-up. Pick a softer style or turn it off.', m8:'Find anything in a second', m8d:'Ctrl+K brings up any tab, habit or setting.', m9:'Badges and rewards', m9d:'Badges for your wins; levels unlock new themes, card styles and effects.', m10:'AI sets it up for you', m10d:'Type “dark theme, bigger text” and the AI changes the settings itself. It also answers questions about your data and suggests habits for your goal.', m11:'A quick tour', m11d:'On first launch the menu builds up before your eyes, with a one-line tip for each tab.', m12:'Message the developer', m12d:'Report a problem or share an idea right from the app.', m13:'Speak instead of typing', m13d:'Press Win + H and Windows dictation types the entry into the quick input.', m14:'Week in review', m14d:'Every Sunday: habits done, your best and weakest one, and spending.', m15:'Three languages', m15d:'Ukrainian, Russian and English. Currency follows your region.', cH:'Your <b>LVL 1</b> starts today', cP:'Free while the beta lasts. Installed in a minute.',
+ m6d:'Focus timer, rates, goals, limits, mood — pick your widgets, drag them around and resize.', mMore:'More features', m7:'Game-like sounds', m7d:'An 8-bit sound for every tick, XP and level-up. Pick a softer style or turn it off.', m8:'Find anything in a second', m8d:'Ctrl+K brings up any tab, habit or setting.', m9:'Badges and rewards', m9d:'Badges for your wins; levels unlock new themes, card styles and effects.', m10:'AI sets it up for you', m10d:'Type “dark theme, bigger text” and the AI changes the settings itself. It also answers questions about your data and suggests habits for your goal.', m11:'A quick tour', m11d:'On first launch the menu builds up before your eyes, with a one-line tip for each tab.', m12:'Message the developer', m12d:'Report a problem or share an idea right from the app.', m13:'Speak instead of typing', m13d:'Press Win + H and Windows dictation types the entry into the quick input.', m14:'Week in review', m14d:'Every Sunday: habits done, your best and weakest one, and spending.', m15:'Three languages', m15d:'Ukrainian, Russian and English. Currency follows your region.', cH:'Your <b>LVL 1</b> starts today', cP:'Free while the beta lasts. Download now and get the full version at 50% off later.',
  iH:'Installed in a minute', iSub:'The app updates itself — you only download it once.',
  s1:'Download', s1d:'Click “Download for Windows” — the file is Level-Up-setup.exe.', s2:'Run it', s2d:'Open the file. If Windows shows a blue window, see below.', s3:'Done', s3d:'Pick habits from the list or add your own — and start your first day.',
  ssH:'Windows showed a blue window? How to run the app', ssP:'It shows up for new apps that don’t have many downloads yet. The app is safe — Windows just doesn’t know it yet.',
  ss1:'Click <b>“More info”</b>', ss2:'Then <b>“Run anyway”</b>',
  wT:'Windows protected your PC', wP:'Microsoft Defender SmartScreen prevented an unrecognized app from starting.', wMore:'More info', wRun:'Run anyway', wNo:'Don’t run',
  pH:'Free for now', pSub:'During the open beta every feature is free. Everyone who downloads the app during the beta gets the full version at 50% off, and everything you record is kept.',
- pNow:'Now', pFree:'Free', pFreeD:'All features, no limits.', p1:'Habits, finance, sport, goals', p2:'AI features with your key', p3:'Automatic updates', p4:'Automatic backups',
+ pNow:'Now', pFree:'Free', pFreeD:'All features, no limits.', p1:'Habits, finance, sport, goals', p2:'AI features — free and optional', p3:'Automatic updates', p4:'Automatic backups',
  pSoon:'Later', pPaidD:'The full version after the beta. Price and terms will be announced here.', q3:'50% off for everyone who downloaded the beta', q1:'Your beta data moves to the full version', q2:'Buy right on this site',
  qH:'Questions',
  a1:'Is it really free?', a1d:'Yes, during the beta. Later the app becomes paid — we’ll show the price here in advance, and everyone who downloaded it during the beta gets 50% off.',
@@ -527,8 +534,8 @@ en: {nFeat:'Features', nInst:'Install', nPrice:'Pricing', nFaq:'FAQ', dlShort:'D
  a3:'Where is my data stored?', a3d:'Only on your computer. There’s no account, and the developer never sees your records. Error reports are sent only if you agree, and never include your records.',
  a4:'Is there a Mac or phone version?', a4d:'Windows 10 and 11 only, for now.',
  a5:'How do I report a bug or idea?', a5d:'Right in the app: Settings → General → “Write to the developer”. It arrives instantly.',
- a6:'How do I update?', a6d:'You don’t need to: the app checks for updates itself and offers to install them.',
- priv:'Privacy', fAbout:'About', fTerms:'Terms of use', fContact:'Contacts',
+ a6:'How do I update?', a6d:'You don’t need to: the app checks for updates itself and offers to install them.', a7:'How do I turn on AI, and what does it cost?', a7d:'Nothing. AI is optional: Settings has a link where you can get a free Google Gemini or Groq key in a couple of minutes — think of it as a password for the AI. Without it the app works fully, just without receipt photos and AI insights.',
+ priv:'Privacy', fAbout:'About', fTerms:'Terms of use', fContact:'Contacts', fHab:'Habit tracker for Windows', fExp:'Expense tracker for PC',
  tr1:'No account', tr2:'Works offline', tr3:'Your data stays yours', tr4:'Auto-updates',
  nNews:'What’s new',
  abK:'Who makes it', abH:'Hi, I’m Alex', abName:'Alex', abLvl:'Lvl 99 · Developer', abMore:'Read more', abTg:'Message on Telegram',
