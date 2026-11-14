@@ -6,7 +6,7 @@ import path from 'node:path';
 
 const SITE = path.resolve(import.meta.dirname, '..'), URL0 = 'https://levelup-tracker.com';
 const PAGES = {ru: '/', uk: '/uk/', en: '/en/'}, LOCALE = {ru: 'ru_RU', uk: 'uk_UA', en: 'en_US'};
-const DOCS = ['about.html', 'terms.html', 'privacy.html', 'contact.html'];
+const DOCS = ['about.html', 'terms.html', 'privacy.html', 'contact.html', 'news.html'];
 
 const src = fs.readFileSync(path.join(SITE, 'index.html'), 'utf8');
 const lit = src.match(/\nconst L = (\{[\s\S]*?\}\});\n/);

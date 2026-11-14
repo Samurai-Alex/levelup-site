@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Что нового — LEVEL UP</title>
+<meta name="description" content="Что нового в LEVEL UP: последние обновления программы. Обновления приходят сами.">
+<link rel="canonical" href="https://levelup-tracker.com/news.html">
+<link rel="icon" href="img/icon.png">
+<link rel="stylesheet" href="docs.css">
+</head>
+<body>
+<main class="wrap">
+<article data-l="ru"><h1>Что нового</h1><p class="upd">Последние обновления — они приходят сами, ничего скачивать не нужно.</p><div class="nw"></div><p><a href="./">Скачать LEVEL UP</a></p></article>
+<article data-l="uk"><h1>Що нового</h1><p class="upd">Останні оновлення — вони приходять самі, нічого завантажувати не треба.</p><div class="nw"></div><p><a href="uk/">Завантажити LEVEL UP</a></p></article>
+<article data-l="en"><h1>What’s new</h1><p class="upd">The latest updates — they arrive by themselves, nothing to download.</p><div class="nw"></div><p><a href="en/">Download LEVEL UP</a></p></article>
+</main>
+<script src="changes.js"></script>
+<script>
+// список змін — з changes.js (tools/changes.mjs), кожною мовою у своїй статті
+document.querySelectorAll('article[data-l]').forEach(a => { const l = a.dataset.l;
+  a.querySelector('.nw').innerHTML = (window.CHANGES || []).map(c => `<h2>v${c.v}</h2><ul>${(c[l] || c.en).map(x => `<li>${x.replace(/[<>&]/g, s => ({'<': '&lt;', '>': '&gt;', '&': '&amp;'}[s]))}</li>`).join('')}</ul>`).join(''); });
+</script>
+<script src="docs.js"></script>
+</body>
+</html>
