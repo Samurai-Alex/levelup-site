@@ -11,8 +11,10 @@ const DIR = import.meta.dirname, CFG = path.join(os.homedir(), '.tauri', 'feedba
 const cfg = JSON.parse(fs.readFileSync(CFG, 'utf8'));
 if (!cfg.token || !cfg.chat) throw new Error('feedback.json: немає token або chat');
 if (!cfg.reportKey) { cfg.reportKey = crypto.randomBytes(16).toString('hex'); fs.writeFileSync(CFG, JSON.stringify(cfg, null, 2)); }
+// wrangler уже встановлений у levelup-bot — npx щоразу тягне його з мережі й ламається на кеші npm
+const BOTW = path.resolve(DIR, '../../../levelup-bot/node_modules/.bin/wrangler.cmd'), W = fs.existsSync(BOTW) ? `"${BOTW}"` : 'npx wrangler';
 const run = (args, input) => {
-  const r = spawnSync('npx', ['wrangler', ...args], {cwd: DIR, input, encoding: 'utf8', shell: true});
+  const r = spawnSync(W, args, {cwd: DIR, input, encoding: 'utf8', shell: true});
   if (r.status !== 0) throw new Error(`wrangler ${args[0]}: ${(r.stderr || r.stdout || '').slice(-600)}`);
   return r.stdout + r.stderr;
 };
