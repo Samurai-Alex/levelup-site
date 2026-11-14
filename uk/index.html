@@ -21,7 +21,7 @@
 <meta property="og:type" content="website">
 <script>(() => { const P = {ru: '/', uk: '/uk/', en: '/en/'}, here = document.documentElement.lang; let l; try { l = localStorage.getItem('lang'); } catch (e) { /* приватне вікно */ }
   if (!P[l]) { if (here !== 'ru' || /bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent)) return; const n = (navigator.language || 'en').slice(0, 2); l = n === 'uk' ? 'uk' : n === 'ru' || n === 'be' ? 'ru' : 'en'; }
-  if (l !== here) location.replace(P[l] + location.hash); })();</script>
+  if (l !== here) location.replace(P[l] + location.search + location.hash); })();</script>
 <style>
 @font-face{font-family:'Press Start 2P';font-display:swap;src:url(/fonts/press-start-2p-cyrillic-400-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 @font-face{font-family:'Press Start 2P';font-display:swap;src:url(/fonts/press-start-2p-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
@@ -475,21 +475,28 @@ thv.ontimeupdate = () => { const i = Math.min(thBtns.length - 1, Math.floor(thv.
 // вибір у перемикачі запам'ятовується — наступного разу «/» одразу відкриє цю мову
 document.querySelectorAll('.lang a').forEach(a => { a.classList.toggle('on', a.dataset.l === lang); a.onclick = e => { e.preventDefault(); try { localStorage.setItem('lang', a.dataset.l); } catch (x) { /* */ } location.href = a.getAttribute('href') + location.hash; }; });
 langImgs();
-// кнопка «Завантажити» — лічильник знає, з якої натиснули: шапка, перший екран, ціни, фінальний заклик
-document.querySelectorAll('.dl').forEach(a => a.href = CNT + '/dl?from=' + (a.closest('.bar') ? 'head' : a.closest('.fin') ? 'fin' : a.closest('#pricing') ? 'price' : 'hero'));
-// воронка (tools/counter): перегляд, пристрій, звідки прийшли, до яких розділів догорнули — без cookies, пачкою при виході зі сторінки
-const ev = new Set(), evSent = new Set(), evOn = location.hostname === 'levelup-tracker.com';
-const evFlush = () => { const k = [...ev].filter(x => !evSent.has(x)); if (!k.length || !evOn) return; k.forEach(x => evSent.add(x)); navigator.sendBeacon(CNT + '/e?k=' + k.join(',')); };
-{ ev.add('view_' + lang);
-  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) ev.add('mob');
-  if (/Windows/i.test(navigator.userAgent)) ev.add('win');
-  // сайт-джерело одним словом: www.google.com.ua → google, t.me → tme
-  try { const h = new URL(document.referrer).hostname.replace(/^www\./, ''), p = h.split('.');
-    if (h && h !== location.hostname) { let n = p.length > 2 && /^(com|co|org|net|gov|edu)$/.test(p.at(-2)) ? p.at(-3) : p.at(-2) || p[0]; if (n.length < 3) n = p.slice(-2).join(''); ev.add('ref_' + n.replace(/[^a-z0-9]/g, '').slice(0, 20)); } } catch (e) { /* прямий захід */ }
-  // мітка посилання ?s=tg — звідки людина (Telegram і застосунки часто не передають джерело); з адреси прибираємо
-  const sp = new URLSearchParams(location.search), s = (sp.get('s') || '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 12);
-  if (s) { ev.add('src_' + s); sp.delete('s'); history.replaceState(null, '', location.pathname + (sp.size ? '?' + sp : '') + location.hash); }
-  evFlush(); }
+// воронка (tools/counter): візит, пристрій, звідки прийшли, до яких розділів догорнули — без cookies, пачкою при виході зі сторінки.
+// Один візит = одна вкладка (sessionStorage): перезавантаження й перемикання мови не рахуються вдруге.
+const ses = (k, v) => { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } };
+const ev = new Set(), evSent = new Set(JSON.parse(ses('lu_ev') || '[]')), evOn = location.hostname === 'levelup-tracker.com';
+const evFlush = () => { const k = [...ev].filter(x => !evSent.has(x)); if (!k.length || !evOn) return; k.forEach(x => evSent.add(x)); ses('lu_ev', JSON.stringify([...evSent])); navigator.sendBeacon(CNT + '/e?k=' + k.join(',')); };
+let via = ses('lu_via');
+{ // мітка посилання ?s=tg — Telegram і застосунки часто не передають джерело; з адреси прибираємо
+  const sp = new URLSearchParams(location.search), tag = (sp.get('s') || '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 12);
+  if (sp.has('s')) { sp.delete('s'); history.replaceState(null, '', location.pathname + (sp.size ? '?' + sp : '') + location.hash); }
+  if (!via) {   // новий візит
+    // сайт-джерело одним словом: www.google.com.ua → google, t.me → tme
+    let ref = '';
+    try { const h = new URL(document.referrer).hostname.replace(/^www\./, ''), p = h.split('.');
+      if (h && h !== location.hostname) { let n = p.length > 2 && /^(com|co|org|net|gov|edu)$/.test(p.at(-2)) ? p.at(-3) : p.at(-2) || p[0]; if (n.length < 3) n = p.slice(-2).join(''); ref = n.replace(/[^a-z0-9]/g, '').slice(0, 20); } } catch (e) { /* прямий захід */ }
+    via = tag ? 'src_' + tag : ref ? 'ref_' + ref : 'direct'; ses('lu_via', via);
+    ev.add('view_' + lang).add(via);
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) ev.add('mob');
+    if (/Windows/i.test(navigator.userAgent)) ev.add('win');
+    evFlush();
+  } }
+// кнопка «Завантажити» — лічильник знає, з якої натиснули (шапка, перший екран, ціни, фінальний заклик) і звідки людина прийшла
+document.querySelectorAll('.dl').forEach(a => a.href = CNT + '/dl?from=' + (a.closest('.bar') ? 'head' : a.closest('.fin') ? 'fin' : a.closest('#pricing') ? 'price' : 'hero') + '&v=' + (via || 'direct'));
 const evo = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { ev.add(e.target.dataset.ev); evo.unobserve(e.target); } }), {threshold: .35});
 [['#lvl1', 'lvl1'], ['#lvl2', 'lvl2'], ['#lvl3', 'lvl3'], ['#lvl4', 'lvl4'], ['#lvl5', 'lvl5'], ['#more', 'more'], ['#install', 'inst'], ['#pricing', 'price'], ['#faq', 'faq'], ['.fin', 'fin']].forEach(([q, k]) => { const el = document.querySelector(q); if (el) { el.dataset.ev = k; evo.observe(el); } });
 document.getElementById('dots').addEventListener('click', () => ev.add('theme'));

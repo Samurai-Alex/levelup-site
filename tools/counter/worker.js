@@ -1,13 +1,14 @@
 // Лічильник LEVEL UP (dl.levelup-tracker.com), без cookies:
-//   /dl?from=head|hero|fin — рахує натискання (і з якої кнопки) й віддає установник; /count — скільки всього
+//   /dl?from=head|hero|price|fin&v=src_tg — рахує натискання (з якої кнопки й звідки прийшла людина) й віддає установник; /count — скільки всього
 //   /e?k=a,b,c — події сторінки за день: перегляди, мова, дійшов до розділу, звідки прийшов (воронка)
-//   щопонеділка о 9:00 за Києвом — звіт за тиждень у Telegram (бот підтримки, секрети BOT_TOKEN і ADMIN_CHAT)
+//   щопонеділка о 9:00 за Києвом — звіт за тиждень у Telegram (бот підтримки, секрети BOT_TOKEN і ADMIN_CHAT);
+//   /report?key=REPORT_KEY — надіслати звіт зараз, &send=0 — лише повернути текст (для /stats у боті)
 // Розгортання й секрети: node tools/counter/setup.mjs
 const FILE = 'https://github.com/Samurai-Alex/habit-tracker-updates/releases/download/levelup/Level-Up-setup.exe';
 const BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|curl|wget|lighthouse/i;
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Cache-Control': 'public, max-age=60' };
 // лише відомі події — щоб ніхто не засмічував базу довільними ключами
-const EV = /^(view_(ru|uk|en)|mob|win|lvl[1-5]|more|inst|price|faq|fin|theme|howto|dl_(head|hero|price|fin)|cc_[A-Z]{2}|ref_[a-z0-9]{1,20}|src_[a-z0-9]{1,12})$/;
+const EV = /^(view_(ru|uk|en)|mob|win|lvl[1-5]|more|inst|price|faq|fin|theme|howto|dl_(head|hero|price|fin)|cc_[A-Z]{2}|direct|ref_[a-z0-9]{1,20}|src_[a-z0-9]{1,12}|dlv_(direct|ref_[a-z0-9]{1,20}|src_[a-z0-9]{1,12}))$/;
 const day = (d = new Date()) => d.toISOString().slice(0, 10);
 const add = (env, keys) => env.DB.batch(keys.map(k => env.DB.prepare('INSERT INTO ev (day, k, n) VALUES (?1, ?2, 1) ON CONFLICT (day, k) DO UPDATE SET n = n + 1').bind(day(), k)));
 
@@ -19,7 +20,8 @@ export default {
       if (req.method === 'GET' && human) {
         await env.DB.prepare('UPDATE c SET n = n + 1 WHERE id = 1').run();
         const from = url.searchParams.get('from');
-        if (EV.test('dl_' + from)) await add(env, ['dl_' + from]);
+        const k = ['dl_' + from, 'dlv_' + url.searchParams.get('v')].filter(x => EV.test(x));   // кнопка і джерело — для «звідки краще качають»
+        if (k.length) await add(env, k);
       }
       return Response.redirect(FILE, 302);
     }
@@ -28,7 +30,7 @@ export default {
       return Response.json({ n: row ? row.n : 0 }, { headers: CORS });
     }
     // звіт одразу — для перевірки після розгортання (ключ REPORT_KEY лише в секретах і feedback.json)
-    if (url.pathname === '/report' && env.REPORT_KEY && url.searchParams.get('key') === env.REPORT_KEY) return new Response(await report(env), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+    if (url.pathname === '/report' && env.REPORT_KEY && url.searchParams.get('key') === env.REPORT_KEY) return new Response(await report(env, 7, url.searchParams.get('send') !== '0'), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
     if (url.pathname === '/e') {
       if (human) {
         const keys = [...new Set((url.searchParams.get('k') || '').split(',').slice(0, 12))].filter(k => EV.test(k));
@@ -42,22 +44,41 @@ export default {
   async scheduled(ev, env) { await report(env); },
 };
 
-// звіт за останні 7 днів (без сьогоднішнього)
-export async function report(env, days = 7) {
-  const to = new Date(), from = new Date(to - days * 864e5);
-  const { results } = await env.DB.prepare('SELECT k, SUM(n) n FROM ev WHERE day >= ?1 AND day < ?2 GROUP BY k').bind(day(from), day(to)).all();
-  const m = Object.fromEntries(results.map(r => [r.k, r.n])), g = k => m[k] || 0;
-  const views = g('view_ru') + g('view_uk') + g('view_en'), dl = g('dl_head') + g('dl_hero') + g('dl_price') + g('dl_fin');
+// звіт за останні 7 днів (без сьогоднішнього) і порівняння з тижнем перед ними; порожні рядки не показуються
+const STAGES = [['lvl1', 'LVL 1 Игра'], ['lvl2', 'LVL 2 Привычки'], ['lvl3', 'LVL 3 Деньги'], ['lvl4', 'LVL 4 ИИ'], ['lvl5', 'LVL 5 Под себя'], ['more', 'А ещё'], ['inst', 'Как установить'], ['price', 'Цены'], ['faq', 'Вопросы'], ['fin', 'Финальный призыв']];
+const srcName = k => k === 'direct' ? 'прямые заходы' : k.startsWith('src_') ? 'метка ' + k.slice(4) : k.slice(4);
+export async function report(env, days = 7, send = true) {
+  const to = new Date(), from = new Date(to - days * 864e5), prev = new Date(from - days * 864e5);
+  const sum = async (a, b) => { const { results } = await env.DB.prepare('SELECT k, SUM(n) n FROM ev WHERE day >= ?1 AND day < ?2 GROUP BY k').bind(day(a), day(b)).all(); return Object.fromEntries(results.map(r => [r.k, r.n])); };
+  const m = await sum(from, to), p = await sum(prev, from), g = k => m[k] || 0, gp = k => p[k] || 0;
+  const tot = (o, ks) => ks.reduce((a, k) => a + (o[k] || 0), 0), VK = ['view_ru', 'view_uk', 'view_en'], DK = ['dl_head', 'dl_hero', 'dl_price', 'dl_fin'];
+  const views = tot(m, VK), dl = tot(m, DK), pViews = tot(p, VK);
   const pc = n => views ? Math.round(n / views * 100) + '%' : '—';
-  const top = p => results.filter(r => r.k.startsWith(p)).sort((a, b) => b.n - a.n).slice(0, 5).map(r => `${r.k.slice(p.length)} ${r.n}`).join(', ') || '—';
-  const text = [`LEVEL UP · сайт за ${days} дней (${day(from)} — ${day(new Date(to - 864e5))})`, '',
-    `Просмотры: ${views} (ru ${g('view_ru')}, uk ${g('view_uk')}, en ${g('view_en')})`,
-    `С телефона: ${pc(g('mob'))} · с Windows: ${pc(g('win'))}`,
-    `Скачали: ${dl} — ${pc(dl)} от просмотров (шапка ${g('dl_head')}, первый экран ${g('dl_hero')}, цены ${g('dl_price')}, внизу ${g('dl_fin')})`, '',
-    'Воронка — дошли до:', ...[['lvl1', 'LVL 1 Игра'], ['lvl2', 'LVL 2 Привычки'], ['lvl3', 'LVL 3 Деньги'], ['lvl4', 'LVL 4 ИИ'], ['lvl5', 'LVL 5 Под себя'], ['more', 'А ещё'], ['inst', 'Как установить'], ['price', 'Цены'], ['faq', 'Вопросы'], ['fin', 'Финальный призыв']].map(([k, t]) => `  ${t}: ${pc(g(k))}`),
-    `Переключали темы: ${g('theme')} · нажали «Как установить»: ${g('howto')}`, '',
-    `Страны: ${top('cc_')}`, `Откуда: ${top('ref_')}`, `Метки ссылок (?s=): ${top('src_')}`].join('\n');
-  if (!env.BOT_TOKEN || !env.ADMIN_CHAT) return text;
+  const dt = (n, was) => !pViews ? '' : !was ? (n ? ' (впервые)' : '') : ` (${n >= was ? '+' : ''}${Math.round((n - was) / was * 100)}%)`;   // к прошлой неделе
+  const list = (pre, f = r => r[0].slice(pre.length) + ' ' + r[1]) => Object.entries(m).filter(([k]) => k.startsWith(pre)).sort((a, b) => b[1] - a[1]).slice(0, 5).map(f).join(', ');
+  const head = `LEVEL UP · сайт за ${days} дней (${day(from)} — ${day(new Date(to - 864e5))})`;
+  if (!views) return deliver(env, head + '\n\nПосещений пока не было.', send);
+  // вывод: где больше всего уходят (от 10 визитов) и откуда лучше качают (от 5 визитов из источника)
+  const out = [], st = STAGES.filter(([k]) => g(k));
+  if (views >= 10 && st.length > 1) { let w = null; for (let i = 1; i < st.length; i++) { const d = g(st[i - 1][0]) - g(st[i][0]); if (!w || d > w.d) w = { d, a: st[i - 1][1], b: st[i][1] }; } if (w && w.d > 0) out.push(`Больше всего уходят между «${w.a}» и «${w.b}» — ${pc(w.d)} посетителей`); }
+  const best = Object.keys(m).filter(k => /^(direct|ref_|src_)/.test(k) && g(k) >= 5).map(k => ({ k, r: g('dlv_' + k) / g(k) })).sort((a, b) => b.r - a.r)[0];
+  if (best && best.r > 0) out.push(`Лучше всего качают: ${srcName(best.k)} — ${Math.round(best.r * 100)}% (${g('dlv_' + best.k)} из ${g(best.k)})`);
+  const btn = [['dl_head', 'шапка'], ['dl_hero', 'первый экран'], ['dl_price', 'цены'], ['dl_fin', 'внизу']].filter(([k]) => g(k)).map(([k, t]) => t + ' ' + g(k)).join(', ');
+  const lines = [head, ...(out.length ? ['', ...out] : []), '',
+    `Посещения: ${views}${dt(views, pViews)} — ${VK.filter(k => g(k)).map(k => k.slice(5) + ' ' + g(k)).join(', ')}`,
+    `Скачали: ${dl}${dt(dl, tot(p, DK))} — ${pc(dl)} посетителей${btn ? ` (${btn})` : ''}`,
+    `С телефона: ${pc(g('mob'))} · с Windows: ${pc(g('win'))}`];
+  if (st.length) lines.push('', 'Дошли до:', ...st.map(([k, t]) => `  ${t}: ${pc(g(k))}`));
+  const act = [g('theme') && `переключали темы ${g('theme')}`, g('howto') && `нажали «Как установить» ${g('howto')}`].filter(Boolean);
+  if (act.length) lines.push(act.join(' · '));
+  const cc = list('cc_'), via = Object.keys(m).filter(k => /^(direct|ref_|src_)/.test(k)).sort((a, b) => g(b) - g(a)).slice(0, 6).map(k => `${srcName(k)} ${g(k)}${g('dlv_' + k) ? ` (скачали ${g('dlv_' + k)})` : ''}`).join(', ');
+  if (cc || via) lines.push('');
+  if (cc) lines.push('Страны: ' + cc);
+  if (via) lines.push('Откуда: ' + via);
+  return deliver(env, lines.join('\n'), send);
+}
+async function deliver(env, text, send) {
+  if (!send || !env.BOT_TOKEN || !env.ADMIN_CHAT) return text;
   const r = await fetch(`https://api.telegram.org/bot${env.BOT_TOKEN}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: String(env.ADMIN_CHAT), text, disable_web_page_preview: true }) });
   if (!r.ok) throw new Error('Telegram: ' + r.status);
   return text;
