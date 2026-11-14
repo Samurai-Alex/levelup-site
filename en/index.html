@@ -166,6 +166,7 @@ details{background:var(--card);border:1px solid var(--line);border-radius:14px;p
 .ssd{margin-top:18px}.ssd .ss,.rwd .rwf{background:none;border:0;padding:16px 0 0;margin:0;-webkit-backdrop-filter:none;backdrop-filter:none}
 .nwl{margin:-22px 0 30px;font-size:13.5px;color:var(--muted)}.nwl a{color:var(--acc)}
 #maker .dev{margin-top:0}#reviews.solo{padding:0 0 8px}#reviews.solo .wrap{margin-top:-30px}
+.price li.hl{color:var(--acc);font-weight:700}
 .rwm{margin:0;font-size:13.5px;color:var(--muted)}.rwm.ok{color:var(--acc)}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:9;background:var(--card2);border:1px solid rgba(31,184,70,.45);border-radius:12px;padding:12px 16px;font-size:13.5px;max-width:calc(100% - 32px);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
 summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:16px}
@@ -328,13 +329,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 <section id="pricing"><div class="wrap">
   <div class="kicker" data-i="nPrice">Pricing</div>
-  <h2 data-i="pH">Free for now</h2><p class="sub" data-i="pSub">During the open beta every feature is free. Pricing comes later — everything you record in the beta is kept.</p>
+  <h2 data-i="pH">Free for now</h2><p class="sub" data-i="pSub">During the open beta every feature is free. Everyone who downloads the app during the beta gets the full version at 50% off, and everything you record is kept.</p>
   <div class="prices">
-    <div class="price now"><span class="pill" data-i="pNow">Now</span><div class="n" data-i="pFree">Beta · 0</div><p style="margin:0;color:var(--muted);font-size:13.5px" data-i="pFreeD">All features, no limits.</p>
+    <div class="price now"><span class="pill" data-i="pNow">Now</span><div class="n" data-i="pFree">Free</div><p style="margin:0;color:var(--muted);font-size:13.5px" data-i="pFreeD">All features, no limits.</p>
       <ul><li data-i="p1">Habits, finance, sport, goals</li><li data-i="p2">AI features with your key</li><li data-i="p3">Automatic updates</li><li data-i="p4">Automatic backups</li></ul>
       <a class="btn main dl" href="#"><span data-i="dl">Download for Windows</span></a></div>
     <div class="price soon" id="paid"><span class="pill" style="background:var(--card2);color:var(--muted)" data-i="pSoon">Later</span><div class="n">LEVEL UP</div><p style="margin:0;color:var(--muted);font-size:13.5px" data-i="pPaidD">The full version after the beta. Price and terms will be announced here.</p>
-      <ul><li data-i="q1">Your beta data moves to the full version</li><li data-i="q2">Buy right on this site</li></ul></div>
+      <ul><li class="hl" data-i="q3">50% off for everyone who downloaded the beta</li><li data-i="q1">Your beta data moves to the full version</li><li data-i="q2">Buy right on this site</li></ul></div>
   </div>
 </div></section>
 
@@ -358,7 +359,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 <section id="faq"><div class="wrap" style="max-width:820px">
   <div class="kicker" data-i="nFaq">FAQ</div>
   <h2 data-i="qH">Questions</h2>
-  <details><summary data-i="a1">Is it really free?</summary><p data-i="a1d">Yes, during the beta. Later the app becomes paid — we’ll show the price here in advance.</p></details>
+  <details><summary data-i="a1">Is it really free?</summary><p data-i="a1d">Yes, during the beta. Later the app becomes paid — we’ll show the price here in advance, and everyone who downloaded it during the beta gets 50% off.</p></details>
   <details><summary data-i="a2">Do I need the internet?</summary><p data-i="a2d">No. It’s only used for exchange rates, updates and optional AI features.</p></details>
   <details id="privacy"><summary data-i="a3">Where is my data stored?</summary><p data-i="a3d">Only on your computer. There’s no account, and the developer never sees your records. Error reports are sent only if you agree, and never include your records.</p></details>
   <details><summary data-i="a4">Is there a Mac or phone version?</summary><p data-i="a4d">Windows 10 and 11 only, for now.</p></details>
@@ -412,11 +413,11 @@ uk: {nFeat:'Можливості', nInst:'Як встановити', nPrice:'Ц
  ssH:'Windows показала синє вікно? Як запустити', ssP:'Так буває з новими програмами, у яких ще мало завантажень. Програма безпечна — просто Windows її ще не знає.',
  ss1:'Натисніть <b>«Докладніше»</b>', ss2:'Потім <b>«Усе одно запустити»</b>',
  wT:'Windows захистила ваш ПК', wP:'Фільтр SmartScreen у Microsoft Defender заблокував запуск невідомої програми.', wMore:'Докладніше', wRun:'Усе одно запустити', wNo:'Не запускати',
- pH:'Зараз — безкоштовно', pSub:'Поки йде відкрита бета, усі функції доступні безкоштовно. Ціни з’являться пізніше — усе, що ви запишете в беті, збережеться.',
- pNow:'Зараз', pFree:'Бета · 0', pFreeD:'Усі функції, без обмежень.', p1:'Звички, фінанси, спорт, цілі', p2:'ШІ-функції з вашим ключем', p3:'Автооновлення', p4:'Автокопії даних',
- pSoon:'Згодом', pPaidD:'Повна версія після бети. Ціну й умови оголосимо тут.', q1:'Ваші дані з бети переходять у повну версію', q2:'Покупка — прямо на цьому сайті',
+ pH:'Зараз — безкоштовно', pSub:'Поки триває відкрита бета, усі функції безкоштовні. Усі, хто завантажив програму в беті, отримають повну версію зі знижкою 50%, а все записане збережеться.',
+ pNow:'Зараз', pFree:'Безкоштовно', pFreeD:'Усі функції, без обмежень.', p1:'Звички, фінанси, спорт, цілі', p2:'ШІ-функції з вашим ключем', p3:'Автооновлення', p4:'Автокопії даних',
+ pSoon:'Згодом', pPaidD:'Повна версія після бети. Ціну й умови оголосимо тут.', q3:'Знижка 50% для всіх, хто завантажив бету', q1:'Ваші дані з бети переходять у повну версію', q2:'Покупка — прямо на цьому сайті',
  qH:'Часті питання',
- a1:'Це справді безкоштовно?', a1d:'Так, поки триває бета. Пізніше програма стане платною — ціну ми покажемо тут заздалегідь.',
+ a1:'Це справді безкоштовно?', a1d:'Так, поки триває бета. Пізніше програма стане платною — ціну покажемо тут заздалегідь, а для всіх, хто завантажив її в беті, буде знижка 50%.',
  a2:'Потрібен інтернет?', a2d:'Ні. Інтернет потрібен лише для курсів валют, оновлень і ШІ-функцій (за бажанням).',
  a3:'Де зберігаються мої дані?', a3d:'Тільки на вашому комп’ютері. Облікового запису немає, розробник ваших записів не бачить. Звіт про помилку надсилається лише з вашої згоди і без ваших записів.',
  a4:'Є версія для Mac чи телефона?', a4d:'Поки тільки Windows 10 і 11.',
@@ -453,11 +454,11 @@ ru: {nFeat:'Возможности', nInst:'Как установить', nPrice
  ssH:'Windows показала синее окно? Как запустить', ssP:'Так бывает с новыми программами, у которых ещё мало скачиваний. Программа безопасна — просто Windows её пока не знает.',
  ss1:'Нажмите <b>«Подробнее»</b>', ss2:'Затем <b>«Выполнить в любом случае»</b>',
  wT:'Система Windows защитила ваш компьютер', wP:'Фильтр SmartScreen в Microsoft Defender предотвратил запуск неопознанного приложения.', wMore:'Подробнее', wRun:'Выполнить в любом случае', wNo:'Не выполнять',
- pH:'Сейчас — бесплатно', pSub:'Пока идёт открытая бета, все функции доступны бесплатно. Цены появятся позже — всё, что вы запишете в бете, сохранится.',
- pNow:'Сейчас', pFree:'Бета · 0', pFreeD:'Все функции, без ограничений.', p1:'Привычки, финансы, спорт, цели', p2:'ИИ-функции с вашим ключом', p3:'Автообновления', p4:'Автокопии данных',
- pSoon:'Позже', pPaidD:'Полная версия после беты. Цену и условия объявим здесь.', q1:'Ваши данные из беты переходят в полную версию', q2:'Покупка — прямо на этом сайте',
+ pH:'Сейчас — бесплатно', pSub:'Пока идёт открытая бета, все функции бесплатны. Все, кто скачал программу в бете, получат полную версию со скидкой 50%, а всё записанное сохранится.',
+ pNow:'Сейчас', pFree:'Бесплатно', pFreeD:'Все функции, без ограничений.', p1:'Привычки, финансы, спорт, цели', p2:'ИИ-функции с вашим ключом', p3:'Автообновления', p4:'Автокопии данных',
+ pSoon:'Позже', pPaidD:'Полная версия после беты. Цену и условия объявим здесь.', q3:'Скидка 50% для всех, кто скачал бету', q1:'Ваши данные из беты переходят в полную версию', q2:'Покупка — прямо на этом сайте',
  qH:'Частые вопросы',
- a1:'Это правда бесплатно?', a1d:'Да, пока идёт бета. Позже программа станет платной — цену мы покажем здесь заранее.',
+ a1:'Это правда бесплатно?', a1d:'Да, пока идёт бета. Позже программа станет платной — цену покажем здесь заранее, а для всех, кто скачал её в бете, будет скидка 50%.',
  a2:'Нужен интернет?', a2d:'Нет. Интернет нужен только для курсов валют, обновлений и ИИ-функций (по желанию).',
  a3:'Где хранятся мои данные?', a3d:'Только на вашем компьютере. Аккаунта нет, разработчик ваших записей не видит. Отчёт об ошибке отправляется только с вашего согласия и без ваших записей.',
  a4:'Есть версия для Mac или телефона?', a4d:'Пока только Windows 10 и 11.',
@@ -494,11 +495,11 @@ en: {nFeat:'Features', nInst:'Install', nPrice:'Pricing', nFaq:'FAQ', dlShort:'D
  ssH:'Windows showed a blue window? How to run the app', ssP:'It shows up for new apps that don’t have many downloads yet. The app is safe — Windows just doesn’t know it yet.',
  ss1:'Click <b>“More info”</b>', ss2:'Then <b>“Run anyway”</b>',
  wT:'Windows protected your PC', wP:'Microsoft Defender SmartScreen prevented an unrecognized app from starting.', wMore:'More info', wRun:'Run anyway', wNo:'Don’t run',
- pH:'Free for now', pSub:'During the open beta every feature is free. Pricing comes later — everything you record in the beta is kept.',
- pNow:'Now', pFree:'Beta · 0', pFreeD:'All features, no limits.', p1:'Habits, finance, sport, goals', p2:'AI features with your key', p3:'Automatic updates', p4:'Automatic backups',
- pSoon:'Later', pPaidD:'The full version after the beta. Price and terms will be announced here.', q1:'Your beta data moves to the full version', q2:'Buy right on this site',
+ pH:'Free for now', pSub:'During the open beta every feature is free. Everyone who downloads the app during the beta gets the full version at 50% off, and everything you record is kept.',
+ pNow:'Now', pFree:'Free', pFreeD:'All features, no limits.', p1:'Habits, finance, sport, goals', p2:'AI features with your key', p3:'Automatic updates', p4:'Automatic backups',
+ pSoon:'Later', pPaidD:'The full version after the beta. Price and terms will be announced here.', q3:'50% off for everyone who downloaded the beta', q1:'Your beta data moves to the full version', q2:'Buy right on this site',
  qH:'Questions',
- a1:'Is it really free?', a1d:'Yes, during the beta. Later the app becomes paid — we’ll show the price here in advance.',
+ a1:'Is it really free?', a1d:'Yes, during the beta. Later the app becomes paid — we’ll show the price here in advance, and everyone who downloaded it during the beta gets 50% off.',
  a2:'Do I need the internet?', a2d:'No. It’s only used for exchange rates, updates and optional AI features.',
  a3:'Where is my data stored?', a3d:'Only on your computer. There’s no account, and the developer never sees your records. Error reports are sent only if you agree, and never include your records.',
  a4:'Is there a Mac or phone version?', a4d:'Windows 10 and 11 only, for now.',
