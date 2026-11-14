@@ -16,7 +16,7 @@ export const PACK_URLS = {
 };
 
 // name — як набір підписаний у програмі; h — звички; w — віджети на Головній
-const P = {
+export const P = {
   student: {
     ru: {name: 'Студент', h: ['Английский', '5 новых слов', 'Чтение 20 мин', 'Спланировать день', 'Сон 8 часов', 'Пить воду', 'Без телефона перед сном'], w: ['Таймер фокуса', 'Английский', 'Планы на сегодня', 'Лимиты бюджета'],
       t: 'Привычки для студента — готовый набор в трекере | LEVEL UP', h1: 'Привычки для студента',
@@ -183,7 +183,7 @@ const L = {
 
 const esc = v => String(v).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 // тексти у форматі C з landing.mjs: {img, ru: {t, d, h1, lead, s, q}, …}; рядки в s — HTML (проходять через fill)
-export const PACK_TEXT = Object.fromEntries(Object.entries(P).map(([id, by]) => [id, {img: 'game.jpg', ...Object.fromEntries(Object.entries(by).map(([l, T]) => {
+export const PACK_TEXT = Object.fromEntries(Object.entries(P).map(([id, by]) => [id, {img: `set-${id}.webp`, ...Object.fromEntries(Object.entries(by).map(([l, T]) => {
   const U = L[l], other = Object.keys(P).filter(k => k !== id).map(k => `<a href="${PACK_URLS[k][l]}">${esc(P[k][l].name)}</a>`).join(' · ');
   return [l, {t: T.t, d: U.d(T.name, T.h), h1: T.h1, lead: T.lead,
     s: [[U.s[0], T.h], ...(T.w.length ? [[U.s[1], T.w]] : []), [U.s[2], esc(U.how(T.name))], [U.s[3], T.why], [U.s[4], other]], q: U.q}];

@@ -1,6 +1,7 @@
 // Знімки й відео програми для сайту — на демо-даних, без особистих записів.
 //   node tools/capture.mjs            — усе: головна, фрагменти розділів LVL 2–4, відео тем (LVL 5), відео «Закритий день» (LVL 1)
-//   node tools/capture.mjs shots|lvl|game|themes — лише одну частину (themes — відео тем із живими фонами, LVL 5)
+//   node tools/capture.mjs shots|lvl|packs|game|themes — лише одну частину (packs — вікно «Готові набори» для сторінок наборів)
+//   (themes — відео тем із живими фонами, LVL 5)
 // Потрібні: Chrome і ffmpeg з Remotion (../level-up-promo). Програма віддається з ../HabitTrackerApp/app.
 import {spawn, execFileSync} from 'node:child_process';
 import fs from 'node:fs';
@@ -21,6 +22,8 @@ const THEME_SEC = 2.4, THEME_FADE = 0.6;
 const FFMPEG_FULL = 'ffmpeg';   // системний ffmpeg (winget install Gyan.FFmpeg): у ffmpeg з Remotion немає переходу xfade
 const LANGS = ['ru', 'uk', 'en'];   // знімки кладуться в img/<мова>/ — сайт показує ті, що мовою відвідувача
 const W = 1440, H = 900, only = process.argv[2];
+// набори сайту (tools/packs.mjs) → ключі HP_SETS у програмі
+const PACK_APP = {student: 'student', freelancer: 'free', sport: 'sport', cushion: 'cushion', morning: 'ritual', sleep: 'sleepWell', weight: 'slim', quit: 'quit', calm: 'calm', focus: 'focus'};
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 // маленький статичний сервер для програми
@@ -97,6 +100,20 @@ try {
     await ev(`{ const nm = t('hp.morning'); if (!hpHave(nm)) S.habits.push({id: uid(), name: nm, color: PALETTE[S.habits.length % PALETTE.length], icon: 'ti:sunrise'});
       const tx = t('qkPh', {c: qkEx()}).replace(/^\\S+ /, '').replace(/ · /g, ', '); UI.qk = {text: tx, res: parseQuickAll(tx)}; } 1`);
     await page('home'); await crop(`${l}/lvl4`, 1, 2);   // лише поле: нова звичка без історії знижує відсотки й серію в шапці
+  }
+
+  if (!only || only === 'packs') for (const l of LANGS) {
+    // сторінки наборів: вікно «Готові набори» з вибраним набором; звичок ще немає — картки без позначки «уже є»
+    await setup(l);
+    for (const [id, k] of Object.entries(PACK_APP)) {
+      await ev(`S.habits = []; hideModal(); hpOpen(); UI.hp.tab = 'sets'; hpSetTog(UI.hp.sel, UI.hp.sets, '${k}', hpKeyHave); hpDraw();
+        // без порожнечі під картками й без обрізаної вкладки праворуч (у вузькому вікні їх прокручують)
+        { const ls = document.querySelector('.hp-list'); ls.style.height = ls.style.minHeight = 'auto'; ls.style.maxHeight = 'none';
+        const tb = document.querySelector('.hp-tabs'), R = tb.getBoundingClientRect().right; [...tb.children].forEach(x => { if (x.getBoundingClientRect().right > R + 1) x.remove(); }); } 1`); await sleep(500);
+      const r = await ev(`(() => { const b = document.querySelector('#modal .mbox').getBoundingClientRect(); return [b.left, b.top, b.width, b.height]; })()`);
+      const {result} = await cmd('Page.captureScreenshot', {format: 'webp', quality: 86, clip: {x: r[0], y: r[1], width: r[2], height: r[3], scale: 1.5}});
+      fs.writeFileSync(path.join(IMG, l, `set-${id}.webp`), Buffer.from(result.data, 'base64')); console.log(`img/${l}/set-${id}.webp`);
+    }
   }
 
   if (!only || only === 'game') for (const l of LANGS) {
