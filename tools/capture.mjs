@@ -1,6 +1,6 @@
 // Знімки й відео програми для сайту — на демо-даних, без особистих записів.
-//   node tools/capture.mjs            — усе: головна й теми, фрагменти розділів LVL 2–5, відео «Закритий день» (LVL 1)
-//   node tools/capture.mjs shots|lvl|game — лише одну частину
+//   node tools/capture.mjs            — усе: головна, фрагменти розділів LVL 2–4, відео тем (LVL 5), відео «Закритий день» (LVL 1)
+//   node tools/capture.mjs shots|lvl|game|themes — лише одну частину (themes — відео тем із живими фонами, LVL 5)
 // Потрібні: Chrome і ffmpeg з Remotion (../level-up-promo). Програма віддається з ../HabitTrackerApp/app.
 import {spawn, execFileSync} from 'node:child_process';
 import fs from 'node:fs';
@@ -13,6 +13,9 @@ const FFMPEG = path.resolve(SITE, '../level-up-promo/node_modules/@remotion/comp
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const PAGES = ['home'];   // перший екран сайту
 export const THEMES = ['levelup', 'night', 'nebula', 'pluto', 'champagne', 'gold'];   // темні теми, відкриті з початку (classic, amethyst, ice у програмі більше немає)
+// живий фон до кожної теми у відео «Під себе»: [фон, колір] ('' — природний, 'acc' — колір теми)
+const THEME_BG = {levelup: ['levelup', ''], night: ['stars', ''], nebula: ['aurora', 'acc'], pluto: ['particles', 'acc'], champagne: ['stars', 'acc'], gold: ['levelup', 'acc']};
+const THEME_SEC = 2.5;   // скільки секунд кожна тема; у index.html — TH_SEC (≈2.53: перемикання теми забирає ще ~0.03 с)
 const LANGS = ['ru', 'uk', 'en'];   // знімки кладуться в img/<мова>/ — сайт показує ті, що мовою відвідувача
 const W = 1440, H = 900, only = process.argv[2];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -62,10 +65,6 @@ try {
     fs.mkdirSync(path.join(IMG, l), {recursive: true});
     await setup(l);
     for (const p of PAGES) { await page(p); await shot(`${l}/${p}`); }
-    for (const th of THEMES) {
-      await page('home', th);
-      await shot(`${l}/theme-${th}`);
-    }
   }
 
   if (!only || only === 'lvl') for (const l of LANGS) {
@@ -112,6 +111,31 @@ try {
     // заставка — «+XP» у польоті до шкали (≈1 с після натискання)
     execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-ss', (t0 - start + 1.0).toFixed(2), '-i', out, '-frames:v', '1', '-q:v', '3', path.join(IMG, l, 'game.jpg')]);
     console.log(`img/${l}/game.mp4 (${frames.length} кадрів, ${w}×${h})`);
+    fs.rmSync(dir, {recursive: true, force: true});
+  }
+
+  if (!only || only === 'themes') for (const l of LANGS) {
+    // значок «Свій стиль» видано заздалегідь — інакше на зміні теми вилазить банер; фон густіший, щоб його було видно між картками
+    // розділ «Під себе» (LVL 5): теми по черзі, кожна зі своїм живим фоном, скляні картки; сайт підсвічує кнопку теми за часом відео (THEME_SEC)
+    await setup(l);
+    await ev(`S.rw = {...(S.rw || {}), fx: {}}; S.ach = S.ach || {}; S.ach.got = {...S.ach.got, aTheme: keyOf(new Date())}; { const rw = rwSet; window.rwSet = () => new Set([...rw(), 'bglive', 'bg:stars']); } S.cardStyle = 'glass'; save(); 1`);
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'lvl-th-')), frames = [], marks = [];
+    on['Page.screencastFrame'] = p => { const f = path.join(dir, `f${String(frames.length).padStart(4, '0')}.jpg`); fs.writeFileSync(f, Buffer.from(p.data, 'base64')); frames.push({f, t: p.metadata.timestamp}); cmd('Page.screencastFrameAck', {sessionId: p.sessionId}); };
+    await cmd('Page.startScreencast', {format: 'jpeg', quality: 90, maxWidth: W, maxHeight: H, everyNthFrame: 1});
+    for (const [i, th] of THEMES.entries()) {
+      const [bg, col] = THEME_BG[th];
+      await ev(`hideModal(); S.theme = '${th}'; applyTheme(); S.rw.live = '${bg}'; S.rw.fx['${bg}'] = {col: '${col}', den: 2, spd: 1.2}; UI.page = 'home'; render({nav: true}); window.scrollTo(0, 0); [...document.querySelectorAll('#page .card')].filter(e => !e.parentElement.closest('.card')).slice(5).forEach(e => e.style.visibility = 'hidden'); 1`);   // другий ряд віджетів схований — унизу кадру видно сам живий фон
+      await sleep(i ? 120 : 2500);   // перша тема — даємо фону розігнатися, кадри до позначки обріжуться
+      marks.push(frames.at(-1).t);
+      await sleep(THEME_SEC * 1000 - 120);
+    }
+    await cmd('Page.stopScreencast'); delete on['Page.screencastFrame'];
+    const list = frames.map((x, i) => `file '${x.f.replace(/\\/g, '/')}'\nduration ${((frames[i + 1]?.t ?? x.t + 0.04) - x.t).toFixed(3)}`).join('\n') + `\nfile '${frames.at(-1).f.replace(/\\/g, '/')}'\n`;
+    fs.writeFileSync(path.join(dir, 'list.txt'), list);
+    const out = path.join(IMG, l, 'themes.mp4'), ss = (marks[0] - frames[0].t).toFixed(3);
+    execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', path.join(dir, 'list.txt'), '-ss', ss, '-t', String(THEMES.length * THEME_SEC), '-fps_mode', 'cfr', '-r', '30', '-an', '-vf', 'scale=1280:-2', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '27', '-preset', 'slow', '-movflags', '+faststart', out]);
+    execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-ss', '0.5', '-i', out, '-frames:v', '1', '-q:v', '3', path.join(IMG, l, 'themes.jpg')]);
+    console.log(`img/${l}/themes.mp4 (${(fs.statSync(out).size / 1e6).toFixed(1)} МБ), зсуви тем: ${marks.map(m => (m - marks[0]).toFixed(2)).join(' ')}`);
     fs.rmSync(dir, {recursive: true, force: true});
   }
 } finally { ws.close(); chrome.kill(); srv.close(); }

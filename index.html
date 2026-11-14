@@ -239,7 +239,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     <div class="dots" id="dots">
       <button class="on" data-t="levelup" style="--c:#2ee66b"><i></i>LEVEL UP</button><button data-t="night" style="--c:#8ec5ff"><i></i><span data-i="thNight"></span></button><button data-t="nebula" style="--c:#9d8cf2"><i></i><span data-i="thNebula"></span></button><button data-t="pluto" style="--c:#9d4edd"><i></i><span data-i="thPluto"></span></button><button data-t="champagne" style="--c:#c8b27d"><i></i><span data-i="thChamp"></span></button><button data-t="gold" style="--c:#e8b923"><i></i><span data-i="thGold"></span></button>
     </div>
-    <img class="frame zoom" id="thimg" src="img/ru/theme-levelup.webp" width="1440" height="900" alt="" loading="lazy">
+    <video class="frame" id="thv" muted loop playsinline preload="none" width="1280" height="800" aria-label="LEVEL UP"></video>
   </div>
 </div></section>
 </div>
@@ -455,20 +455,29 @@ function setLang(l) {
 // скриншоти програми — мовою сайту (img/<мова>/, знімає tools/capture.mjs)
 const still = matchMedia('(prefers-reduced-motion: reduce)').matches;   // без анімацій для тих, хто їх вимкнув у системі
 function langImgs() {
-  document.getElementById('thimg').src = `img/${lang}/theme-${document.querySelector('#dots .on').dataset.t}.webp`;
   document.querySelectorAll('img[data-f]').forEach(i => i.src = `img/${lang}/${i.dataset.f}.webp`);
   // «Закритий день» (LVL 1) — відео мовою сайту; заставка — кадр, де «+XP» летить до шкали
   const v = document.getElementById('game'), src = `img/${lang}/game.mp4`;
   if (!v.src.endsWith(src)) { if (still) v.removeAttribute('autoplay'); v.poster = `img/${lang}/game.jpg`; v.src = src; }
+  // «Під себе» (LVL 5): теми по черзі з живими фонами — вантажиться, лише коли розділ близько
+  thv.poster = `img/${lang}/themes.jpg`; if (thv.dataset.on) thLoad();
 }
+const thv = document.getElementById('thv'), TH_SEC = 2.53;   // секунд на тему — як THEME_SEC у tools/capture.mjs (з поправкою на перемикання)
+const thBtns = [...document.querySelectorAll('#dots button')];
+function thLoad() { const src = `img/${lang}/themes.mp4`; if (thv.src.endsWith(src)) return; const t = thv.currentTime; thv.src = src; thv.currentTime = t; if (!still) thv.play().catch(() => {}); }
+new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { thv.dataset.on = 1; thLoad(); o.disconnect(); } }, {rootMargin: '300px'}).observe(thv);
+thv.ontimeupdate = () => { const i = Math.min(thBtns.length - 1, Math.floor(thv.currentTime / TH_SEC)), b = thBtns[i]; if (b.classList.contains('on')) return;
+  thBtns.forEach(x => x.classList.toggle('on', x === b));
+  const row = b.parentElement; row.scrollTo({left: row.scrollLeft + b.getBoundingClientRect().left - row.getBoundingClientRect().left - 20, behavior: 'smooth'}); };   // на телефоні ряд тем гортається — поточна завжди на виду
 document.querySelectorAll('.lang button').forEach(b => b.onclick = () => setLang(b.dataset.l));
 setLang(lang);
 document.querySelectorAll('.dl').forEach(a => a.href = CNT + '/dl');
 // «Хто робить»: «Читати далі»
 const abOpen = () => { document.querySelectorAll('.abx').forEach(p => p.hidden = false); document.getElementById('abMore').hidden = true; };
 document.getElementById('abMore').onclick = abOpen;
+// кнопка теми — перемотати відео на цю тему (без анімацій — показати її кадр)
 document.getElementById('dots').onclick = e => { const b = e.target.closest('button'); if (!b) return;
-  document.querySelectorAll('#dots button').forEach(x => x.classList.toggle('on', x === b)); langImgs(); };
+  thv.dataset.on = 1; thLoad(); thv.currentTime = thBtns.indexOf(b) * TH_SEC + (still ? 1.2 : .05); thBtns.forEach(x => x.classList.toggle('on', x === b)); };
 // збільшення скриншота на весь екран
 const lb = document.getElementById('lb');
 document.addEventListener('click', e => { const z = e.target.closest('.zoom'); if (!z || lb.contains(z)) return;
