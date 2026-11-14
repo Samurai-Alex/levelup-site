@@ -29,7 +29,7 @@
 @font-face{font-family:'JetBrains Mono';font-display:swap;font-weight:400;src:url(/fonts/jetbrains-mono-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'JetBrains Mono';font-display:swap;font-weight:700;src:url(/fonts/jetbrains-mono-cyrillic-700-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 @font-face{font-family:'JetBrains Mono';font-display:swap;font-weight:700;src:url(/fonts/jetbrains-mono-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-:root{--bg:#050605;--card:#0d110d;--card2:#121812;--line:#1f2a1f;--text:#e9f0e9;--muted:#8c988c;--acc:#1fd65f;--acc-d:#14361f;--pixel:'Press Start 2P',monospace;--mono:'JetBrains Mono',Consolas,monospace}
+:root{--bg:#050605;--card:rgba(13,17,13,.66);--card2:rgba(18,24,18,.74);--line:#1f2a1f;--text:#e9f0e9;--muted:#8c988c;--acc:#1fd65f;--acc-d:#14361f;--pixel:'Press Start 2P',monospace;--mono:'JetBrains Mono',Consolas,monospace}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
 body{margin:0;background:var(--bg);color:var(--text);font:15px/1.65 var(--mono);-webkit-font-smoothing:antialiased}
@@ -40,8 +40,10 @@ img{max-width:100%;height:auto;display:block}
 .px{font-family:var(--pixel);font-weight:400;letter-spacing:0}
 .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font:700 14px var(--mono);text-decoration:none;border:1px solid var(--line);background:var(--card2);color:var(--text);cursor:pointer;transition:transform .15s,background .15s}
 .btn:hover{transform:translateY(-1px);background:#182018}
+/* «скло» поверх живого фону (bg.js), як скляні картки в програмі */
+.f,.qc,.step,.ss,.price,.dev,details,.dlc{-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .btn.main{background:var(--acc);color:#04120a;border-color:var(--acc)}
-.btn.main:hover{background:#4bf082}
+.btn.main:hover{background:#3fe07a}
 .btn svg{width:18px;height:18px;flex:none}
 .pill{display:inline-block;padding:5px 14px;border-radius:999px;background:var(--acc-d);color:var(--acc);font-size:12px;font-weight:700}
 /* шапка */
@@ -570,5 +572,6 @@ if (SHOP.buy) { const p = document.getElementById('paid'); p.classList.remove('s
 </script>
 <!-- Cloudflare Web Analytics: відвідування без cookies; токен публічний (вкладка Web Analytics у Cloudflare) -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "4bdae1f94f8e42ca974cc4a9470ef2e1"}'></script>
+<script src="/bg.js" defer></script>
 </body>
 </html>
