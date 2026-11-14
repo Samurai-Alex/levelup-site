@@ -33,6 +33,7 @@ for (const [l, p] of Object.entries(PAGES)) {
   let s = src
     // тексти в елементах з data-i (data-html — з розміткою)
     .replace(/(<(\w+)\b[^>]*\bdata-i="([^"]+)"[^>]*>)[\s\S]*?(<\/\2>)/g, (m, open, tag, k, close) => open + (/\bdata-html\b/.test(open) ? T[k] : esc(T[k])) + close)
+    .replace(/(<img\b[^>]*?\balt=")[^"]*("[^>]*\bdata-alt="([^"]+)")/g, (m, a, b, k) => a + esc(T[k]) + b)   // підписи знімків мовою сторінки
     .replace(/<html lang="[^"]*">/, `<html lang="${l}">`)
     .replace(/<title>[^<]*<\/title>/, `<title>${esc(T.mT)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*/, `$1${esc(T.mD)}`)
