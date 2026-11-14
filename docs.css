@@ -5,7 +5,7 @@
 @font-face{font-family:'JetBrains Mono';font-display:swap;font-weight:400;src:url(fonts/jetbrains-mono-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+2122}
 @font-face{font-family:'JetBrains Mono';font-display:swap;font-weight:700;src:url(fonts/jetbrains-mono-cyrillic-700-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 @font-face{font-family:'JetBrains Mono';font-display:swap;font-weight:700;src:url(fonts/jetbrains-mono-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+2122}
-:root{--bg:#050605;--card:#0d110d;--line:#1f2a1f;--text:#e9f0e9;--muted:#8c988c;--acc:#2ee66b;--acc-d:#14361f}
+:root{--bg:#050605;--card:#0d110d;--line:#1f2a1f;--text:#e9f0e9;--muted:#8c988c;--acc:#1fd65f;--acc-d:#14361f}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:15px/1.7 'JetBrains Mono',Consolas,monospace;-webkit-font-smoothing:antialiased}
 a{color:var(--acc)}
