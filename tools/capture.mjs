@@ -1,6 +1,6 @@
 // Знімки й відео програми для сайту — на демо-даних, без особистих записів.
 //   node tools/capture.mjs            — усе: головна, фрагменти розділів LVL 2–4, відео тем (LVL 5), відео «Закритий день» (LVL 1)
-//   node tools/capture.mjs shots|lvl|packs|game|themes — лише одну частину (packs — вікно «Готові набори» для сторінок наборів)
+//   node tools/capture.mjs shots|lvl|packs|game|themes|store — лише одну частину (packs — вікно «Готові набори» для сторінок наборів, store — екрани для Microsoft Store)
 //   (themes — відео тем із живими фонами, LVL 5)
 // Потрібні: Chrome і ffmpeg з Remotion (../level-up-promo). Програма віддається з ../HabitTrackerApp/app.
 import {spawn, execFileSync} from 'node:child_process';
@@ -118,6 +118,20 @@ try {
     }
   }
 
+  // знімки для Microsoft Store (лише за node tools/capture.mjs store): цілий екран 1440×900 PNG у tools/store/<мова>/ (у git не йдуть — .gitignore)
+  if (only === 'store') for (const l of LANGS) {
+    await setup(l);
+    await ev(`{ const k = keyOf(new Date()); S.health.days[k] = {...S.health.days[k], bed: '22:55', wake: '07:05', water: 6, coffee: 2, mood: 4, en: 4}; } S.fin.cats.forEach(c => { if (c.limit) c.limit = Math.round(c.limit * 1.15); }); ${CAP_UP}
+      { const mon = mondayOf(keyOf(new Date())), seq = ['cardio', 'gym', 'cardio', 'home', 'walk', 'gym', 'walk'];   // різні види тренувань, як у LVL 2
+      S.sport.sessions.filter(x => x.d >= mon).sort((p, q) => p.d < q.d ? -1 : 1).forEach((x, i) => { x.type = seq[i % seq.length]; if (x.type === 'gym' || x.type === 'home') x.km = 0; });
+      const ty = S.sport.types = S.sport.types || {}; [['cardio', '#2ee66b'], ['gym', '#f5a524'], ['walk', '#5ec8e0'], ['home', '#9d8cf2']].forEach(([k, c]) => ty[k] = {...ty[k], color: c}); } save(); 1`);
+    const dir = path.join(SITE, 'tools/store', l); fs.mkdirSync(dir, {recursive: true});
+    // «Англійська» англійською мовою не знімаємо: переклади фраз у демо кирилицею
+    for (const [i, p] of ['home', 'habits', 'finance', 'sport', 'health', ...(l === 'en' ? [] : ['spanish'])].entries()) {
+      await page(p); const {result} = await cmd('Page.captureScreenshot', {format: 'png'});
+      fs.writeFileSync(path.join(dir, `${i + 1}-${p}.png`), Buffer.from(result.data, 'base64')); console.log(`tools/store/${l}/${i + 1}-${p}.png`);
+    }
+  }
   if (!only || only === 'game') for (const l of LANGS) {
     // «Закритий день» (розділ «Гра» на сайті): остання звичка → «+XP» летить до шкали рівня, банер, хвиля на живому фоні «Level Up»
     await setup(l);
