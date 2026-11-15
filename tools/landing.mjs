@@ -82,7 +82,7 @@ export function buildLanding(site) {
 <meta name="description" content="${esc(T.d)}">
 <link rel="canonical" href="${URL0}${P[l]}">
 ${Object.entries(P).map(([k, p]) => `<link rel="alternate" hreflang="${k}" href="${URL0}${p}">`).join('\n')}
-<meta property="og:title" content="${esc(T.h1)} — LEVEL UP"><meta property="og:description" content="${esc(T.d)}"><meta property="og:image" content="${URL0}/img/og.png"><meta property="og:url" content="${URL0}${P[l]}">
+<meta property="og:title" content="${esc(T.h1)} — LEVEL UP"><meta property="og:description" content="${esc(T.d)}"><meta property="og:image" content="${URL0}/img/og.png?v=2"><meta property="og:url" content="${URL0}${P[l]}">
 <link rel="icon" href="/img/icon.png">
 <link rel="stylesheet" href="/docs.css">
 <style>.lang a{text-decoration:none;font-size:11px;padding:3px 8px;border-radius:7px;color:var(--muted)}.lang a.on{background:var(--acc);color:#04130a;font-weight:700}
