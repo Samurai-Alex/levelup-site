@@ -1,6 +1,21 @@
 // згенеровано tools/changes.mjs — не редагувати вручну
 window.CHANGES = [
  {
+  "v": "1.8.0",
+  "uk": [
+   "Текст у фірмовій темі — мʼякий білий, як на сайті, а не молочний",
+   "Галочки, головні кнопки й смуга «Сьогодні» — нейтральні світло-сірі, без жовтуватого відтінку"
+  ],
+  "ru": [
+   "Текст в фирменной теме — мягкий белый, как на сайте, а не молочный",
+   "Галочки, главные кнопки и полоса «Сегодня» — нейтральные светло-серые, без желтоватого оттенка"
+  ],
+  "en": [
+   "Text in the signature theme is a soft white, like on the website, instead of milky",
+   "Checkboxes, main buttons and the Today bar are a neutral light grey without the yellowish tint"
+  ]
+ },
+ {
   "v": "1.7.9",
   "uk": [
    "Готові набори: «Студент», «Фрилансер», «Ранковий ритуал», «Здоровий сон», «Схуднення» й ще 5 — одним натиском відмічають звички й додають віджети на «Головну»",
@@ -58,33 +73,6 @@ window.CHANGES = [
    "The arrow button next to the quick line has the same colour as the widget buttons; it does not send an empty line",
    "The parsed quick-line phrase sits in a calm frame of the field colour",
    "Health: labels like «glass 330 ml · 2.64 L» stay on one line"
-  ]
- },
- {
-  "v": "1.7.7",
-  "uk": [
-   "Щойно відмічена звичка на «Головній» і в «Сьогодні» одразу показує галочку, клацає й підстрибує",
-   "Мова, яку ви вибрали в установнику, — це й мова програми з першого запуску",
-   "Валюта нового користувача — за регіоном Windows (Параметри → Час і мова → Регіон): гривня, рубль, долар, євро",
-   "Приклад даних у кожній мові — у своїй валюті й із правдоподібними сумами; поле суми переходить на нову валюту після заміни даних",
-   "«Зарядка» — готова звичка в розділі «Спорт», і швидкий рядок її розуміє",
-   "Швидкий рядок розуміє знак рубля: «кава 250 ₽» — це витрата, а не чашка кави"
-  ],
-  "ru": [
-   "Только что отмеченная привычка на «Главной» и в «Сегодня» сразу показывает галочку, щёлкает и подпрыгивает",
-   "Язык, выбранный в установщике, — это и язык программы с первого запуска",
-   "Валюта нового пользователя — по региону Windows (Параметры → Время и язык → Регион): гривна, рубль, доллар, евро",
-   "Пример данных на каждом языке — в своей валюте и с правдоподобными суммами; на русском по умолчанию рубль",
-   "«Зарядка» — готовая привычка в разделе «Спорт», и быстрая строка её понимает",
-   "Быстрая строка понимает знак рубля: «кофе 250 ₽» — это расход, а не чашка кофе"
-  ],
-  "en": [
-   "A habit you just ticked on Home and in Today shows its tick at once, clicks and bounces",
-   "The language you pick in the installer is the app language from the first start",
-   "A new user's currency follows the Windows region (Settings > Time & language > Region): hryvnia, rouble, dollar, euro",
-   "The example data in each language uses its own currency with believable amounts; the amount field follows the currency after data is replaced",
-   "«Morning exercise» is a ready habit in the Sport section, and the quick line understands it",
-   "The quick line understands the rouble sign: «coffee 250 ₽» is an expense, not a cup of coffee"
   ]
  }
 ];
