@@ -3,9 +3,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import w, {report} from './worker.js';
 
-// rows — цей тиждень, prev — попередній (звіт питає саме в такому порядку)
-const fakeDB = (rows, prev = []) => {
-  const added = [], weeks = [rows, prev];
+// rows — цей тиждень, prev — попередній, today — сьогодні, rv — підсумок відгуків (звіт питає саме в такому порядку)
+const fakeDB = (rows, prev = [], today = [], rv = []) => {
+  const added = [], weeks = [rows, prev, today, rv];
   const st = sql => ({bind: (...a) => ({sql, a, all: async () => ({results: weeks.shift() || []}), run: async () => {}}), run: async () => {}, first: async () => ({n: 5})});
   return {added, prepare: st, batch: async list => list.forEach(x => added.push(x.a[1]))};
 };
@@ -48,6 +48,20 @@ test('звіт: частки, порівняння з минулим тижне�
 
 test('звіт без відвідувань — один рядок', async () => {
   assert.match(await report({DB: fakeDB([])}), /Посещений пока не было\.$/);
+});
+test('звіт: за тиждень порожньо, але сьогодні були відвідування й відгук — показує їх, а не «не было»', async () => {
+  const t = await report({DB: fakeDB([], [], R({view_ru: 3, dl_hero: 1, review: 1}), [{n: 1, w: 1}])});
+  assert.match(t, /Сегодня: посещения 3 · скачали 1 · отзывы 1/);
+  assert.match(t, /Отзывы: новых 1 \(с \d{4}-\d\d-\d\d\), ждут проверки 1/);
+  assert.doesNotMatch(t, /не было/);
+});
+test('звіт: без відвідувань за тиждень, але зі скачуваннями', async () => {
+  const t = await report({DB: fakeDB(R({dl_head: 2}))});
+  assert.match(t, /Скачали: 2/);
+  assert.doesNotMatch(t, /не было/);
+});
+test('звіт із відвідуваннями: рядок «Сегодня» внизу', async () => {
+  assert.match(await report({DB: fakeDB(R({view_en: 10}), [], R({view_en: 2}), [{n: null, w: 0}])}), /\n\nСегодня: посещения 2$/);
 });
 
 // відгуки: у базу — неопублікованим, адміну — повідомлення з посиланнями; пастка й порожні поля відсікаються

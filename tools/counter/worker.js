@@ -72,20 +72,24 @@ export async function review(req, env, url, human) {
   return Response.json({ ok: true }, H);
 }
 
-// звіт за останні 7 днів (без сьогоднішнього) і порівняння з тижнем перед ними; порожні рядки не показуються
+// звіт за останні 7 днів (без сьогоднішнього) і порівняння з тижнем перед ними, плюс рядок «Сегодня» і відгуки з rv; порожні рядки не показуються
 const STAGES = [['lvl1', 'LVL 1 Игра'], ['lvl2', 'LVL 2 Привычки'], ['lvl3', 'LVL 3 Деньги'], ['lvl4', 'LVL 4 ИИ'], ['lvl5', 'LVL 5 Под себя'], ['more', 'А ещё'], ['inst', 'Как установить'], ['price', 'Цены'], ['faq', 'Вопросы'], ['fin', 'Финальный призыв']];
 const srcName = k => k === 'direct' ? 'прямые заходы' : k.startsWith('src_') ? 'метка ' + k.slice(4) : k.slice(4);
 export async function report(env, days = 7, send = true) {
   const to = new Date(), from = new Date(to - days * 864e5), prev = new Date(from - days * 864e5);
   const sum = async (a, b) => { const { results } = await env.DB.prepare('SELECT k, SUM(n) n FROM ev WHERE day >= ?1 AND day < ?2 GROUP BY k').bind(day(a), day(b)).all(); return Object.fromEntries(results.map(r => [r.k, r.n])); };
-  const m = await sum(from, to), p = await sum(prev, from), g = k => m[k] || 0, gp = k => p[k] || 0;
+  const m = await sum(from, to), p = await sum(prev, from), t = await sum(to, new Date(+to + 864e5)), g = k => m[k] || 0, gp = k => p[k] || 0;
+  const rv = (await env.DB.prepare('SELECT SUM(at >= ?1) n, SUM(ok = 0) w FROM rv').bind(day(from)).all()).results[0] || {};
   const tot = (o, ks) => ks.reduce((a, k) => a + (o[k] || 0), 0), VK = ['view_ru', 'view_uk', 'view_en'], DK = ['dl_head', 'dl_hero', 'dl_price', 'dl_fin'];
   const views = tot(m, VK), dl = tot(m, DK), pViews = tot(p, VK);
   const pc = n => views ? Math.round(n / views * 100) + '%' : '—';
   const dt = (n, was) => !pViews ? '' : !was ? (n ? ' (впервые)' : '') : ` (${n >= was ? '+' : ''}${Math.round((n - was) / was * 100)}%)`;   // к прошлой неделе
   const list = (pre, f = r => r[0].slice(pre.length) + ' ' + r[1]) => Object.entries(m).filter(([k]) => k.startsWith(pre)).sort((a, b) => b[1] - a[1]).slice(0, 5).map(f).join(', ');
   const head = `LEVEL UP · сайт за ${days} дней (${day(from)} — ${day(new Date(to - 864e5))})`;
-  if (!views) return deliver(env, head + '\n\nПосещений пока не было.', send);
+  // сьогоднішнє в тижневі цифри не входить — окремим рядком, щоб /stats увечері не казав «нікого не було»
+  const tv = tot(t, VK), td = tot(t, DK), today = [tv && `посещения ${tv}`, td && `скачали ${td}`, t.review && `отзывы ${t.review}`].filter(Boolean).join(' · ');
+  const extra = [today && 'Сегодня: ' + today, (rv.n || rv.w) && `Отзывы: новых ${rv.n || 0} (с ${day(from)}), ждут проверки ${rv.w || 0}`].filter(Boolean);
+  if (!views) return deliver(env, [head, '', ...(dl ? [`Скачали: ${dl}`] : []), ...extra, ...(dl || extra.length ? [] : ['Посещений пока не было.'])].join('\n'), send);
   // вывод: где больше всего уходят (от 10 визитов) и откуда лучше качают (от 5 визитов из источника)
   const out = [], st = STAGES.filter(([k]) => g(k));
   if (views >= 10 && st.length > 1) { let w = null; for (let i = 1; i < st.length; i++) { const d = g(st[i - 1][0]) - g(st[i][0]); if (!w || d > w.d) w = { d, a: st[i - 1][1], b: st[i][1] }; } if (w && w.d > 0) out.push(`Больше всего уходят между «${w.a}» и «${w.b}» — ${pc(w.d)} посетителей`); }
@@ -103,6 +107,7 @@ export async function report(env, days = 7, send = true) {
   if (cc || via) lines.push('');
   if (cc) lines.push('Страны: ' + cc);
   if (via) lines.push('Откуда: ' + via);
+  if (extra.length) lines.push('', ...extra);
   return deliver(env, lines.join('\n'), send);
 }
 async function deliver(env, text, send) {
