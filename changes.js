@@ -1,6 +1,39 @@
 // згенеровано tools/changes.mjs — не редагувати вручну
 window.CHANGES = [
  {
+  "v": "1.9.0",
+  "uk": [
+   "Привітання: тест «Підібрати» — 4 питання, і програма пропонує набір звичок із поясненням до кожної; «Забуваю» вмикає вечірнє нагадування",
+   "«Спорт»: програма тренувань — план на тиждень за 6 питаннями (вдома, у залі чи на вулиці, під ваш рівень)",
+   "«Англійська» стала зошитом виразів: одне поле на кілька фраз, переклад від ШІ, словник із темами й пошуком",
+   "Повторення карток — 7 способів: з англійської, на англійську, написати, вставити у фразу, сказати, слухати або впереміш; перемикати кнопкою чи коліщатком миші",
+   "До 25 карток на день; забуту картку програма поверне завтра, а ШІ додає до кожного виразу короткий приклад",
+   "Вікно повторення завжди одного розміру, закрити можна хрестиком або Esc — відповіді вже збережені",
+   "Коліщатко миші перемикає кнопки вибору в рядках введення: тип заняття, тип тренування, рахунок, мітку",
+   "Неактивна головна кнопка — спокійна сіра в усіх темах"
+  ],
+  "ru": [
+   "Приветствие: тест «Подобрать» — 4 вопроса, и программа предлагает набор привычек с пояснением к каждой; «Забываю» включает вечернее напоминание",
+   "«Спорт»: программа тренировок — план на неделю по 6 вопросам (дома, в зале или на улице, под ваш уровень)",
+   "«Английский» стал тетрадью выражений: одно поле на несколько фраз, перевод от ИИ, словарь с темами и поиском",
+   "Повторение карточек — 7 способов: с английского, на английский, написать, вставить во фразу, сказать, слушать или вперемешку; переключать кнопкой или колесом мыши",
+   "До 25 карточек в день; забытую карточку программа вернёт завтра, а ИИ добавляет к каждому выражению короткий пример",
+   "Окно повторения всегда одного размера, закрыть можно крестиком или Esc — ответы уже сохранены",
+   "Колесо мыши переключает кнопки выбора в строках ввода: вид занятия, вид тренировки, счёт, метку",
+   "Неактивная главная кнопка — спокойная серая во всех темах"
+  ],
+  "en": [
+   "Welcome: the «Find my set» quiz — 4 questions, then a set of habits with a reason for each; «I forget» turns on an evening reminder",
+   "Sport: a workout program — a weekly plan from 6 questions (home, gym or outdoors, for your level)",
+   "English is now an expressions notebook: one field for several phrases, AI translation, a dictionary with topics and search",
+   "Card review in 7 ways: from English, into English, write, fill the gap, say, listen or mixed; switch with the button or the mouse wheel",
+   "Up to 25 cards a day; a forgotten card comes back tomorrow, and AI adds a short example to every expression",
+   "The review window always keeps one size and closes with ✕ or Esc; answers are already saved",
+   "The mouse wheel switches choice buttons in entry rows: activity type, workout type, account, tag",
+   "A disabled main button is a calm grey in every theme"
+  ]
+ },
+ {
   "v": "1.8.0",
   "uk": [
    "Текст у фірмовій темі — мʼякий білий, як на сайті, а не молочний",
@@ -40,39 +73,6 @@ window.CHANGES = [
    "Long habit names in the picker wrap instead of being cut off",
    "Finance: the «spent of income» bar again shows a clear shift from green to yellow and red",
    "On light themes this bar is no longer repainted from red to the theme colour"
-  ]
- },
- {
-  "v": "1.7.8",
-  "uk": [
-   "Шкала рівня в шапці наповнюється повільно й помітно, коли долітає «+XP»; «Рівень N!» з'являється, коли смужка перейшла на новий рівень",
-   "Програма пам'ятає, що ви бета-тестер: у «Налаштуваннях» видно «бета-тестер: повна версія −50 %»",
-   "Новини від розробника приходять у ваше листування у «Відгуку»",
-   "Стовпчики графіків — зі скругленою верхівкою",
-   "Шапка «Головної» більше не смикається, коли день закрито",
-   "Кнопка-стрілка біля швидкого рядка — того ж кольору, що кнопки віджетів; порожній рядок вона не надсилає",
-   "Розібрана фраза швидкого рядка — у спокійній рамці кольору поля",
-   "«Здоров'я»: підписи на кшталт «склянка 330 мл · 2,64 л» не переносяться"
-  ],
-  "ru": [
-   "Шкала уровня в шапке заполняется медленно и заметно, когда долетает «+XP»; «Уровень N!» появляется, когда полоска перешла на новый уровень",
-   "Программа помнит, что вы бета-тестер: в «Настройках» видно «бета-тестер: полная версия −50 %»",
-   "Новости от разработчика приходят в вашу переписку в «Отзыве»",
-   "Столбики графиков — со скруглённой верхушкой",
-   "Шапка «Главной» больше не дёргается, когда день закрыт",
-   "Кнопка-стрелка у быстрой строки — того же цвета, что кнопки виджетов; пустую строку она не отправляет",
-   "Разобранная фраза быстрой строки — в спокойной рамке цвета поля",
-   "«Здоровье»: подписи вроде «стакан 330 мл · 2,64 л» не переносятся"
-  ],
-  "en": [
-   "The level bar in the header fills slowly and visibly when the «+XP» lands; «Level N!» appears when the bar moves to the new level",
-   "The app remembers you are a beta tester: Settings show «beta tester: full version −50%»",
-   "News from the developer arrives in your conversation under Feedback",
-   "Chart bars have rounded tops",
-   "The Home header no longer jumps when the day is closed",
-   "The arrow button next to the quick line has the same colour as the widget buttons; it does not send an empty line",
-   "The parsed quick-line phrase sits in a calm frame of the field colour",
-   "Health: labels like «glass 330 ml · 2.64 L» stay on one line"
   ]
  }
 ];
