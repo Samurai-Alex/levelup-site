@@ -1,6 +1,18 @@
 // згенеровано tools/changes.mjs — не редагувати вручну
 window.CHANGES = [
  {
+  "v": "1.9.1",
+  "uk": [
+   "Налаштування → Загальні: «Анонімна статистика» — раз на день програма повідомляє лише номер установки й версію, без твоїх записів; вимикається одним перемикачем"
+  ],
+  "ru": [
+   "Настройки → Общие: «Анонимная статистика» — раз в день программа сообщает только номер установки и версию, без твоих записей; выключается одним переключателем"
+  ],
+  "en": [
+   "Settings → General: «Anonymous statistics» — once a day the app reports only the install number and version, none of your entries; one switch turns it off"
+  ]
+ },
+ {
   "v": "1.9.0",
   "uk": [
    "Привітання: тест «Підібрати» — 4 питання, і програма пропонує набір звичок із поясненням до кожної; «Забуваю» вмикає вечірнє нагадування",
@@ -46,33 +58,6 @@ window.CHANGES = [
   "en": [
    "Text in the signature theme is a soft white, like on the website, instead of milky",
    "Checkboxes, main buttons and the Today bar are a neutral light grey without the yellowish tint"
-  ]
- },
- {
-  "v": "1.7.9",
-  "uk": [
-   "Готові набори: «Студент», «Фрилансер», «Ранковий ритуал», «Здоровий сон», «Схуднення» й ще 5 — одним натиском відмічають звички й додають віджети на «Головну»",
-   "Набори є в привітанні й у вікні «Додати звички»; на вкладці «Вибрати самому» будь-яку звичку з набору можна зняти або додати свою",
-   "11 нових готових звичок: ранній підйом, 10 000 кроків, без фастфуду, 3 вдячності, глибока робота та інші",
-   "Довгі назви звичок у вікні вибору переносяться, а не обрізаються",
-   "«Фінанси»: смуга «витрачено з доходу» знову з помітним переходом від зеленого до жовтого й червоного",
-   "На світлих темах ця смуга більше не перефарбовується з червоного в колір теми"
-  ],
-  "ru": [
-   "Готовые наборы: «Студент», «Фрилансер», «Утренний ритуал», «Здоровый сон», «Похудение» и ещё 5 — одним нажатием отмечают привычки и добавляют виджеты на «Главную»",
-   "Наборы есть в приветствии и в окне «Добавить привычки»; на вкладке «Выбрать самому» любую привычку из набора можно снять или добавить свою",
-   "11 новых готовых привычек: ранний подъём, 10 000 шагов, без фастфуда, 3 благодарности, глубокая работа и другие",
-   "Длинные названия привычек в окне выбора переносятся, а не обрезаются",
-   "«Финансы»: полоса «потрачено из дохода» снова с заметным переходом от зелёного к жёлтому и красному",
-   "На светлых темах эта полоса больше не перекрашивается из красного в цвет темы"
-  ],
-  "en": [
-   "Ready sets: Student, Freelancer, Morning routine, Healthy sleep, Weight loss and 5 more tick their habits and add their widgets to Home in one click",
-   "Sets are in the welcome window and in Add habits; on the «Pick myself» tab you can untick any habit from a set or add your own",
-   "11 new ready habits: wake up early, 10,000 steps, no fast food, 3 things I’m grateful for, deep work and more",
-   "Long habit names in the picker wrap instead of being cut off",
-   "Finance: the «spent of income» bar again shows a clear shift from green to yellow and red",
-   "On light themes this bar is no longer repainted from red to the theme colour"
   ]
  }
 ];
