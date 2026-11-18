@@ -21,7 +21,8 @@ const run = (args, input) => {
 
 run(['d1', 'execute', 'levelup-counter', '--remote', '--command', '"CREATE TABLE IF NOT EXISTS ev (day TEXT NOT NULL, k TEXT NOT NULL, n INTEGER NOT NULL DEFAULT 0, PRIMARY KEY (day, k))"']);
 run(['d1', 'execute', 'levelup-counter', '--remote', '--command', '"CREATE TABLE IF NOT EXISTS rv (id INTEGER PRIMARY KEY AUTOINCREMENT, at TEXT NOT NULL, lang TEXT NOT NULL, name TEXT NOT NULL, stars INTEGER NOT NULL, text TEXT NOT NULL, ok INTEGER NOT NULL DEFAULT 0)"']);
-console.log('D1: таблиці ev і rv є');
+run(['d1', 'execute', 'levelup-counter', '--remote', '--command', '"CREATE TABLE IF NOT EXISTS act (day TEXT NOT NULL, id TEXT NOT NULL, v TEXT NOT NULL, PRIMARY KEY (day, id))"']);
+console.log('D1: таблиці ev, rv і act є');
 run(['deploy']); console.log('лічильник розгорнуто');
 for (const [k, v] of [['BOT_TOKEN', cfg.token], ['ADMIN_CHAT', String(cfg.chat)], ['REPORT_KEY', cfg.reportKey]]) { run(['secret', 'put', k], v); console.log('секрет', k, '— збережено'); }
 const r = await fetch(`https://dl.levelup-tracker.com/report?key=${cfg.reportKey}`);

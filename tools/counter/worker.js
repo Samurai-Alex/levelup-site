@@ -5,6 +5,7 @@
 //   /reviews — опубліковані відгуки; POST /review — новий відгук (ім'я, зірки, текст) іде адміну в Telegram на перевірку,
 //   /rv?id=N&ok=1|0&key=REPORT_KEY — опублікувати чи видалити (посилання з того ж повідомлення)
 //   /report?key=REPORT_KEY — надіслати звіт зараз, &send=0 — лише повернути текст (для /stats у боті)
+//   /a?id=<номер установки>&v=1.9.0 — програма раз на день: «я запущена» (хто користується, а не лише скачав)
 // Розгортання й секрети: node tools/counter/setup.mjs
 const FILE = 'https://github.com/Samurai-Alex/habit-tracker-updates/releases/download/levelup/Level-Up-setup.exe';
 const BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|curl|wget|lighthouse/i;
@@ -40,6 +41,12 @@ export default {
         if (keys.length) await add(env, keys);
       }
       return new Response(null, { status: 204, headers: CORS });
+    }
+    // анонімний випадковий номер установки (S.fbAid — той самий, що й для відповідей на відгуки) і версія; IP не зберігається. Без фільтра ботів: це не браузер
+    if (url.pathname === '/a') {
+      const id = (url.searchParams.get('id') || '').toLowerCase(), v = url.searchParams.get('v') || '';
+      if (/^[0-9a-z]{16,36}$/.test(id) && /^\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(v)) await env.DB.prepare('INSERT OR IGNORE INTO act (day, id, v) VALUES (?1, ?2, ?3)').bind(day(), id, v).run();
+      return new Response(null, { status: 204 });
     }
     if (url.pathname === '/reviews') {
       const { results } = await env.DB.prepare('SELECT name, stars, text, lang, at FROM rv WHERE ok = 1 ORDER BY id DESC LIMIT 30').all();
@@ -80,6 +87,13 @@ export async function report(env, days = 7, send = true) {
   const sum = async (a, b) => { const { results } = await env.DB.prepare('SELECT k, SUM(n) n FROM ev WHERE day >= ?1 AND day < ?2 GROUP BY k').bind(day(a), day(b)).all(); return Object.fromEntries(results.map(r => [r.k, r.n])); };
   const m = await sum(from, to), p = await sum(prev, from), t = await sum(to, new Date(+to + 864e5)), g = k => m[k] || 0, gp = k => p[k] || 0;
   const rv = (await env.DB.prepare('SELECT SUM(at >= ?1) n, SUM(ok = 0) w FROM rv').bind(day(from)).all()).results[0] || {};
+  // програма: по кожній установці — перший день, скільки днів відкривали, чи була за тиждень і сьогодні
+  // shortcut: усі установки одним запитом і підрахунок у JS — ок до кількох тисяч; далі рахувати в SQL
+  const a = (await env.DB.prepare('SELECT MIN(day) f, COUNT(*) c, SUM(day >= ?1 AND day < ?2) w, SUM(day = ?2) t FROM act GROUP BY id').bind(day(from), day(to)).all()).results;
+  const old = a.filter(r => r.f < day(new Date(to - 864e5))), was = a.filter(r => r.f >= day(prev) && r.f < day(from)), n = f => a.filter(f).length;
+  const app = !a.length ? [] : ['Программа:', `  пользовались за неделю: ${n(r => r.w)} · сегодня: ${n(r => r.t)}`, `  новых установок за неделю: ${n(r => r.f >= day(from) && r.f < day(to))} · всего: ${a.length}`,
+    ...(was.length ? [`  вернулись через неделю: ${was.filter(r => r.w).length} из ${was.length} установивших неделей раньше`] : []),
+    ...(old.length ? [`  открыли один день и больше не заходили: ${old.filter(r => r.c === 1).length} из ${old.length}`] : [])];
   const tot = (o, ks) => ks.reduce((a, k) => a + (o[k] || 0), 0), VK = ['view_ru', 'view_uk', 'view_en'], DK = ['dl_head', 'dl_hero', 'dl_price', 'dl_fin'];
   const views = tot(m, VK), dl = tot(m, DK), pViews = tot(p, VK);
   const pc = n => views ? Math.round(n / views * 100) + '%' : '—';
@@ -89,7 +103,7 @@ export async function report(env, days = 7, send = true) {
   // сьогоднішнє в тижневі цифри не входить — окремим рядком, щоб /stats увечері не казав «нікого не було»
   const tv = tot(t, VK), td = tot(t, DK), today = [tv && `посещения ${tv}`, td && `скачали ${td}`, t.review && `отзывы ${t.review}`].filter(Boolean).join(' · ');
   const extra = [today && 'Сегодня: ' + today, (rv.n || rv.w) && `Отзывы: новых ${rv.n || 0} (с ${day(from)}), ждут проверки ${rv.w || 0}`].filter(Boolean);
-  if (!views) return deliver(env, [head, '', ...(dl ? [`Скачали: ${dl}`] : []), ...extra, ...(dl || extra.length ? [] : ['Посещений пока не было.'])].join('\n'), send);
+  if (!views) return deliver(env, [head, '', ...(dl ? [`Скачали: ${dl}`] : []), ...extra, ...(dl || extra.length ? [] : ['Посещений пока не было.']), ...(app.length ? ['', ...app] : [])].join('\n'), send);
   // вывод: где больше всего уходят (от 10 визитов) и откуда лучше качают (от 5 визитов из источника)
   const out = [], st = STAGES.filter(([k]) => g(k));
   if (views >= 10 && st.length > 1) { let w = null; for (let i = 1; i < st.length; i++) { const d = g(st[i - 1][0]) - g(st[i][0]); if (!w || d > w.d) w = { d, a: st[i - 1][1], b: st[i][1] }; } if (w && w.d > 0) out.push(`Больше всего уходят между «${w.a}» и «${w.b}» — ${pc(w.d)} посетителей`); }
@@ -108,6 +122,7 @@ export async function report(env, days = 7, send = true) {
   if (cc) lines.push('Страны: ' + cc);
   if (via) lines.push('Откуда: ' + via);
   if (extra.length) lines.push('', ...extra);
+  if (app.length) lines.push('', ...app);
   return deliver(env, lines.join('\n'), send);
 }
 async function deliver(env, text, send) {

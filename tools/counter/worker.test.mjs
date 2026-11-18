@@ -3,9 +3,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import w, {report} from './worker.js';
 
-// rows — цей тиждень, prev — попередній, today — сьогодні, rv — підсумок відгуків (звіт питає саме в такому порядку)
-const fakeDB = (rows, prev = [], today = [], rv = []) => {
-  const added = [], weeks = [rows, prev, today, rv];
+// rows — цей тиждень, prev — попередній, today — сьогодні, rv — підсумок відгуків, act — установки програми (звіт питає саме в такому порядку)
+const fakeDB = (rows, prev = [], today = [], rv = [], act = []) => {
+  const added = [], weeks = [rows, prev, today, rv, act];
   const st = sql => ({bind: (...a) => ({sql, a, all: async () => ({results: weeks.shift() || []}), run: async () => {}}), run: async () => {}, first: async () => ({n: 5})});
   return {added, prepare: st, batch: async list => list.forEach(x => added.push(x.a[1]))};
 };
@@ -62,6 +62,23 @@ test('звіт: без відвідувань за тиждень, але зі �
 });
 test('звіт із відвідуваннями: рядок «Сегодня» внизу', async () => {
   assert.match(await report({DB: fakeDB(R({view_en: 10}), [], R({view_en: 2}), [{n: null, w: 0}])}), /\n\nСегодня: посещения 2$/);
+});
+
+const D = n => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);   // день n днів тому
+test('звіт: блок «Программа» — активні, нові, повернулися, кинули', async () => {
+  const act = [{f: D(10), c: 5, w: 2, t: 1}, {f: D(9), c: 1, w: 0, t: 0}, {f: D(3), c: 2, w: 2, t: 0}, {f: D(5), c: 1, w: 1, t: 0}];
+  const t = await report({DB: fakeDB([], [], [], [], act)});
+  assert.match(t, /пользовались за неделю: 3 · сегодня: 1/);
+  assert.match(t, /новых установок за неделю: 2 · всего: 4/);
+  assert.match(t, /вернулись через неделю: 1 из 2 установивших неделей раньше/);
+  assert.match(t, /открыли один день и больше не заходили: 2 из 4/);
+});
+test('/a: пише день лише з правильним номером і версією', async () => {
+  const runs = [], DB = {prepare: sql => ({bind: (...a) => ({run: async () => runs.push(a)})})};
+  for (const q of ['id=abc123def456ghi789jkl012&v=1.9.0', 'id=short&v=1.9.0', 'id=abc123def456ghi789jkl012&v=x', "id=abc123def456ghi789jkl012'--&v=1.9.0"])
+    assert.equal((await w.fetch(new Request('https://dl.x/a?' + q), {DB})).status, 204);
+  assert.equal(runs.length, 1);
+  assert.deepEqual(runs[0].slice(1), ['abc123def456ghi789jkl012', '1.9.0']);
 });
 
 // відгуки: у базу — неопублікованим, адміну — повідомлення з посиланнями; пастка й порожні поля відсікаються
