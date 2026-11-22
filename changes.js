@@ -1,6 +1,39 @@
 // згенеровано tools/changes.mjs — не редагувати вручну
 window.CHANGES = [
  {
+  "v": "1.10.0",
+  "uk": [
+   "Синхронізація телефона й компʼютера: Налаштування → Дані → «Синхронізація», код або QR, без реєстрації — дані шифруються на пристрої",
+   "«Поділитися» — картка гравця: рівень, серія, відсоток дня й тижня на фірмовому живому фоні, без сум і назв звичок",
+   "Серії за одним правилом: день без плану не рве загальну серію, заморожений день не рве серію звички",
+   "Новий розклад звички діє від дня зміни — минулі дні й відсоток лишаються як були; дні до появи звички не рахуються",
+   "Видалену звичку можна повернути кнопкою «Скасувати» — разом із відмітками",
+   "«Тиждень» показує заморожені дні й паузу, з підписом під таблицею",
+   "Світла тема на темному живому фоні: заголовки й значки читаються",
+   "Один вигляд перемикачів у всій програмі"
+  ],
+  "ru": [
+   "Синхронизация телефона и компьютера: Настройки → Данные → «Синхронизация», код или QR, без регистрации — данные шифруются на устройстве",
+   "«Поделиться» — карточка игрока: уровень, серия, процент дня и недели на фирменном живом фоне, без сумм и названий привычек",
+   "Серии по одному правилу: день без плана не рвёт общую серию, замороженный день не рвёт серию привычки",
+   "Новое расписание привычки действует со дня изменения — прошлые дни и процент остаются как были; дни до появления привычки не считаются",
+   "Удалённую привычку можно вернуть кнопкой «Отменить» — вместе с отметками",
+   "«Неделя» показывает замороженные дни и паузу, с подписью под таблицей",
+   "Светлая тема на тёмном живом фоне: заголовки и значки читаются",
+   "Один вид переключателей во всей программе"
+  ],
+  "en": [
+   "Phone and computer sync: Settings → Data → Sync, by code or QR, no sign-up; data is encrypted on the device",
+   "Share is now a player card: level, streak, day and week progress on the live brand background, no amounts or habit names",
+   "Streaks follow one rule: a day with nothing planned does not break the overall streak, a frozen day does not break a habit’s streak",
+   "A new habit schedule applies from the day you change it; past days and the percentage stay as they were, and days before the habit existed do not count",
+   "A deleted habit comes back with Undo, marks included",
+   "Week shows frozen and paused days, with a legend under the table",
+   "Light theme on a dark live background: headings and icons are readable",
+   "One switch style across the whole app"
+  ]
+ },
+ {
   "v": "1.9.1",
   "uk": [
    "Налаштування → Загальні: «Анонімна статистика» — раз на день програма повідомляє лише номер установки й версію, без твоїх записів; вимикається одним перемикачем"
@@ -43,21 +76,6 @@ window.CHANGES = [
    "The review window always keeps one size and closes with ✕ or Esc; answers are already saved",
    "The mouse wheel switches choice buttons in entry rows: activity type, workout type, account, tag",
    "A disabled main button is a calm grey in every theme"
-  ]
- },
- {
-  "v": "1.8.0",
-  "uk": [
-   "Текст у фірмовій темі — мʼякий білий, як на сайті, а не молочний",
-   "Галочки, головні кнопки й смуга «Сьогодні» — нейтральні світло-сірі, без жовтуватого відтінку"
-  ],
-  "ru": [
-   "Текст в фирменной теме — мягкий белый, как на сайте, а не молочный",
-   "Галочки, главные кнопки и полоса «Сегодня» — нейтральные светло-серые, без желтоватого оттенка"
-  ],
-  "en": [
-   "Text in the signature theme is a soft white, like on the website, instead of milky",
-   "Checkboxes, main buttons and the Today bar are a neutral light grey without the yellowish tint"
   ]
  }
 ];
