@@ -91,7 +91,7 @@ export async function report(env, days = 7, send = true) {
   // shortcut: усі установки одним запитом і підрахунок у JS — ок до кількох тисяч; далі рахувати в SQL
   const a = (await env.DB.prepare('SELECT MIN(day) f, COUNT(*) c, SUM(day >= ?1 AND day < ?2) w, SUM(day = ?2) t FROM act GROUP BY id').bind(day(from), day(to)).all()).results;
   const old = a.filter(r => r.f < day(new Date(to - 864e5))), was = a.filter(r => r.f >= day(prev) && r.f < day(from)), n = f => a.filter(f).length;
-  const app = !a.length ? [] : ['Программа:', `  пользовались за неделю: ${n(r => r.w)} · сегодня: ${n(r => r.t)}`, `  новых установок за неделю: ${n(r => r.f >= day(from) && r.f < day(to))} · всего: ${a.length}`,
+  const app = !a.length ? [] : ['Программа:', `  пользовались за 7 дней до сегодня: ${n(r => r.w)} · сегодня: ${n(r => r.t)}`, `  новых установок за 7 дней до сегодня: ${n(r => r.f >= day(from) && r.f < day(to))} · всего: ${a.length}`,
     ...(was.length ? [`  вернулись через неделю: ${was.filter(r => r.w).length} из ${was.length} установивших неделей раньше`] : []),
     ...(old.length ? [`  открыли один день и больше не заходили: ${old.filter(r => r.c === 1).length} из ${old.length}`] : [])];
   const tot = (o, ks) => ks.reduce((a, k) => a + (o[k] || 0), 0), VK = ['view_ru', 'view_uk', 'view_en'], DK = ['dl_head', 'dl_hero', 'dl_price', 'dl_fin'];
